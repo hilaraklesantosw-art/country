@@ -41,7 +41,7 @@
 38. Germany (德国) - ✅ (2026-03-10)
 
 ## 待写作的国家 (Pending)
-- Italy (意大利)
+- Italy (意大利) - ✅ (2026-03-10)
 - Spain (西班牙)
 - Portugal (葡萄牙)
 - Greece (希腊)
