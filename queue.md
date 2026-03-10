@@ -28,10 +28,9 @@
 25. Saudi Arabia (沙特阿拉伯) - ✅ (2026-03-10)
 26. Egypt (埃及) - ✅ (2026-03-10)
 27. Morocco (摩洛哥) - ✅ (2026-03-10)
+28. South Africa (南非) - ✅ (2026-03-10)
 
 ## 待写作的国家 (Pending)
-- South Africa (南非)
-- South Africa (南非)
 - Kenya (肯尼亚)
 - Ethiopia (埃塞俄比亚)
 - Tanzania (坦桑尼亚)
