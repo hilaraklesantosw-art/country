@@ -1,9 +1,9 @@
 # Country Travel Queue
 
 ## 下一个待写国家 (Next Country)
-Jordan (约旦)
+Syria (叙利亚)
 
-## 已完成的国家 (Completed) - 56个
+## 已完成的国家 (Completed) - 57个
 1. Japan (日本) - ✅
 2. Afghanistan (阿富汗) - ✅
 3. Bangladesh (孟加拉国) - ✅
@@ -54,12 +54,13 @@ Jordan (约旦)
 48. New Zealand (新西兰) - ✅
 49. UAE (阿联酋) - ✅
 50. Yemen (也门) - ✅ (2026-03-11)
+51. Jordan (约旦) - ✅ (2026-03-11)
+52. Lebanon (黎巴嫩) - ✅ (2026-03-11)
 
 ## 待写作的国家 (Pending) - 140+
 
 ### 亚洲
-51. Jordan (约旦)
-52. Lebanon (黎巴嫩)
+52. Syria (叙利亚)
 53. Syria (叙利亚)
 54. Palestine (巴勒斯坦)
 55. Qatar (卡塔尔)
