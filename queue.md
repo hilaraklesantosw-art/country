@@ -1,7 +1,7 @@
 # Country Travel Queue
 
 ## 下一个待写国家 (Next)
-Cameroon (喀麦隆)
+Uganda (乌干达)
 
 ## 已完成的国家 (Completed)
 1. Finland (芬兰) - ✅ (2026-03-11)
@@ -93,11 +93,11 @@ Cameroon (喀麦隆)
 83. Ghana (加纳) - ✅ (2026-03-11)
 84. Senegal (塞内加尔) - ✅ (2026-03-11)
 85. Nigeria (尼日利亚) - ✅ (2026-03-11)
+86. Cameroon (喀麦隆) - ✅ (2026-03-12)
 
 ## 待写作的国家 (Pending)
-- Cameroon (喀麦隆)
 - Uganda (乌干达)
 
 ---
 
-**更新于**: 2026-03-11 (Nigeria 游记已完成)
+**更新于**: 2026-03-12 (Cameroon 游记已完成)
