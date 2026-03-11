@@ -81,11 +81,19 @@ Kuwait (科威特)
 73. Qatar (卡塔尔) - ✅ (2026-03-11)
 
 ## 待写作的国家 (Pending)
-- Oman (阿曼)
+- (None - all countries written)
+
+**下一批待添加国家**:
+- Peru (秘鲁) - rewrite
+- Chile (智利) - rewrite
+- Ecuador (厄瓜多尔)
+- Bolivia (玻利维亚)
+- Venezuela (委内瑞拉)
+- Uruguay (乌拉圭)
 
 ---
 
-**更新于**: 2026-03-11 (卡塔尔完成)
+**更新于**: 2026-03-11
 
 ---
 
