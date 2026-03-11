@@ -1,7 +1,7 @@
 # Country Travel Queue
 
 ## 下一个待写国家 (Next)
-(等待新任务)
+Uzbekistan (乌兹别克斯坦)
 
 ## 已完成的国家 (Completed)
 1. Japan (日本) - ✅
@@ -73,10 +73,6 @@
 67. Slovakia (斯洛伐克) - ✅ (2026-03-11)
 
 ## 待写作的国家 (Pending)
-- (等待新任务)
-
-### 更多国家 (More Countries)
-- Kazakhstan (哈萨克斯坦)
 - Uzbekistan (乌兹别克斯坦)
 - Turkmenistan (土库曼斯坦)
 - Kyrgyzstan (吉尔吉斯斯坦)
@@ -87,6 +83,12 @@
 - Qatar (卡塔尔)
 - Oman (阿曼)
 - Kuwait (科威特)
+- Oman (阿曼)
+- Kuwait (科威特)
+
+---
+
+**更新于**: 2026-03-11 (哈萨克斯坦完成)
 
 ---
 
