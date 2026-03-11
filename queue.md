@@ -125,3 +125,11 @@
 23. ~~Zimbabwe (津巴布韦)~~ - ✅ (2026-03-12, 游记已上传 GitHub)
 
 **更新于**: 2026-03-11 (新增南美加勒比国家 + 非洲国家)
+
+## 更多待写国家 (More to Add)
+- Myanmar (缅甸) - rewrite
+- Laos (老挝) - rewrite
+- Cambodia (柬埔寨) - rewrite
+- Nepal (尼泊尔) - rewrite
+- Sri Lanka (斯里兰卡) - rewrite
+- Bhutan (不丹) - rewrite
