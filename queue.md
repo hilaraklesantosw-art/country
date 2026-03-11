@@ -79,16 +79,12 @@
 73. Uruguay (乌拉圭) - ✅ (2026-03-11)
 
 ## 待写作的国家 (Pending)
-- Guatemala (危地马拉)
-- Cuba (古巴)
-- Jamaica (牙买加)
 - Belize (伯利兹)
 - Haiti (海地)
 - Dominican Republic (多米尼加)
 - Puerto Rico (波多黎各)
 - Trinidad and Tobago (特立尼达)
-- Panama (巴拿马)
-- Costa Rica (哥斯达黎加)
+- (More to add...)
 
 ---
 
