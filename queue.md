@@ -84,7 +84,7 @@
 3. Venezuela (委内瑞拉) - ⏳
 4. Bolivia (玻利维亚) - ⏳
 5. Paraguay (巴拉圭) - ⏳
-6. Panama (巴拿马) - ⏳
+6. Panama (巴拿马) - ✅ (2026-03-11)
 7. Costa Rica (哥斯达黎加) - ⏳
 8. Guatemala (危地马拉) - ⏳
 9. Cuba (古巴) - ⏳
