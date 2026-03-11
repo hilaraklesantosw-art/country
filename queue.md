@@ -1,5 +1,8 @@
 # Country Travel Queue
 
+## 下一个待写国家 (Next)
+Bulgaria (保加利亚)
+
 ## 已完成的国家 (Completed)
 1. Japan (日本) - ✅
 2. Iceland (冰岛) - ✅ (2026-03-11)
