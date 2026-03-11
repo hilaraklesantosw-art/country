@@ -77,9 +77,9 @@
 71. Kazakhstan (哈萨克斯坦) - ✅ (2026-03-11)
 72. Colombia (哥伦比亚) - ✅ (2026-03-11)
 73. Uruguay (乌拉圭) - ✅ (2026-03-11)
+74. Belize (伯利兹) - ✅ (2026-03-11)
 
 ## 待写作的国家 (Pending)
-- Belize (伯利兹)
 - Haiti (海地)
 - Dominican Republic (多米尼加)
 - Puerto Rico (波多黎各)
