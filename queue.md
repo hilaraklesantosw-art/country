@@ -1,9 +1,9 @@
 # Country Travel Queue
 
 ## 下一个待写国家 (Next Country)
-Yemen (也门)
+Jordan (约旦)
 
-## 已完成的国家 (Completed) - 55个
+## 已完成的国家 (Completed) - 56个
 1. Japan (日本) - ✅
 2. Afghanistan (阿富汗) - ✅
 3. Bangladesh (孟加拉国) - ✅
@@ -53,11 +53,11 @@ Yemen (也门)
 47. Australia (澳大利亚) - ✅
 48. New Zealand (新西兰) - ✅
 49. UAE (阿联酋) - ✅
+50. Yemen (也门) - ✅ (2026-03-11)
 
 ## 待写作的国家 (Pending) - 140+
 
 ### 亚洲
-50. Yemen (也门)
 51. Jordan (约旦)
 52. Lebanon (黎巴嫩)
 53. Syria (叙利亚)
