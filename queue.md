@@ -1,7 +1,7 @@
 # Country Travel Queue
 
 ## 下一个待写国家 (Next)
-Uzbekistan (乌兹别克斯坦)
+Turkmenistan (土库曼斯坦)
 
 ## 已完成的国家 (Completed)
 1. Japan (日本) - ✅
@@ -71,10 +71,9 @@ Uzbekistan (乌兹别克斯坦)
 65. Lithuania (立陶宛) - ✅ (2026-03-11)
 66. Slovenia (斯洛文尼亚) - ✅ (2026-03-11)
 67. Slovakia (斯洛伐克) - ✅ (2026-03-11)
+68. Uzbekistan (乌兹别克斯坦) - ✅ (2026-03-11)
 
 ## 待写作的国家 (Pending)
-- Uzbekistan (乌兹别克斯坦)
-- Turkmenistan (土库曼斯坦)
 - Kyrgyzstan (吉尔吉斯斯坦)
 - Tajikistan (塔吉克斯坦)
 - Georgia (格鲁吉亚)
@@ -83,8 +82,10 @@ Uzbekistan (乌兹别克斯坦)
 - Qatar (卡塔尔)
 - Oman (阿曼)
 - Kuwait (科威特)
-- Oman (阿曼)
-- Kuwait (科威特)
+
+---
+
+**更新于**: 2026-03-11 (乌兹别克斯坦完成)
 
 ---
 
