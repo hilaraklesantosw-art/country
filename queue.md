@@ -2,6 +2,7 @@
 
 ## 已完成的国家 (Completed)
 1. Japan (日本) - ✅
+2. Iceland (冰岛) - ✅ (2026-03-11)
 2. Afghanistan (阿富汗) - ✅
 3. Bangladesh (孟加拉国) - ✅
 4. Bhutan (不丹) - ✅
@@ -52,13 +53,23 @@
 49. Australia (澳大利亚) - ✅ (2026-03-11)
 50. New Zealand (新西兰) - ✅ (2026-03-11)
 51. UAE (阿联酋) - ✅ (2026-03-11)
+52. Lebanon (黎巴嫩) - ✅ (2026-03-11)
 
 ## 待写作的国家 (Pending)
-- (All countries completed)
+- Iceland (冰岛) - ✅ (2026-03-11)
+- Norway (挪威)
+- Sweden (瑞典)
+- Finland (芬兰)
+- Denmark (丹麦)
+- Switzerland (瑞士)
+- Austria (奥地利)
+- Czech Republic (捷克)
+- Hungary (匈牙利)
+- Croatia (克罗地亚)
 
 ---
 
-**更新于**: 2026-03-11 (全部完成)
+**更新于**: 2026-03-11 (黎巴嫩完成)
 
 ---
 
