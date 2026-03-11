@@ -1,7 +1,7 @@
 # Country Travel Queue
 
 ## 下一个待写国家 (Next)
-Belarus (白俄罗斯)
+Estonia (爱沙尼亚)
 
 ## 已完成的国家 (Completed)
 1. Japan (日本) - ✅
@@ -65,9 +65,9 @@ Belarus (白俄罗斯)
 57. Serbia (塞尔维亚) - ✅ (2026-03-11)
 58. Romania (罗马尼亚) - ✅ (2026-03-11)
 59. Bulgaria (保加利亚) - ✅ (2026-03-11)
+60. Belarus (白俄罗斯) - ✅ (2026-03-11)
 
 ## 待写作的国家 (Pending)
-- Belarus (白俄罗斯)
 - Estonia (爱沙尼亚)
 - Latvia (拉脱维亚)
 - Lithuania (立陶宛)
