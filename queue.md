@@ -1,5 +1,8 @@
 # Country Travel Queue
 
+## 下一个待写国家 (Next)
+Myanmar (缅甸) - rewrite
+
 ## 已完成的国家 (Completed)
 1. Finland (芬兰) - ✅ (2026-03-11)
 77. Portugal (葡萄牙) - ✅ (2026-03-11)
