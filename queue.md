@@ -2,6 +2,7 @@
 
 ## 已完成的国家 (Completed)
 1. Finland (芬兰) - ✅ (2026-03-11)
+77. Portugal (葡萄牙) - ✅ (2026-03-11)
 2. Japan (日本) - ✅
 2. Iceland (冰岛) - ✅ (2026-03-11)
 2. Afghanistan (阿富汗) - ✅
@@ -77,17 +78,22 @@
 71. Kazakhstan (哈萨克斯坦) - ✅ (2026-03-11)
 72. Colombia (哥伦比亚) - ✅ (2026-03-11)
 73. Uruguay (乌拉圭) - ✅ (2026-03-11)
-74. Belize (伯利兹) - ✅ (2026-03-11)
-75. Haiti (海地) - ✅ (2026-03-11)
+74. Ecuador (厄瓜多尔) - ✅ (2026-03-11)
+75. Costa Rica (哥斯达黎加) - ✅ (2026-03-11)
+76. Guatemala (危地马拉) - ✅ (2026-03-11)
+77. Cuba (古巴) - ✅ (2026-03-11)
+78. Panama (巴拿马) - ✅ (2026-03-11)
+79. Jamaica (牙买加) - ✅ (2026-03-11)
+80. Dominican Republic (多米尼加共和国) - ✅ (2026-03-11)
 
 ## 待写作的国家 (Pending)
-- Trinidad and Tobago (特立尼达)
-- Ghana (加纳)
-- Senegal (塞内加尔)
-- Morocco (摩洛哥) - rewrite
-- Tanzania (坦桑尼亚) - rewrite
-- Kenya (肯尼亚) - rewrite
+1. ~~Jamaica (牙买加)~~ - ✅ (2026-03-11)
+2. ~~Dominican Republic (多米尼加共和国)~~ - ✅ (2026-03-11)
+3. ~~Nicaragua (尼加拉瓜)~~ - ✅ (2026-03-11)
+4. Honduras (洪都拉斯)
+5. El Salvador (萨尔瓦多)
+6. Puerto Rico (波多黎各)
 
 ---
 
-**更新于**: 2026-03-11 (海地已完成)
+**更新于**: 2026-03-11 (新增南美加勒比国家)
