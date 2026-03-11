@@ -1,9 +1,9 @@
 # Country Travel Queue
 
 ## 下一个待写国家 (Next Country)
-Syria (叙利亚)
+Palestine (巴勒斯坦)
 
-## 已完成的国家 (Completed) - 57个
+## 已完成的国家 (Completed) - 58个
 1. Japan (日本) - ✅
 2. Afghanistan (阿富汗) - ✅
 3. Bangladesh (孟加拉国) - ✅
@@ -56,12 +56,13 @@ Syria (叙利亚)
 50. Yemen (也门) - ✅ (2026-03-11)
 51. Jordan (约旦) - ✅ (2026-03-11)
 52. Lebanon (黎巴嫩) - ✅ (2026-03-11)
+53. Syria (叙利亚) - ✅ (2026-03-11)
 
 ## 待写作的国家 (Pending) - 140+
 
 ### 亚洲
-52. Syria (叙利亚)
-53. Syria (叙利亚)
+52. ~~Syria (叙利亚)~~ - ✅ (2026-03-11)
+53. ~~Syria (叙利亚)~~ - ✅ (2026-03-11)
 54. Palestine (巴勒斯坦)
 55. Qatar (卡塔尔)
 56. Bahrain (巴林)
