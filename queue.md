@@ -81,10 +81,9 @@
 75. Haiti (海地) - ✅ (2026-03-11)
 
 ## 待写作的国家 (Pending)
-- Dominican Republic (多米尼加)
-- Puerto Rico (波多黎各)
 - Trinidad and Tobago (特立尼达)
-- (More to add...)
+- (Completed: 116 countries!)
+- Next batch to add: Africa + Asia
 
 ---
 
