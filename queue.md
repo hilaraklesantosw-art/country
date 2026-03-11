@@ -79,16 +79,16 @@
 73. Uruguay (乌拉圭) - ✅ (2026-03-11)
 
 ## 待写作的国家 (Pending)
-1. ~~Uruguay (乌拉圭) - ✅ (2026-03-11)~~
-2. ~~Ecuador (厄瓜多尔) - ✅ (2026-03-11)~~
-3. Venezuela (委内瑞拉) - ✅ (2026-03-11)
-4. Bolivia (玻利维亚) - ⏳
-5. Paraguay (巴拉圭) - ⏳
-6. Panama (巴拿马) - ✅ (2026-03-11)
-7. Costa Rica (哥斯达黎加) - ⏳
-8. Guatemala (危地马拉) - ⏳
-9. Cuba (古巴) - ⏳
-10. Jamaica (牙买加) - ⏳
+- Guatemala (危地马拉)
+- Cuba (古巴)
+- Jamaica (牙买加)
+- Belize (伯利兹)
+- Haiti (海地)
+- Dominican Republic (多米尼加)
+- Puerto Rico (波多黎各)
+- Trinidad and Tobago (特立尼达)
+- Panama (巴拿马)
+- Costa Rica (哥斯达黎加)
 
 ---
 
