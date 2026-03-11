@@ -1,7 +1,7 @@
 # Country Travel Queue
 
 ## 下一个待写国家 (Next)
-Armenia (亚美尼亚)
+Azerbaijan (阿塞拜疆)
 
 ## 已完成的国家 (Completed)
 1. Finland (芬兰) - ✅ (2026-03-11)
@@ -76,9 +76,9 @@ Armenia (亚美尼亚)
 68. Slovakia (斯洛伐克) - ✅ (2026-03-11)
 69. Uzbekistan (乌兹别克斯坦) - ✅ (2026-03-11)
 70. Georgia (格鲁吉亚) - ✅ (2026-03-11)
+71. Armenia (亚美尼亚) - ✅ (2026-03-11)
 
 ## 待写作的国家 (Pending)
-- Armenia (亚美尼亚)
 - Azerbaijan (阿塞拜疆)
 - Qatar (卡塔尔)
 - Oman (阿曼)
@@ -86,7 +86,7 @@ Armenia (亚美尼亚)
 
 ---
 
-**更新于**: 2026-03-11 (捷克完成)
+**更新于**: 2026-03-11 (亚美尼亚完成)
 
 ---
 
