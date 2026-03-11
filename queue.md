@@ -90,7 +90,7 @@
 1. ~~Jamaica (牙买加)~~ - ✅ (2026-03-11)
 2. ~~Dominican Republic (多米尼加共和国)~~ - ✅ (2026-03-11)
 3. ~~Nicaragua (尼加拉瓜)~~ - ✅ (2026-03-11)
-4. Honduras (洪都拉斯)
+4. ~~Honduras (洪都拉斯)~~ - ✅ (2026-03-11)
 5. El Salvador (萨尔瓦多)
 6. Puerto Rico (波多黎各)
 
