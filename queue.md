@@ -74,6 +74,19 @@ Slovakia (斯洛伐克)
 ## 待写作的国家 (Pending)
 - Slovakia (斯洛伐克)
 
+### 更多国家 (More Countries)
+- Kazakhstan (哈萨克斯坦)
+- Uzbekistan (乌兹别克斯坦)
+- Turkmenistan (土库曼斯坦)
+- Kyrgyzstan (吉尔吉斯斯坦)
+- Tajikistan (塔吉克斯坦)
+- Georgia (格鲁吉亚)
+- Armenia (亚美尼亚)
+- Azerbaijan (阿塞拜疆)
+- Qatar (卡塔尔)
+- Oman (阿曼)
+- Kuwait (科威特)
+
 ---
 
 **更新于**: 2026-03-11 (斯洛文尼亚完成)
