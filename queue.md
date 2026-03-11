@@ -82,8 +82,11 @@
 
 ## 待写作的国家 (Pending)
 - Trinidad and Tobago (特立尼达)
-- (Completed: 116 countries!)
-- Next batch to add: Africa + Asia
+- Ghana (加纳)
+- Senegal (塞内加尔)
+- Morocco (摩洛哥) - rewrite
+- Tanzania (坦桑尼亚) - rewrite
+- Kenya (肯尼亚) - rewrite
 
 ---
 
