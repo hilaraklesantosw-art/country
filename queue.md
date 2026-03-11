@@ -1,7 +1,7 @@
 # Country Travel Queue
 
 ## 下一个待写国家 (Next)
-Latvia (拉脱维亚)
+Slovenia (斯洛文尼亚)
 
 ## 已完成的国家 (Completed)
 1. Japan (日本) - ✅
@@ -67,16 +67,16 @@ Latvia (拉脱维亚)
 59. Bulgaria (保加利亚) - ✅ (2026-03-11)
 60. Belarus (白俄罗斯) - ✅ (2026-03-11)
 61. Estonia (爱沙尼亚) - ✅ (2026-03-11)
+62. Latvia (拉脱维亚) - ✅ (2026-03-11)
+63. Lithuania (立陶宛) - ✅ (2026-03-11)
 
 ## 待写作的国家 (Pending)
-- Latvia (拉脱维亚)
-- Lithuania (立陶宛)
 - Slovenia (斯洛文尼亚)
 - Slovakia (斯洛伐克)
 
 ---
 
-**更新于**: 2026-03-11 (爱沙尼亚完成)
+**更新于**: 2026-03-11 (立陶宛完成)
 
 ---
 
