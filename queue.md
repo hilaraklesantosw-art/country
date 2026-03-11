@@ -86,14 +86,14 @@
 79. Jamaica (牙买加) - ✅ (2026-03-11)
 80. Dominican Republic (多米尼加共和国) - ✅ (2026-03-11)
 81. El Salvador (萨尔瓦多) - ✅ (2026-03-11)
+82. Puerto Rico (波多黎各) - ✅ (2026-03-11)
 
 ## 待写作的国家 (Pending)
-1. ~~Jamaica (牙买加)~~ - ✅ (2026-03-11)
-2. ~~Dominican Republic (多米尼加共和国)~~ - ✅ (2026-03-11)
-3. ~~Nicaragua (尼加拉瓜)~~ - ✅ (2026-03-11)
-4. ~~Honduras (洪都拉斯)~~ - ✅ (2026-03-11)
-5. ~~El Salvador (萨尔瓦多)~~ - ✅ (2026-03-11)
-6. Puerto Rico (波多黎各)
+- Ghana (加纳)
+- Senegal (塞内加尔)
+- Nigeria (尼日利亚)
+- Cameroon (喀麦隆)
+- Uganda (乌干达)
 
 ---
 
