@@ -1,7 +1,7 @@
 # Country Travel Queue
 
 ## 下一个待写国家 (Next)
-Slovakia (斯洛伐克)
+(等待新任务)
 
 ## 已完成的国家 (Completed)
 1. Japan (日本) - ✅
@@ -70,9 +70,10 @@ Slovakia (斯洛伐克)
 64. Latvia (拉脱维亚) - ✅ (2026-03-11)
 65. Lithuania (立陶宛) - ✅ (2026-03-11)
 66. Slovenia (斯洛文尼亚) - ✅ (2026-03-11)
+67. Slovakia (斯洛伐克) - ✅ (2026-03-11)
 
 ## 待写作的国家 (Pending)
-- Slovakia (斯洛伐克)
+- (等待新任务)
 
 ### 更多国家 (More Countries)
 - Kazakhstan (哈萨克斯坦)
