@@ -60,11 +60,19 @@
 56. Denmark (丹麦) - ✅ (2026-03-11)
 
 ## 待写作的国家 (Pending)
-- Switzerland (瑞士)
-- Austria (奥地利)
-- Czech Republic (捷克)
-- Hungary (匈牙利)
-- Croatia (克罗地亚)
+- (All current batch completed)
+
+### 下一批 (Next Batch)
+- Serbia (塞尔维亚)
+- Romania (罗马尼亚)
+- Bulgaria (保加利亚)
+- Ukraine (乌克兰)
+- Belarus (白俄罗斯)
+- Estonia (爱沙尼亚)
+- Latvia (拉脱维亚)
+- Lithuania (立陶宛)
+- Slovenia (斯洛文尼亚)
+- Slovakia (斯洛伐克)
 
 ---
 
