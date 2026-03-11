@@ -1,7 +1,7 @@
 # Country Travel Queue
 
 ## 下一个待写国家 (Next)
-Nigeria (尼日利亚)
+Cameroon (喀麦隆)
 
 ## 已完成的国家 (Completed)
 1. Finland (芬兰) - ✅ (2026-03-11)
@@ -92,12 +92,12 @@ Nigeria (尼日利亚)
 82. Puerto Rico (波多黎各) - ✅ (2026-03-11)
 83. Ghana (加纳) - ✅ (2026-03-11)
 84. Senegal (塞内加尔) - ✅ (2026-03-11)
+85. Nigeria (尼日利亚) - ✅ (2026-03-11)
 
 ## 待写作的国家 (Pending)
-- Nigeria (尼日利亚)
 - Cameroon (喀麦隆)
 - Uganda (乌干达)
 
 ---
 
-**更新于**: 2026-03-11 (Senegal 游记已完成)
+**更新于**: 2026-03-11 (Nigeria 游记已完成)
