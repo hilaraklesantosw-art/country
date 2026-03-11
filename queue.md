@@ -56,9 +56,9 @@
 52. Lebanon (黎巴嫩) - ✅ (2026-03-11)
 53. Norway (挪威) - ✅ (2026-03-11)
 54. Sweden (瑞典) - ✅ (2026-03-11)
+55. Finland (芬兰) - ✅ (2026-03-11)
 
 ## 待写作的国家 (Pending)
-- Finland (芬兰)
 - Denmark (丹麦)
 - Switzerland (瑞士)
 - Austria (奥地利)
