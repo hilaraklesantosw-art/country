@@ -1,10 +1,11 @@
 # Country Travel Queue
 
 ## 下一个待写国家 (Next)
-Bulgaria (保加利亚)
+Belarus (白俄罗斯)
 
 ## 已完成的国家 (Completed)
 1. Japan (日本) - ✅
+2. Ukraine (乌克兰) - ✅ (2026-03-11)
 2. Iceland (冰岛) - ✅ (2026-03-11)
 2. Afghanistan (阿富汗) - ✅
 3. Bangladesh (孟加拉国) - ✅
@@ -63,10 +64,9 @@ Bulgaria (保加利亚)
 56. Denmark (丹麦) - ✅ (2026-03-11)
 57. Serbia (塞尔维亚) - ✅ (2026-03-11)
 58. Romania (罗马尼亚) - ✅ (2026-03-11)
+59. Bulgaria (保加利亚) - ✅ (2026-03-11)
 
 ## 待写作的国家 (Pending)
-- Bulgaria (保加利亚)
-- Ukraine (乌克兰)
 - Belarus (白俄罗斯)
 - Estonia (爱沙尼亚)
 - Latvia (拉脱维亚)
