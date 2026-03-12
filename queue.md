@@ -10,7 +10,10 @@
 
 ## 当前任务
 
-下一个: Laos (老挝)
+下一个: (待定)
+
+## 2026-03-12 新增
+- Laos (老挝) - ✅ 已上传至 GitHub
 
 ## 2026-03-12
 - Greece (希腊) - ✅ 已上传至 GitHub
@@ -18,6 +21,7 @@
 - Moldova (摩尔多瓦) - ✅ 已上传至 GitHub
 - Georgia (格鲁吉亚) - ✅ 已上传至 GitHub
 - Qatar (卡塔尔) - ✅ 已上传至 GitHub
+- Saudi Arabia (沙特阿拉伯) - ✅ 已上传至 GitHub
 
 ## 已完成
 
