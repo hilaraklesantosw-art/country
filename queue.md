@@ -1,7 +1,7 @@
 # Country Travel Queue
 
 ## 下一个待写国家 (Next)
-Serbia (塞尔维亚) - rewrite
+~~Serbia (塞尔维亚) - rewrite ✅ (2026-03-12, 游记已上传 GitHub)~~
 Bosnia (波黑) - rewrite
 Montenegro (黑山) - rewrite
 Albania (阿尔巴尼亚) - rewrite
