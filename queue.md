@@ -2,8 +2,10 @@
 
 ## 下一个待写国家 (Next)
 Moldova (摩尔多瓦) - new
-
 Armenia (亚美尼亚) - rewrite
+Sri Lanka (斯里兰卡) - rewrite
+Bangladesh (孟加拉国) - rewrite
+Myanmar (缅甸) - rewrite
 
 ## 已完成
 - Greece (希腊) - ✅ (2026-03-12, 游记已上传 GitHub)
