@@ -1,6 +1,7 @@
 # Country Travel Queue
 
 ## 下一个待写国家 (Next)
+Trinidad and Tobago (特立尼达和多巴哥) - new
 Guyana (圭亚那) - rewrite
 Marshall Islands (马绍尔群岛) - new
 Micronesia (密克罗尼西亚) - new
