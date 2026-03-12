@@ -1,5 +1,9 @@
 # Country Travel Queue
 
+## 下一个待写国家 (Next)
+New Zealand (新西兰) - new
+Australia (澳大利亚) - rewrite
+
 ## 已完成的国家 (Completed)
 1. Finland (芬兰) - ✅ (2026-03-12, 游记已上传 GitHub)
 77. Portugal (葡萄牙) - ✅ (2026-03-11)
@@ -229,3 +233,6 @@
 1. ~~Egypt (埃及)~~ - ✅ (2026-03-12, 游记已上传 GitHub)
 
 **更新于**: 2026-03-12 (马尔代夫游记已完成并上传, 埃及游记已上传)
+## 待写作的国家 (Pending) - NEW 2026-03-13 Batch 21
+1. ~~Papua New Guinea (巴布亚新几内亚)~~ - ✅ (2026-03-13, 游记已上传 GitHub)
+
