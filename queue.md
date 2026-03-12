@@ -11,6 +11,8 @@
 ## 当前任务
 
 下一个: Tanzania (坦桑尼亚)
+         Kenya (肯尼亚)
+         Morocco (摩洛哥)
 
 ## 2026-03-12 新增
 - Laos (老挝) - ✅ 已上传至 GitHub
