@@ -10,10 +10,10 @@
 
 ## 当前任务
 
-下一个: Tanzania (坦桑尼亚)
-         Morocco (摩洛哥)
+下一个: Morocco (摩洛哥)
          Ghana (加纳)
-         Senegal (塞内加尔)
+         Peru (秘鲁)
+         Uruguay (乌拉圭)
          Nigeria (尼日利亚)
          Ethiopia (埃塞俄比亚)
 
