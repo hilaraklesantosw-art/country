@@ -13,6 +13,8 @@
 下一个: Morocco (摩洛哥)
          Ghana (加纳)
          Peru (秘鲁)
+         Ecuador (厄瓜多尔)
+         Colombia (哥伦比亚)
          Uruguay (乌拉圭)
          Nigeria (尼日利亚)
          Ethiopia (埃塞俄比亚)
