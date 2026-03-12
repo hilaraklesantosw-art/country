@@ -11,8 +11,8 @@
 ## 当前任务
 
 下一个: Peru (秘鲁)
-         Dominican Republic (多米尼加)
-         Costa Rica (哥斯达黎加)
+         Panama (巴拿马)
+         Guatemala (危地马拉)
          Uruguay (乌拉圭)
          Nigeria (尼日利亚)
          Ethiopia (埃塞俄比亚)
