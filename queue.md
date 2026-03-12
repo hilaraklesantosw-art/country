@@ -1,7 +1,11 @@
 # Country Travel Queue
 
 ## 下一个待写国家 (Next)
-Laos (老挝) - rewrite
+~~Serbia (塞尔维亚) - rewrite ✅ (2026-03-12, 游记已上传 GitHub)~~
+Bosnia (波黑) - rewrite
+Montenegro (黑山) - rewrite
+Albania (阿尔巴尼亚) - rewrite
+North Macedonia (北马其顿) - rewrite
 
 ## 已完成的国家 (Completed)
 1. Finland (芬兰) - ✅ (2026-03-11)
@@ -131,7 +135,7 @@ Laos (老挝) - rewrite
 
 ## 更多待写国家 (More to Add)
 - Myanmar (缅甸) - rewrite
-- Laos (老挝) - rewrite
+- ~~Laos (老挝)~~ - ✅ rewrite done (2026-03-11, 已上传 GitHub)
 - Cambodia (柬埔寨) - rewrite
 - Nepal (尼泊尔) - rewrite
 - Sri Lanka (斯里兰卡) - rewrite
