@@ -13,6 +13,8 @@
 下一个: Tanzania (坦桑尼亚)
          Kenya (肯尼亚)
          Morocco (摩洛哥)
+         Nigeria (尼日利亚)
+         Ethiopia (埃塞俄比亚)
 
 ## 2026-03-12 新增
 - Laos (老挝) - ✅ 已上传至 GitHub
