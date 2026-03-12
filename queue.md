@@ -3,6 +3,8 @@
 ## 下一个待写国家 (Next)
 New Zealand (新西兰) - new
 Australia (澳大利亚) - rewrite
+Fiji (斐济) - new
+Vanuatu (瓦努阿图) - new
 
 ## 已完成的国家 (Completed)
 1. Finland (芬兰) - ✅ (2026-03-12, 游记已上传 GitHub)
