@@ -1,7 +1,9 @@
 # Country Travel Queue
 
 ## 下一个待写国家 (Next)
-(所有国家已完成)
+Greece (希腊) - new
+Cyprus (塞浦路斯) - new
+Moldova (摩尔多瓦) - new
 
 ## 已完成的国家 (Completed)
 1. Finland (芬兰) - ✅ (2026-03-11)
