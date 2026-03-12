@@ -1,12 +1,5 @@
 # Country Travel Queue
 
-## 下一个待写国家 (Next)
-~~Serbia (塞尔维亚) - rewrite ✅ (2026-03-12, 游记已上传 GitHub)~~
-Bosnia (波黑) - rewrite
-Montenegro (黑山) - rewrite
-Albania (阿尔巴尼亚) - rewrite
-North Macedonia (北马其顿) - rewrite
-
 ## 已完成的国家 (Completed)
 1. Finland (芬兰) - ✅ (2026-03-11)
 77. Portugal (葡萄牙) - ✅ (2026-03-11)
@@ -131,12 +124,14 @@ North Macedonia (北马其顿) - rewrite
 22. ~~Zambia (赞比亚)~~ - ✅ (2026-03-11, 游记已上传 GitHub)
 23. ~~Zimbabwe (津巴布韦)~~ - ✅ (2026-03-12, 游记已上传 GitHub)
 
-**更新于**: 2026-03-11 (新增南美加勒比国家 + 非洲国家)
+24. ~~Zimbabwe (津巴布韦)~~ - ✅ (2026-03-12, 游记已上传 GitHub)
+25. Japan (日本) - ✅ (2026-03-11, 游记已上传 GitHub)
 
-## 更多待写国家 (More to Add)
-- Myanmar (缅甸) - rewrite
-- ~~Laos (老挝)~~ - ✅ rewrite done (2026-03-11, 已上传 GitHub)
-- Cambodia (柬埔寨) - rewrite
-- Nepal (尼泊尔) - rewrite
-- Sri Lanka (斯里兰卡) - rewrite
-- Bhutan (不丹) - rewrite
+## 待写作的国家 (Pending) - NEW 2026-03-11
+1. North Macedonia (北马其顿) - ✅ (2026-03-11, 游记已上传 GitHub)
+2. Albania (阿尔巴尼亚) - ✅ (2026-03-11, 游记已上传 GitHub)
+3. Serbia (塞尔维亚) - ✅ (2026-03-12, 游记已上传 GitHub)
+4. ~~Bosnia and Herzegovina (波黑)~~ - ✅ (2026-03-12, 游记已上传 GitHub)
+5. ~~Montenegro (黑山)~~ - ✅ (2026-03-12, 游记已上传 GitHub)
+
+**更新于**: 2026-03-11 (新增欧洲巴尔干地区国家)
