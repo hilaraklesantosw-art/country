@@ -1,10 +1,11 @@
 # Country Travel Queue
 
 ## 下一个待写国家 (Next)
-New Zealand (新西兰) - new
-Australia (澳大利亚) - rewrite
-Fiji (斐济) - new
-Vanuatu (瓦努阿图) - new
+Sao Tome and Principe (圣多美和普林西比) - new
+Barbados (巴巴多斯) - new
+Bahamas (巴哈马) - new
+Jamaica (牙买加) - rewrite
+Trinidad and Tobago (特立尼达和多巴哥) - new
 
 ## 已完成的国家 (Completed)
 1. Finland (芬兰) - ✅ (2026-03-12, 游记已上传 GitHub)
