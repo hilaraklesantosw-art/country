@@ -11,8 +11,6 @@
 ## 当前任务
 
 下一个: Peru (秘鲁)
-         Ecuador (厄瓜多尔)
-         Colombia (哥伦比亚)
          Dominican Republic (多米尼加)
          Costa Rica (哥斯达黎加)
          Uruguay (乌拉圭)
