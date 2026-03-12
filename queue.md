@@ -2,7 +2,7 @@
 
 ## 下一个待写国家 (Next)
 Guyana (圭亚那) - rewrite
-Kiribati (基里巴斯) - new
+~~Kiribati (基里巴斯)~~ - ✅ (2026-03-12, 游记已上传 GitHub)
 Marshall Islands (马绍尔群岛) - new
 Micronesia (密克罗尼西亚) - new
 Nauru (瑙鲁) - new
