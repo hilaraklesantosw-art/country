@@ -1,7 +1,7 @@
 # Country Travel Queue
 
 ## 下一个待写国家 (Next)
-Turkey (土耳其) - new
+(所有国家已完成)
 
 ## 已完成的国家 (Completed)
 1. Finland (芬兰) - ✅ (2026-03-11)
@@ -28,7 +28,7 @@ Turkey (土耳其) - new
 19. Philippines (菲律宾) - ✅ (2026-03-10)
 20. Malaysia (马来西亚) - ✅ (2026-03-10)
 21. Singapore (新加坡) - ✅ (2026-03-10)
-22. Turkey (土耳其) - ✅ (2026-03-10)
+22. Turkey (土耳其) - ✅ (2026-03-10, 游记已上传 GitHub)
 23. Iran (伊朗) - ✅ (2026-03-10)
 24. Iraq (伊拉克) - ✅ (2026-03-10)
 25. Saudi Arabia (沙特阿拉伯) - ✅ (2026-03-10)
