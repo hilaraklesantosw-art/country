@@ -6,6 +6,11 @@ Marshall Islands (马绍尔群岛) - new
 Micronesia (密克罗尼西亚) - new
 Palau (帕劳) - new
 Tuvalu (图瓦卢) - new
+Saint Lucia (圣卢西亚) - new
+Saint Kitts and Nevis (圣基茨和尼维斯) - new
+Antigua and Barbuda (安提瓜和巴布达) - new
+Dominica (多米尼克) - new
+Saint Vincent and the Grenadines (圣文森特和格林纳丁斯) - new
 
 ## 已完成的国家 (Completed)
 1. Suriname (苏里南) - ✅ (2026-03-12, 游记已上传 GitHub)
