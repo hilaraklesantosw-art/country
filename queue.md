@@ -11,6 +11,9 @@ Antigua and Barbuda (安提瓜和巴布达) - new
 Dominica (多米尼克) - new
 Saint Vincent and the Grenadines (圣文森特和格林纳丁斯) - new
 Grenada (格林纳达) - new
+Bhutan (不丹) - rewrite
+Sri Lanka (斯里兰卡) - new
+Maldives (马尔代夫) - new
 
 ## 已完成的国家 (Completed)
 1. Suriname (苏里南) - ✅ (2026-03-12, 游记已上传 GitHub)
