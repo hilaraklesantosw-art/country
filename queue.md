@@ -3,7 +3,9 @@
 ## 下一个待写国家 (Next)
 (已全部完成)
 
+<<<<<<< Updated upstream
 ## 2026-03-13 完成
+- UAE (阿联酋) - ✅ (2026-03-13, 游记已上传 GitHub)
 - Marshall Islands (马绍尔群岛) - ✅ (2026-03-13, 游记已上传 GitHub)
 - Micronesia (密克罗尼西亚) - ✅ (2026-03-13, 游记已上传 GitHub)
 - Palau (帕劳) - ✅ (2026-03-13, 游记已上传 GitHub)
@@ -17,6 +19,22 @@
 - Bhutan (不丹) - rewrite ✅ (2026-03-13, 游记已上传 GitHub)
 - Sri Lanka (斯里兰卡) - ✅ (2026-03-13, 游记已上传 GitHub)
 - Maldives (马尔代夫) - ✅ (2026-03-13, 游记已上传 GitHub)
+=======
+## 2026-03-13 新增
+- Marshall Islands (马绍尔群岛) - ✅ (2026-03-13, 游记已上传 GitHub)
+- Micronesia (密克罗尼西亚) - new
+- Palau (帕劳) - new
+- Tuvalu (图瓦卢) - new
+- Saint Lucia (圣卢西亚) - new
+- Saint Kitts and Nevis (圣基茨和尼维斯) - new
+- Antigua and Barbuda (安提瓜和巴布达) - new
+- Dominica (多米尼克) - new
+- Saint Vincent and the Grenadines (圣文森特和格林纳丁斯) - new
+- Grenada (格林纳达) - new
+- Bhutan (不丹) - rewrite
+- Sri Lanka (斯里兰卡) - new
+- Maldives (马尔代夫) - new
+>>>>>>> Stashed changes
 
 ## 已完成的国家 (Completed)
 1. Suriname (苏里南) - ✅ (2026-03-12, 游记已上传 GitHub)
