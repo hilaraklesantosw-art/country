@@ -1,6 +1,12 @@
 # Country Travel Writer Queue
 
 ## 2026-03-14 新增
+- Spain (西班牙) - ✅ 已上传至 GitHub (2026-03-14)
+
+## 2026-03-14 新增
+- New Zealand (新西兰) - ✅ 已上传至 GitHub (2026-03-14)
+
+## 2026-03-14 新增
 - Saint Vincent and the Grenadines (圣文森特和格林纳丁斯) - ✅ 已上传至 GitHub (2026-03-14)
 
 ## 待完成
@@ -107,6 +113,8 @@
 
 ## 待完成
 
+- Norway (挪威) - ✅ 已上传至 GitHub (2026-03-14)
+
 - [x] hungary.md (匈牙利) - ✅ 已上传至 GitHub (2026-03-14, 游记已上传至 GitHub)
 
 ## 已完成
@@ -127,4 +135,3 @@
 - [x] moldova.md (摩尔多瓦) - ✅ 已上传至 GitHub
 - [x] georgia.md (格鲁吉亚) - ✅ 已上传至 GitHub
 - [x] albania.md (阿尔巴尼亚) - ✅ 已上传至 GitHub
-- [x] andorra-travel.md (安道尔) - ✅ 已上传至 GitHub (2026-03-14, 保罗·索鲁风格游记已上传)
