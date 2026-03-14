@@ -127,3 +127,4 @@
 - [x] moldova.md (摩尔多瓦) - ✅ 已上传至 GitHub
 - [x] georgia.md (格鲁吉亚) - ✅ 已上传至 GitHub
 - [x] albania.md (阿尔巴尼亚) - ✅ 已上传至 GitHub
+- [x] andorra-travel.md (安道尔) - ✅ 已上传至 GitHub (2026-03-14, 保罗·索鲁风格游记已上传)
