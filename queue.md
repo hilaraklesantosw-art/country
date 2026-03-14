@@ -1,5 +1,8 @@
 # Country Travel Writer Queue
 
+## 2026-03-15 新增
+- Malawi (马拉维) - ✅ 已上传至 GitHub (2026-03-15)
+
 ## 2026-03-14 新增
 - Spain (西班牙) - ✅ 已上传至 GitHub (2026-03-14)
 
