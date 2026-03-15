@@ -1,6 +1,11 @@
 # Country Travel Writer Queue
 
 ## 2026-03-15 新增
+- Yemen (也门) - ✅ 已上传至 GitHub (2026-03-15)
+- Syria (叙利亚) - ✅ 已上传至 GitHub (2026-03-15)
+- Iraq (伊拉克) - ✅ 已上传至 GitHub (2026-03-15)
+
+## 2026-03-15 新增
 - Portugal (葡萄牙) - ✅ 已上传至 GitHub (2026-03-15)
 
 ## 2026-03-15 新增
