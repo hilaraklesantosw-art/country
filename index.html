@@ -3,26 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>sea - 阿里橙主题文档页</title>
+  <title>SeaTunnel Orange</title>
   <style>
     :root {
-      --bg: #fff7ef;
-      --bg-accent: #ffe1bf;
-      --surface: rgba(255, 255, 255, 0.92);
+      --bg: #fffaf5;
+      --surface: rgba(255, 255, 255, 0.9);
       --surface-strong: #ffffff;
-      --line: rgba(244, 120, 32, 0.18);
-      --line-strong: rgba(244, 120, 32, 0.34);
-      --text: #2f241b;
-      --muted: #8a6d58;
-      --primary: #ff6a00;
-      --primary-deep: #e95a00;
-      --primary-soft: #fff0df;
-      --shadow: 0 30px 80px rgba(203, 92, 16, 0.16);
-      --radius-xl: 32px;
-      --radius-lg: 24px;
-      --radius-md: 18px;
+      --text: #2f241c;
+      --muted: #8c7768;
+      --line: rgba(235, 116, 16, 0.15);
+      --line-strong: rgba(235, 116, 16, 0.28);
+      --orange: #ff7a00;
+      --orange-deep: #f05a00;
+      --orange-soft: #fff0df;
+      --shadow: 0 24px 60px rgba(214, 97, 13, 0.14);
+      --navy: #34465f;
+      --blue-soft: #e6f3ff;
+      --radius-xl: 30px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
       --font-ui: "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-      --font-display: Georgia, "Songti SC", "Noto Serif CJK SC", serif;
     }
 
     * {
@@ -35,9 +35,10 @@
       color: var(--text);
       font-family: var(--font-ui);
       background:
-        radial-gradient(circle at top left, rgba(255, 138, 0, 0.18), transparent 28%),
-        radial-gradient(circle at right 20%, rgba(255, 194, 102, 0.28), transparent 24%),
-        linear-gradient(180deg, #fff8f0 0%, #fff3e4 52%, #fffaf4 100%);
+        radial-gradient(circle at top left, rgba(255, 183, 108, 0.45), transparent 24%),
+        radial-gradient(circle at right 14%, rgba(255, 129, 31, 0.18), transparent 22%),
+        linear-gradient(180deg, #fffaf5 0%, #fff5eb 40%, #fffdf9 100%);
+      overflow-x: hidden;
     }
 
     body::before {
@@ -45,446 +46,645 @@
       position: fixed;
       inset: 0;
       pointer-events: none;
-      background-image:
-        linear-gradient(rgba(244, 120, 32, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(244, 120, 32, 0.05) 1px, transparent 1px);
-      background-size: 36px 36px;
-      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.65), transparent 88%);
+      background-image: radial-gradient(rgba(255, 122, 0, 0.08) 1px, transparent 1px);
+      background-size: 32px 32px;
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.5), transparent 85%);
     }
 
-    .page-shell {
-      position: relative;
-      width: min(1180px, calc(100% - 32px));
-      margin: 24px auto 48px;
+    .top-tip {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 18px;
+      padding: 4px 12px;
+      font-size: 11px;
+      color: #fff7ef;
+      background: linear-gradient(90deg, #5679a4, #5f7fa8);
     }
 
-    .topbar {
+    .site-shell {
+      width: min(1280px, calc(100% - 24px));
+      margin: 0 auto;
+    }
+
+    .header {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 20px;
-      padding: 20px 24px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: rgba(255, 250, 244, 0.82);
-      backdrop-filter: blur(16px);
-      box-shadow: 0 16px 40px rgba(203, 92, 16, 0.08);
+      padding: 16px 6px;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 14px;
-      min-width: 0;
-    }
-
-    .brand-mark {
-      width: 44px;
-      height: 44px;
-      display: grid;
-      place-items: center;
-      border-radius: 14px;
-      color: #fff;
-      font-weight: 700;
-      background: linear-gradient(135deg, #ff7a1a, #ff4d00);
-      box-shadow: 0 12px 22px rgba(255, 106, 0, 0.24);
-    }
-
-    .brand-copy {
-      min-width: 0;
-    }
-
-    .eyebrow {
-      margin: 0 0 4px;
-      font-size: 12px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    .brand-title {
-      margin: 0;
-      font-size: 16px;
-      font-weight: 600;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .actions {
-      display: flex;
-      flex-wrap: wrap;
       gap: 12px;
-      justify-content: flex-end;
+      font-size: 26px;
+      font-weight: 300;
+      color: var(--navy);
+      white-space: nowrap;
     }
 
-    .btn {
-      border: 1px solid transparent;
-      border-radius: 999px;
-      padding: 12px 20px;
-      font-size: 14px;
-      font-weight: 600;
+    .brand-badge {
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      background:
+        radial-gradient(circle at 30% 30%, #ffd8b5, transparent 32%),
+        radial-gradient(circle at 62% 38%, #ff9b4a, transparent 22%),
+        radial-gradient(circle at 45% 70%, #ff6a00, transparent 25%),
+        linear-gradient(145deg, #5e8fc1, #35506d);
+      box-shadow: 0 10px 18px rgba(53, 80, 109, 0.2);
+    }
+
+    .brand small {
+      font-size: 15px;
+      font-weight: 500;
+      margin-left: 3px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      justify-content: center;
+      color: #443931;
+    }
+
+    .nav a,
+    .nav button {
+      border: 0;
+      padding: 0;
+      background: none;
+      color: inherit;
+      font: inherit;
+      font-size: 13px;
       text-decoration: none;
-      transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+      cursor: pointer;
     }
 
-    .btn:hover {
-      transform: translateY(-1px);
+    .tools {
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
 
-    .btn-secondary {
-      color: var(--primary-deep);
-      border-color: var(--line-strong);
-      background: rgba(255, 255, 255, 0.84);
-    }
-
-    .btn-primary {
-      color: #fff;
-      background: linear-gradient(135deg, #ff7a1a, #ff5a00);
-      box-shadow: 0 16px 28px rgba(255, 106, 0, 0.28);
+    .search {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 122px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      color: var(--muted);
+      background: rgba(98, 130, 166, 0.08);
     }
 
     .hero {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 28px;
-      margin-top: 28px;
-    }
-
-    .panel {
-      border: 1px solid var(--line);
-      border-radius: var(--radius-xl);
-      background: var(--surface);
-      backdrop-filter: blur(18px);
-      box-shadow: var(--shadow);
-    }
-
-    .doc-hero {
-      padding: 34px;
       position: relative;
+      padding: 56px 0 28px;
+      text-align: center;
+    }
+
+    .watermark {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.14;
+      font-size: 34px;
+      color: #bdb7b1;
       overflow: hidden;
     }
 
-    .doc-hero::after {
-      content: "";
+    .watermark span {
       position: absolute;
-      right: -60px;
-      top: -60px;
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(255, 129, 31, 0.28), transparent 70%);
+      transform: rotate(-18deg);
+      white-space: nowrap;
     }
 
-    .meta-row {
+    .w1 { top: 18px; left: 70px; }
+    .w2 { top: 82px; right: 108px; }
+    .w3 { top: 184px; left: 176px; }
+    .w4 { top: 214px; right: 198px; }
+    .w5 { top: 410px; left: 18px; }
+    .w6 { top: 506px; left: 238px; }
+
+    .hero h1 {
+      margin: 36px 0 16px;
+      position: relative;
+      font-size: clamp(56px, 8vw, 84px);
+      font-weight: 300;
+      letter-spacing: -0.05em;
+      color: #384a60;
+    }
+
+    .hero h1 .accent {
+      background: linear-gradient(90deg, #ff8a00, #ff5a00 38%, #ff2dbd 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: 500;
+    }
+
+    .hero p {
+      position: relative;
+      max-width: 680px;
+      margin: 0 auto;
+      font-size: clamp(24px, 3vw, 30px);
+      line-height: 1.15;
+      color: #2e2d2d;
+    }
+
+    .cta-row {
+      position: relative;
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 20px;
+      justify-content: center;
+      gap: 42px;
+      margin-top: 44px;
     }
 
-    .pill {
+    .cta {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 8px 14px;
+      justify-content: center;
+      gap: 10px;
+      min-width: 158px;
+      padding: 16px 28px;
       border-radius: 999px;
-      font-size: 13px;
-      color: var(--muted);
-      background: var(--primary-soft);
-      border: 1px solid rgba(255, 122, 26, 0.12);
-    }
-
-    .doc-title {
-      margin: 0;
-      font-family: var(--font-display);
-      font-size: clamp(48px, 8vw, 84px);
-      line-height: 0.96;
-      letter-spacing: -0.04em;
-    }
-
-    .doc-subtitle {
-      margin: 18px 0 0;
-      max-width: 26em;
       font-size: 18px;
-      line-height: 1.7;
-      color: var(--muted);
+      text-decoration: none;
+      box-shadow: 0 10px 22px rgba(73, 102, 137, 0.14);
+      transition: transform 180ms ease, box-shadow 180ms ease;
     }
 
-    .hero-side {
-      display: grid;
-      gap: 20px;
+    .cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px rgba(73, 102, 137, 0.18);
     }
 
-    .stats-card,
-    .comment-card {
-      padding: 26px;
+    .cta-primary {
+      color: #fff;
+      background: linear-gradient(135deg, #ff8c24, #ff6400);
     }
 
-    .section-kicker {
-      margin: 0 0 10px;
+    .cta-secondary {
+      color: #3f6bcd;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(80, 121, 224, 0.4);
+    }
+
+    .icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: inline-grid;
+      place-items: center;
       font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      color: var(--primary-deep);
+      color: #1f1f1f;
+      background: #fff;
+      border: 1px solid rgba(31, 31, 31, 0.15);
+    }
+
+    .platform {
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      display: inline-grid;
+      place-items: center;
+      font-size: 14px;
+      color: #fff;
+      background: linear-gradient(135deg, #ff9752, #ff5a00);
+    }
+
+    .diagram-wrap {
+      position: relative;
+      margin-top: 68px;
+      padding-bottom: 68px;
+    }
+
+    .diagram-labels {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr 0.9fr;
+      gap: 28px;
+      margin-bottom: 14px;
+      text-align: center;
+      font-size: 31px;
+      font-weight: 800;
+      color: #433c36;
       text-transform: uppercase;
     }
 
-    .section-title {
-      margin: 0;
-      font-size: 26px;
-      font-weight: 700;
-    }
-
-    .section-copy {
-      margin: 10px 0 0;
-      color: var(--muted);
-      line-height: 1.7;
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 20px;
-    }
-
-    .stat {
-      padding: 18px;
-      border-radius: var(--radius-md);
-      background: linear-gradient(180deg, #fff7ef, #fff);
+    .diagram {
+      position: relative;
+      min-height: 365px;
+      border-radius: var(--radius-xl);
       border: 1px solid var(--line);
-    }
-
-    .stat strong {
-      display: block;
-      font-size: 26px;
-      color: var(--primary-deep);
-    }
-
-    .stat span {
-      display: block;
-      margin-top: 8px;
-      font-size: 13px;
-      color: var(--muted);
-    }
-
-    .doc-paper {
-      margin-top: 28px;
-      padding: clamp(28px, 5vw, 52px);
       background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(255, 250, 244, 0.98)),
-        repeating-linear-gradient(180deg, transparent 0 34px, rgba(244, 120, 32, 0.045) 34px 35px);
+        linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(255, 244, 232, 0.92)),
+        linear-gradient(135deg, rgba(104, 182, 255, 0.12), rgba(255, 138, 0, 0.05));
+      box-shadow: var(--shadow);
+      overflow: hidden;
     }
 
-    .paper-head {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: end;
-      justify-content: space-between;
-      gap: 16px;
-      padding-bottom: 20px;
-      border-bottom: 1px solid var(--line);
+    .left-arrow {
+      position: absolute;
+      left: 0;
+      top: 94px;
+      width: 308px;
+      height: 96px;
+      clip-path: polygon(0 0, 78% 0, 100% 50%, 78% 100%, 0 100%);
+      background: linear-gradient(90deg, #94d3ff, #5f95d8);
+      box-shadow: 12px 16px 28px rgba(76, 124, 170, 0.18);
     }
 
-    .paper-title {
-      margin: 0;
-      font-family: var(--font-display);
-      font-size: clamp(30px, 4vw, 54px);
-      font-weight: 600;
-      letter-spacing: -0.03em;
+    .left-arrow::before,
+    .left-arrow::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 268px;
+      height: 26px;
+      background: rgba(255, 255, 255, 0.35);
     }
 
-    .paper-meta {
-      margin: 8px 0 0;
-      font-size: 14px;
-      color: var(--muted);
+    .left-arrow::before {
+      top: 26px;
     }
 
-    .paper-tag {
-      padding: 10px 16px;
+    .left-arrow::after {
+      top: 60px;
+      background: rgba(39, 69, 100, 0.26);
+    }
+
+    .left-arrow span {
+      position: absolute;
+      left: 100px;
+      top: 22px;
+      font-size: 28px;
+      line-height: 1.02;
+      color: #fff;
+      letter-spacing: 0.01em;
+    }
+
+    .badge {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      display: grid;
+      place-items: center;
+      border-radius: 4px;
+      background: #fff;
+      border: 1px solid rgba(97, 149, 216, 0.32);
+      color: #3c78d1;
+      font-size: 18px;
+      font-weight: 500;
+      box-shadow: 0 8px 16px rgba(80, 121, 224, 0.12);
+    }
+
+    .b1 { left: 182px; top: 108px; }
+    .b2 { left: 206px; top: 132px; }
+    .b3 { left: 278px; top: 124px; }
+
+    .glass {
+      position: absolute;
+      border-radius: 18px;
+      border: 1px solid rgba(137, 194, 255, 0.38);
+      background: linear-gradient(135deg, rgba(239, 250, 255, 0.8), rgba(255, 255, 255, 0.32));
+      backdrop-filter: blur(12px);
+    }
+
+    .box-norm {
+      left: 320px;
+      top: 54px;
+      width: 660px;
+      height: 168px;
+    }
+
+    .pill-node {
+      position: absolute;
       border-radius: 999px;
-      background: var(--primary-soft);
-      border: 1px solid rgba(255, 122, 26, 0.16);
-      color: var(--primary-deep);
-      font-size: 13px;
+      padding: 18px 32px;
+      color: #fff;
+      font-size: 30px;
+      background: linear-gradient(135deg, #ff9430, #ff5b00);
+      box-shadow: 0 16px 28px rgba(255, 106, 0, 0.2);
+    }
+
+    .node-center {
+      left: 590px;
+      top: 172px;
+    }
+
+    .box-right {
+      right: 36px;
+      top: 188px;
+      width: 260px;
+      height: 118px;
+    }
+
+    .box-bottom {
+      left: 446px;
+      top: 252px;
+      width: 420px;
+      height: 92px;
+    }
+
+    .orb {
+      position: absolute;
+      width: 108px;
+      height: 108px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #ffcf9c, #ff7f12 58%, #ff5a00 100%);
+      box-shadow: inset -10px -18px 24px rgba(255, 255, 255, 0.24), 0 20px 34px rgba(255, 111, 14, 0.22);
+    }
+
+    .orb-1 { left: 430px; top: 232px; }
+    .orb-2 { right: 220px; top: 236px; }
+
+    .node-text {
+      position: absolute;
+      font-size: 28px;
       font-weight: 700;
+      color: #43556d;
+      text-transform: uppercase;
     }
 
-    .content {
-      margin-top: 28px;
-    }
+    .t1 { left: 552px; top: 108px; }
+    .t2 { right: 78px; top: 230px; }
+    .t3 { left: 520px; top: 280px; }
 
-    .content p {
-      margin: 0;
-      font-size: clamp(20px, 2.2vw, 28px);
-      line-height: 1.95;
-      color: #3a2b20;
-    }
-
-    .highlight {
-      display: inline;
-      padding: 0.04em 0.24em;
-      border-radius: 10px;
-      background: linear-gradient(180deg, rgba(255, 181, 120, 0.35), rgba(255, 126, 34, 0.2));
-      box-decoration-break: clone;
-      -webkit-box-decoration-break: clone;
-    }
-
-    .comment-card {
-      margin-top: 28px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      background: linear-gradient(135deg, rgba(255, 116, 0, 0.08), rgba(255, 255, 255, 0.94));
-    }
-
-    .comment-count {
-      font-size: 15px;
-      color: var(--muted);
-    }
-
-    .footer-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 22px;
-    }
-
-    .footer-links a {
-      color: var(--primary-deep);
+    .float-ai {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      display: inline-grid;
+      place-items: center;
+      gap: 8px;
+      width: 76px;
+      height: 76px;
+      padding-top: 10px;
+      border-radius: 18px;
+      color: #fff;
       text-decoration: none;
-      font-weight: 600;
+      font-size: 18px;
+      background: linear-gradient(180deg, #6b79ff, #5a40d6);
+      box-shadow: 0 18px 36px rgba(70, 56, 180, 0.3);
     }
 
-    @media (max-width: 960px) {
-      .hero {
-        grid-template-columns: 1fr;
-      }
-
-      .topbar {
-        border-radius: 28px;
-      }
+    .float-ai small {
+      font-size: 14px;
+      line-height: 1;
     }
 
-    @media (max-width: 640px) {
-      .page-shell {
-        width: min(100% - 20px, 1180px);
-        margin-top: 12px;
+    @media (max-width: 1100px) {
+      .header {
+        flex-wrap: wrap;
       }
 
-      .topbar,
-      .doc-hero,
-      .stats-card,
-      .comment-card {
-        padding: 20px;
-      }
-
-      .actions {
+      .nav {
+        order: 3;
         width: 100%;
-        justify-content: stretch;
+        justify-content: flex-start;
       }
 
-      .actions .btn {
-        flex: 1 1 180px;
-        text-align: center;
+      .diagram-labels {
+        font-size: 21px;
       }
 
-      .stats-grid {
-        grid-template-columns: 1fr;
+      .diagram {
+        min-height: 320px;
       }
 
-      .comment-card {
-        align-items: flex-start;
-        flex-direction: column;
+      .left-arrow {
+        width: 220px;
+      }
+
+      .left-arrow span {
+        left: 90px;
+        font-size: 26px;
+      }
+
+      .box-norm {
+        left: 250px;
+        width: calc(100% - 290px);
+      }
+
+      .node-center {
+        left: 48%;
+        transform: translateX(-50%);
+      }
+    }
+
+    @media (max-width: 820px) {
+      .hero {
+        padding-top: 24px;
+      }
+
+      .hero h1 {
+        margin-top: 18px;
+        font-size: 54px;
+      }
+
+      .hero p {
+        font-size: 18px;
+        line-height: 1.35;
+      }
+
+      .cta-row {
+        gap: 16px;
+      }
+
+      .cta {
+        min-width: 0;
+        width: calc(50% - 8px);
+        padding: 14px 20px;
+        font-size: 16px;
+      }
+
+      .diagram-labels {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        font-size: 16px;
+      }
+
+      .diagram {
+        min-height: 520px;
+      }
+
+      .left-arrow {
+        left: 18px;
+        top: 82px;
+        width: calc(100% - 36px);
+        height: 82px;
+      }
+
+      .left-arrow span {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .b1 { left: 30px; top: 190px; }
+      .b2 { left: 56px; top: 214px; }
+      .b3 { left: 84px; top: 238px; }
+
+      .box-norm {
+        left: 18px;
+        top: 180px;
+        width: calc(100% - 36px);
+        height: 104px;
+      }
+
+      .node-center {
+        top: 290px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 16px 26px;
+        font-size: 24px;
+      }
+
+      .orb-1 {
+        left: 34px;
+        top: 328px;
+        width: 88px;
+        height: 88px;
+      }
+
+      .orb-2 {
+        right: 34px;
+        top: 328px;
+        width: 88px;
+        height: 88px;
+      }
+
+      .box-right {
+        right: 18px;
+        top: 374px;
+        width: 44%;
+        height: 90px;
+      }
+
+      .box-bottom {
+        left: 18px;
+        top: 376px;
+        width: 44%;
+        height: 90px;
+      }
+
+      .t1 {
+        left: 50%;
+        top: 214px;
+        transform: translateX(-50%);
+        font-size: 18px;
+      }
+
+      .t2 {
+        right: 30px;
+        top: 404px;
+        font-size: 16px;
+      }
+
+      .t3 {
+        left: 26px;
+        top: 404px;
+        font-size: 16px;
+      }
+
+      .float-ai {
+        width: 64px;
+        height: 64px;
+        font-size: 16px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="page-shell">
-    <header class="topbar">
+  <div class="top-tip">
+    <span>★</span>
+    <span>If you like Apache SeaTunnel, give it a star on GitHub</span>
+    <span>★</span>
+  </div>
+
+  <div class="site-shell">
+    <header class="header">
       <div class="brand">
-        <div class="brand-mark">A</div>
-        <div class="brand-copy">
-          <p class="eyebrow">Ali Orange Docs</p>
-          <p class="brand-title">用户846042的组织 / 共享文档</p>
-        </div>
+        <div class="brand-badge" aria-hidden="true"></div>
+        <div>Apache <small>SeaTunnel</small></div>
       </div>
-      <div class="actions">
-        <a class="btn btn-secondary" href="#doc">立即编辑</a>
-        <a class="btn btn-primary" href="#comment">登录/注册</a>
+      <nav class="nav" aria-label="主导航">
+        <a href="#home">Home</a>
+        <button type="button">Document ▼</button>
+        <a href="#download">Download</a>
+        <a href="#community">Community</a>
+        <a href="#blog">Blog</a>
+        <a href="#team">Team</a>
+        <a href="#users">Users</a>
+        <button type="button">ASF ▼</button>
+        <a href="#github">GitHub</a>
+        <a href="#security">Security</a>
+        <button type="button">English ▼</button>
+      </nav>
+      <div class="tools">
+        <span aria-hidden="true">☼</span>
+        <div class="search">⌕ <span>Search</span></div>
       </div>
     </header>
 
-    <section class="hero">
-      <article class="panel doc-hero">
-        <div class="meta-row">
-          <span class="pill">公开分享</span>
-          <span class="pill">最新修改时间为 03 月 16 日</span>
-          <span class="pill">阿里橙主题重构</span>
-        </div>
-        <h1 class="doc-title">sea</h1>
-        <p class="doc-subtitle">
-          保留飞书公开文档页的阅读结构与信息层级，用更强烈的橙色品牌语气重做页面视觉，让文档感、展示感和可读性同时成立。
-        </p>
-      </article>
-
-      <aside class="hero-side">
-        <section class="panel stats-card">
-          <p class="section-kicker">Doc Snapshot</p>
-          <h2 class="section-title">今天修改</h2>
-          <p class="section-copy">标题、操作按钮、正文内容与评论区位置按原页语义保留，只替换视觉主题与呈现方式。</p>
-          <div class="stats-grid">
-            <div class="stat">
-              <strong>1</strong>
-              <span>核心需求</span>
-            </div>
-            <div class="stat">
-              <strong>03/16</strong>
-              <span>最近更新</span>
-            </div>
-            <div class="stat">
-              <strong>100%</strong>
-              <span>橙色主题覆盖</span>
-            </div>
-            <div class="stat">
-              <strong>HTML</strong>
-              <span>单文件交付</span>
-            </div>
-          </div>
-        </section>
-      </aside>
-    </section>
-
-    <main class="panel doc-paper" id="doc">
-      <div class="paper-head">
-        <div>
-          <h2 class="paper-title">sea</h2>
-          <p class="paper-meta">用户846042的组织 · 今天修改 · 公开分享文档</p>
-        </div>
-        <span class="paper-tag">飞书同构 / 阿里橙配色</span>
+    <main class="hero" id="home">
+      <div class="watermark" aria-hidden="true">
+        <span class="w1">访客 95042</span>
+        <span class="w2">访客 95042</span>
+        <span class="w3">访客 95042</span>
+        <span class="w4">访客 95042</span>
+        <span class="w5">访客 95042</span>
+        <span class="w6">访客 95042</span>
       </div>
 
-      <section class="content" aria-label="正文内容">
-        <p>
-          <span class="highlight">复刻一个一样的页面，整个页面用阿里橙色主题。</span>
-        </p>
+      <h1>Apache <span class="accent">SeaTunnel</span></h1>
+      <p>Multimodal, high-performance,<br>distributed, massive data integration tool.</p>
+
+      <div class="cta-row">
+        <a class="cta cta-primary" href="#quick-start">QUICK START</a>
+        <a class="cta cta-secondary" href="#github"><span class="icon">◔</span> GITHUB</a>
+        <a class="cta cta-secondary" href="#slack"><span class="platform">✦</span> SLACK</a>
+      </div>
+
+      <section class="diagram-wrap" aria-label="功能示意图">
+        <div class="diagram-labels">
+          <div>Collect &amp; Extract</div>
+          <div>Normalize</div>
+          <div>Load &amp; API</div>
+          <div>Monitor</div>
+        </div>
+
+        <div class="diagram">
+          <div class="left-arrow"><span>Event Data</span></div>
+          <div class="badge b1">+</div>
+          <div class="badge b2">×</div>
+          <div class="badge b3">+</div>
+
+          <div class="glass box-norm"></div>
+          <div class="node-text t1">Normalize</div>
+
+          <div class="pill-node node-center">Transform</div>
+
+          <div class="orb orb-1"></div>
+          <div class="glass box-bottom"></div>
+          <div class="node-text t3">Load</div>
+
+          <div class="orb orb-2"></div>
+          <div class="glass box-right"></div>
+          <div class="node-text t2">API</div>
+        </div>
       </section>
     </main>
-
-    <section class="panel comment-card" id="comment">
-      <div>
-        <p class="section-kicker">Discussion</p>
-        <h2 class="section-title">评论（0）</h2>
-        <p class="comment-count">当前页面保留原始阅读页的评论占位和底部帮助入口。</p>
-      </div>
-      <div class="footer-links">
-        <a href="#comment">帮助中心</a>
-        <a href="#comment">效率指南</a>
-      </div>
-    </section>
   </div>
+
+  <a class="float-ai" href="#ask-ai" aria-label="Ask AI">
+    ✦
+    <small>Ask AI</small>
+  </a>
 </body>
 </html>
