@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>sea - 阿里橙主题文档页</title>
+  <style>
+    :root {
+      --bg: #fff7ef;
+      --bg-accent: #ffe1bf;
+      --surface: rgba(255, 255, 255, 0.92);
+      --surface-strong: #ffffff;
+      --line: rgba(244, 120, 32, 0.18);
+      --line-strong: rgba(244, 120, 32, 0.34);
+      --text: #2f241b;
+      --muted: #8a6d58;
+      --primary: #ff6a00;
+      --primary-deep: #e95a00;
+      --primary-soft: #fff0df;
+      --shadow: 0 30px 80px rgba(203, 92, 16, 0.16);
+      --radius-xl: 32px;
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --font-ui: "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      --font-display: Georgia, "Songti SC", "Noto Serif CJK SC", serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      font-family: var(--font-ui);
+      background:
+        radial-gradient(circle at top left, rgba(255, 138, 0, 0.18), transparent 28%),
+        radial-gradient(circle at right 20%, rgba(255, 194, 102, 0.28), transparent 24%),
+        linear-gradient(180deg, #fff8f0 0%, #fff3e4 52%, #fffaf4 100%);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(244, 120, 32, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(244, 120, 32, 0.05) 1px, transparent 1px);
+      background-size: 36px 36px;
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.65), transparent 88%);
+    }
+
+    .page-shell {
+      position: relative;
+      width: min(1180px, calc(100% - 32px));
+      margin: 24px auto 48px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 20px 24px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 250, 244, 0.82);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 16px 40px rgba(203, 92, 16, 0.08);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      color: #fff;
+      font-weight: 700;
+      background: linear-gradient(135deg, #ff7a1a, #ff4d00);
+      box-shadow: 0 12px 22px rgba(255, 106, 0, 0.24);
+    }
+
+    .brand-copy {
+      min-width: 0;
+    }
+
+    .eyebrow {
+      margin: 0 0 4px;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .brand-title {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: flex-end;
+    }
+
+    .btn {
+      border: 1px solid transparent;
+      border-radius: 999px;
+      padding: 12px 20px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      color: var(--primary-deep);
+      border-color: var(--line-strong);
+      background: rgba(255, 255, 255, 0.84);
+    }
+
+    .btn-primary {
+      color: #fff;
+      background: linear-gradient(135deg, #ff7a1a, #ff5a00);
+      box-shadow: 0 16px 28px rgba(255, 106, 0, 0.28);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 28px;
+      margin-top: 28px;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      background: var(--surface);
+      backdrop-filter: blur(18px);
+      box-shadow: var(--shadow);
+    }
+
+    .doc-hero {
+      padding: 34px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .doc-hero::after {
+      content: "";
+      position: absolute;
+      right: -60px;
+      top: -60px;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 129, 31, 0.28), transparent 70%);
+    }
+
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      color: var(--muted);
+      background: var(--primary-soft);
+      border: 1px solid rgba(255, 122, 26, 0.12);
+    }
+
+    .doc-title {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(48px, 8vw, 84px);
+      line-height: 0.96;
+      letter-spacing: -0.04em;
+    }
+
+    .doc-subtitle {
+      margin: 18px 0 0;
+      max-width: 26em;
+      font-size: 18px;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    .hero-side {
+      display: grid;
+      gap: 20px;
+    }
+
+    .stats-card,
+    .comment-card {
+      padding: 26px;
+    }
+
+    .section-kicker {
+      margin: 0 0 10px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      color: var(--primary-deep);
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      margin: 0;
+      font-size: 26px;
+      font-weight: 700;
+    }
+
+    .section-copy {
+      margin: 10px 0 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .stat {
+      padding: 18px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(180deg, #fff7ef, #fff);
+      border: 1px solid var(--line);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 26px;
+      color: var(--primary-deep);
+    }
+
+    .stat span {
+      display: block;
+      margin-top: 8px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .doc-paper {
+      margin-top: 28px;
+      padding: clamp(28px, 5vw, 52px);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(255, 250, 244, 0.98)),
+        repeating-linear-gradient(180deg, transparent 0 34px, rgba(244, 120, 32, 0.045) 34px 35px);
+    }
+
+    .paper-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .paper-title {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(30px, 4vw, 54px);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+    }
+
+    .paper-meta {
+      margin: 8px 0 0;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .paper-tag {
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: var(--primary-soft);
+      border: 1px solid rgba(255, 122, 26, 0.16);
+      color: var(--primary-deep);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .content {
+      margin-top: 28px;
+    }
+
+    .content p {
+      margin: 0;
+      font-size: clamp(20px, 2.2vw, 28px);
+      line-height: 1.95;
+      color: #3a2b20;
+    }
+
+    .highlight {
+      display: inline;
+      padding: 0.04em 0.24em;
+      border-radius: 10px;
+      background: linear-gradient(180deg, rgba(255, 181, 120, 0.35), rgba(255, 126, 34, 0.2));
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
+    }
+
+    .comment-card {
+      margin-top: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      background: linear-gradient(135deg, rgba(255, 116, 0, 0.08), rgba(255, 255, 255, 0.94));
+    }
+
+    .comment-count {
+      font-size: 15px;
+      color: var(--muted);
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .footer-links a {
+      color: var(--primary-deep);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    @media (max-width: 960px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar {
+        border-radius: 28px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-shell {
+        width: min(100% - 20px, 1180px);
+        margin-top: 12px;
+      }
+
+      .topbar,
+      .doc-hero,
+      .stats-card,
+      .comment-card {
+        padding: 20px;
+      }
+
+      .actions {
+        width: 100%;
+        justify-content: stretch;
+      }
+
+      .actions .btn {
+        flex: 1 1 180px;
+        text-align: center;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .comment-card {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">A</div>
+        <div class="brand-copy">
+          <p class="eyebrow">Ali Orange Docs</p>
+          <p class="brand-title">用户846042的组织 / 共享文档</p>
+        </div>
+      </div>
+      <div class="actions">
+        <a class="btn btn-secondary" href="#doc">立即编辑</a>
+        <a class="btn btn-primary" href="#comment">登录/注册</a>
+      </div>
+    </header>
+
+    <section class="hero">
+      <article class="panel doc-hero">
+        <div class="meta-row">
+          <span class="pill">公开分享</span>
+          <span class="pill">最新修改时间为 03 月 16 日</span>
+          <span class="pill">阿里橙主题重构</span>
+        </div>
+        <h1 class="doc-title">sea</h1>
+        <p class="doc-subtitle">
+          保留飞书公开文档页的阅读结构与信息层级，用更强烈的橙色品牌语气重做页面视觉，让文档感、展示感和可读性同时成立。
+        </p>
+      </article>
+
+      <aside class="hero-side">
+        <section class="panel stats-card">
+          <p class="section-kicker">Doc Snapshot</p>
+          <h2 class="section-title">今天修改</h2>
+          <p class="section-copy">标题、操作按钮、正文内容与评论区位置按原页语义保留，只替换视觉主题与呈现方式。</p>
+          <div class="stats-grid">
+            <div class="stat">
+              <strong>1</strong>
+              <span>核心需求</span>
+            </div>
+            <div class="stat">
+              <strong>03/16</strong>
+              <span>最近更新</span>
+            </div>
+            <div class="stat">
+              <strong>100%</strong>
+              <span>橙色主题覆盖</span>
+            </div>
+            <div class="stat">
+              <strong>HTML</strong>
+              <span>单文件交付</span>
+            </div>
+          </div>
+        </section>
+      </aside>
+    </section>
+
+    <main class="panel doc-paper" id="doc">
+      <div class="paper-head">
+        <div>
+          <h2 class="paper-title">sea</h2>
+          <p class="paper-meta">用户846042的组织 · 今天修改 · 公开分享文档</p>
+        </div>
+        <span class="paper-tag">飞书同构 / 阿里橙配色</span>
+      </div>
+
+      <section class="content" aria-label="正文内容">
+        <p>
+          <span class="highlight">复刻一个一样的页面，整个页面用阿里橙色主题。</span>
+        </p>
+      </section>
+    </main>
+
+    <section class="panel comment-card" id="comment">
+      <div>
+        <p class="section-kicker">Discussion</p>
+        <h2 class="section-title">评论（0）</h2>
+        <p class="comment-count">当前页面保留原始阅读页的评论占位和底部帮助入口。</p>
+      </div>
+      <div class="footer-links">
+        <a href="#comment">帮助中心</a>
+        <a href="#comment">效率指南</a>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
