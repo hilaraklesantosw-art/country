@@ -1,0 +1,478 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import json
+import subprocess
+from pathlib import Path
+
+
+TRANSLATIONS = {
+    "Apache SeaTunnel | Orange Replica": {
+        "en": "Apache SeaTunnel | Orange Replica",
+        "zh-CN": "Apache SeaTunnel | 橙色复刻版",
+        "zh-TW": "Apache SeaTunnel | 橘色復刻版",
+        "ja": "Apache SeaTunnel | オレンジ再現版",
+        "ko": "Apache SeaTunnel | 오렌지 복제판",
+        "fr": "Apache SeaTunnel | Réplique orange",
+        "de": "Apache SeaTunnel | Orange Nachbildung",
+        "es": "Apache SeaTunnel | Réplica naranja",
+        "pt": "Apache SeaTunnel | Réplica laranja",
+        "it": "Apache SeaTunnel | Replica arancione",
+        "ru": "Apache SeaTunnel | Оранжевая реплика",
+        "ar": "Apache SeaTunnel | نسخة برتقالية",
+        "hi": "Apache SeaTunnel | ऑरेंज प्रतिकृति",
+        "th": "Apache SeaTunnel | เวอร์ชันจำลองโทนส้ม",
+        "vi": "Apache SeaTunnel | Bản sao màu cam",
+        "id": "Apache SeaTunnel | Replika oranye",
+        "tr": "Apache SeaTunnel | Turuncu kopya",
+        "nl": "Apache SeaTunnel | Oranje replica",
+        "pl": "Apache SeaTunnel | Pomarańczowa replika",
+        "uk": "Apache SeaTunnel | Помаранчева репліка",
+    },
+    "Skip to main content": {
+        "en": "Skip to main content",
+        "zh-CN": "跳转到主要内容",
+        "zh-TW": "跳至主要內容",
+        "ja": "メインコンテンツへ移動",
+        "ko": "본문으로 건너뛰기",
+        "fr": "Aller au contenu principal",
+        "de": "Zum Hauptinhalt springen",
+        "es": "Saltar al contenido principal",
+        "pt": "Ir para o conteúdo principal",
+        "it": "Vai al contenuto principale",
+        "ru": "Перейти к основному содержимому",
+        "ar": "الانتقال إلى المحتوى الرئيسي",
+        "hi": "मुख्य सामग्री पर जाएँ",
+        "th": "ข้ามไปยังเนื้อหาหลัก",
+        "vi": "Chuyển đến nội dung chính",
+        "id": "Lewati ke konten utama",
+        "tr": "Ana içeriğe geç",
+        "nl": "Ga naar hoofdinhoud",
+        "pl": "Przejdź do głównej treści",
+        "uk": "Перейти до основного вмісту",
+    },
+    "If you like Apache SeaTunnel, give it a star on GitHub": {
+        "en": "If you like Apache SeaTunnel, give it a star on GitHub",
+        "zh-CN": "如果你喜欢 Apache SeaTunnel，请在 GitHub 上点亮星标",
+        "zh-TW": "如果你喜歡 Apache SeaTunnel，請在 GitHub 上給它一顆星",
+        "ja": "Apache SeaTunnel が気に入ったら GitHub でスターを付けてください",
+        "ko": "Apache SeaTunnel이 마음에 들면 GitHub에서 스타를 눌러 주세요",
+        "fr": "Si vous aimez Apache SeaTunnel, ajoutez une étoile sur GitHub",
+        "de": "Wenn dir Apache SeaTunnel gefällt, gib ihm auf GitHub einen Stern",
+        "es": "Si te gusta Apache SeaTunnel, dale una estrella en GitHub",
+        "pt": "Se você gosta do Apache SeaTunnel, dê uma estrela no GitHub",
+        "it": "Se ti piace Apache SeaTunnel, dagli una stella su GitHub",
+        "ru": "Если вам нравится Apache SeaTunnel, поставьте ему звезду на GitHub",
+        "ar": "إذا أعجبك Apache SeaTunnel فامنحه نجمة على GitHub",
+        "hi": "यदि आपको Apache SeaTunnel पसंद है, तो GitHub पर इसे स्टार दें",
+        "th": "หากคุณชอบ Apache SeaTunnel โปรดกดดาวบน GitHub",
+        "vi": "Nếu bạn thích Apache SeaTunnel, hãy tặng một ngôi sao trên GitHub",
+        "id": "Jika Anda menyukai Apache SeaTunnel, berikan bintang di GitHub",
+        "tr": "Apache SeaTunnel’ı beğendiyseniz GitHub’da yıldız verin",
+        "nl": "Als je Apache SeaTunnel leuk vindt, geef het dan een ster op GitHub",
+        "pl": "Jeśli podoba Ci się Apache SeaTunnel, daj mu gwiazdkę na GitHubie",
+        "uk": "Якщо вам подобається Apache SeaTunnel, поставте йому зірку на GitHub",
+    },
+    "Main": {
+        "en": "Main", "zh-CN": "主导航", "zh-TW": "主導覽", "ja": "メイン", "ko": "메인",
+        "fr": "Principal", "de": "Hauptnavigation", "es": "Principal", "pt": "Principal",
+        "it": "Principale", "ru": "Главное", "ar": "الرئيسية", "hi": "मुख्य", "th": "หลัก",
+        "vi": "Chính", "id": "Utama", "tr": "Ana", "nl": "Hoofd", "pl": "Główne", "uk": "Головне",
+    },
+    "Home": {
+        "en": "Home", "zh-CN": "首页", "zh-TW": "首頁", "ja": "ホーム", "ko": "홈",
+        "fr": "Accueil", "de": "Startseite", "es": "Inicio", "pt": "Início", "it": "Home",
+        "ru": "Главная", "ar": "الصفحة الرئيسية", "hi": "होम", "th": "หน้าแรก", "vi": "Trang chủ",
+        "id": "Beranda", "tr": "Ana Sayfa", "nl": "Home", "pl": "Strona główna", "uk": "Головна",
+    },
+    "Document": {
+        "en": "Document", "zh-CN": "文档", "zh-TW": "文件", "ja": "ドキュメント", "ko": "문서",
+        "fr": "Documentation", "de": "Dokumentation", "es": "Documentación", "pt": "Documentação",
+        "it": "Documentazione", "ru": "Документация", "ar": "التوثيق", "hi": "दस्तावेज़", "th": "เอกสาร",
+        "vi": "Tài liệu", "id": "Dokumentasi", "tr": "Dokümantasyon", "nl": "Documentatie", "pl": "Dokumentacja", "uk": "Документація",
+    },
+    "Download": {
+        "en": "Download", "zh-CN": "下载", "zh-TW": "下載", "ja": "ダウンロード", "ko": "다운로드",
+        "fr": "Télécharger", "de": "Download", "es": "Descargar", "pt": "Baixar", "it": "Download",
+        "ru": "Скачать", "ar": "التنزيل", "hi": "डाउनलोड", "th": "ดาวน์โหลด", "vi": "Tải xuống",
+        "id": "Unduh", "tr": "İndir", "nl": "Download", "pl": "Pobierz", "uk": "Завантажити",
+    },
+    "Community": {
+        "en": "Community", "zh-CN": "社区", "zh-TW": "社群", "ja": "コミュニティ", "ko": "커뮤니티",
+        "fr": "Communauté", "de": "Community", "es": "Comunidad", "pt": "Comunidade", "it": "Comunità",
+        "ru": "Сообщество", "ar": "المجتمع", "hi": "समुदाय", "th": "ชุมชน", "vi": "Cộng đồng",
+        "id": "Komunitas", "tr": "Topluluk", "nl": "Community", "pl": "Społeczność", "uk": "Спільнота",
+    },
+    "Blog": {
+        "en": "Blog", "zh-CN": "博客", "zh-TW": "部落格", "ja": "ブログ", "ko": "블로그",
+        "fr": "Blog", "de": "Blog", "es": "Blog", "pt": "Blog", "it": "Blog", "ru": "Блог",
+        "ar": "المدونة", "hi": "ब्लॉग", "th": "บล็อก", "vi": "Blog", "id": "Blog", "tr": "Blog", "nl": "Blog", "pl": "Blog", "uk": "Блог",
+    },
+    "Team": {
+        "en": "Team", "zh-CN": "团队", "zh-TW": "團隊", "ja": "チーム", "ko": "팀",
+        "fr": "Équipe", "de": "Team", "es": "Equipo", "pt": "Equipe", "it": "Team", "ru": "Команда",
+        "ar": "الفريق", "hi": "टीम", "th": "ทีม", "vi": "Nhóm", "id": "Tim", "tr": "Ekip", "nl": "Team", "pl": "Zespół", "uk": "Команда",
+    },
+    "Users": {
+        "en": "Users", "zh-CN": "用户", "zh-TW": "使用者", "ja": "ユーザー", "ko": "사용자",
+        "fr": "Utilisateurs", "de": "Nutzer", "es": "Usuarios", "pt": "Usuários", "it": "Utenti", "ru": "Пользователи",
+        "ar": "المستخدمون", "hi": "उपयोगकर्ता", "th": "ผู้ใช้", "vi": "Người dùng", "id": "Pengguna", "tr": "Kullanıcılar", "nl": "Gebruikers", "pl": "Użytkownicy", "uk": "Користувачі",
+    },
+    "Security": {
+        "en": "Security", "zh-CN": "安全", "zh-TW": "安全性", "ja": "セキュリティ", "ko": "보안",
+        "fr": "Sécurité", "de": "Sicherheit", "es": "Seguridad", "pt": "Segurança", "it": "Sicurezza", "ru": "Безопасность",
+        "ar": "الأمان", "hi": "सुरक्षा", "th": "ความปลอดภัย", "vi": "Bảo mật", "id": "Keamanan", "tr": "Güvenlik", "nl": "Beveiliging", "pl": "Bezpieczeństwo", "uk": "Безпека",
+    },
+    "English": {
+        "en": "English", "zh-CN": "英语", "zh-TW": "英文", "ja": "英語", "ko": "영어",
+        "fr": "Anglais", "de": "Englisch", "es": "Inglés", "pt": "Inglês", "it": "Inglese", "ru": "Английский",
+        "ar": "الإنجليزية", "hi": "अंग्रेज़ी", "th": "อังกฤษ", "vi": "Tiếng Anh", "id": "Bahasa Inggris", "tr": "İngilizce", "nl": "Engels", "pl": "Angielski", "uk": "Англійська",
+    },
+    "Search": {
+        "en": "Search", "zh-CN": "搜索", "zh-TW": "搜尋", "ja": "検索", "ko": "검색",
+        "fr": "Rechercher", "de": "Suche", "es": "Buscar", "pt": "Buscar", "it": "Cerca", "ru": "Поиск",
+        "ar": "بحث", "hi": "खोजें", "th": "ค้นหา", "vi": "Tìm kiếm", "id": "Cari", "tr": "Ara", "nl": "Zoeken", "pl": "Szukaj", "uk": "Пошук",
+    },
+    "访客 95042": {
+        "en": "Visitor 95042", "zh-CN": "访客 95042", "zh-TW": "訪客 95042", "ja": "訪問者 95042", "ko": "방문자 95042",
+        "fr": "Visiteur 95042", "de": "Besucher 95042", "es": "Visitante 95042", "pt": "Visitante 95042", "it": "Visitatore 95042",
+        "ru": "Посетитель 95042", "ar": "زائر 95042", "hi": "आगंतुक 95042", "th": "ผู้เยี่ยมชม 95042", "vi": "Khách truy cập 95042",
+        "id": "Pengunjung 95042", "tr": "Ziyaretçi 95042", "nl": "Bezoeker 95042", "pl": "Odwiedzający 95042", "uk": "Відвідувач 95042",
+    },
+    "Multimodal, high-performance,": {
+        "en": "Multimodal, high-performance,", "zh-CN": "多模态、高性能，", "zh-TW": "多模態、高效能，", "ja": "マルチモーダルで高性能な、", "ko": "멀티모달 고성능의,",
+        "fr": "Multimodal et haute performance,", "de": "Multimodal und leistungsstark,", "es": "Multimodal y de alto rendimiento,", "pt": "Multimodal e de alto desempenho,", "it": "Multimodale e ad alte prestazioni,",
+        "ru": "Мультимодальный и высокопроизводительный,", "ar": "أداة متعددة الأنماط وعالية الأداء،", "hi": "मल्टीमॉडल, उच्च-प्रदर्शन,", "th": "หลายรูปแบบ ประสิทธิภาพสูง,", "vi": "Đa phương thức, hiệu năng cao,",
+        "id": "Multimodal, berkinerja tinggi,", "tr": "Çok modlu, yüksek performanslı,", "nl": "Multimodaal en krachtig,", "pl": "Wielomodalne i wysokowydajne,", "uk": "Мультимодальний, високопродуктивний,",
+    },
+    "distributed, massive data integration tool.": {
+        "en": "distributed, massive data integration tool.", "zh-CN": "分布式的大规模数据集成工具。", "zh-TW": "分散式的大規模資料整合工具。", "ja": "分散型の大規模データ統合ツール。", "ko": "분산형 대규모 데이터 통합 도구입니다。",
+        "fr": "outil d’intégration de données massives distribué.", "de": "verteiltes Werkzeug zur Integration großer Datenmengen.", "es": "herramienta distribuida de integración masiva de datos.", "pt": "ferramenta distribuída de integração massiva de dados.", "it": "strumento distribuito per l’integrazione massiva dei dati.",
+        "ru": "распределенный инструмент для интеграции больших данных.", "ar": "وموزعة لتكامل البيانات الضخمة.", "hi": "वितरित विशाल डेटा एकीकरण उपकरण।", "th": "เครื่องมือบูรณาการข้อมูลขนาดใหญ่แบบกระจายศูนย์", "vi": "công cụ tích hợp dữ liệu khối lượng lớn phân tán.",
+        "id": "alat integrasi data masif terdistribusi.", "tr": "dağıtık büyük veri entegrasyon aracı.", "nl": "gedistribueerd hulpmiddel voor grootschalige data-integratie.", "pl": "rozproszone narzędzie do integracji danych na dużą skalę.", "uk": "розподілений інструмент для інтеграції великих обсягів даних.",
+    },
+    "QUICK START": {
+        "en": "QUICK START", "zh-CN": "快速开始", "zh-TW": "快速開始", "ja": "クイックスタート", "ko": "빠른 시작",
+        "fr": "DÉMARRAGE RAPIDE", "de": "SCHNELLSTART", "es": "INICIO RÁPIDO", "pt": "INÍCIO RÁPIDO", "it": "AVVIO RAPIDO",
+        "ru": "БЫСТРЫЙ СТАРТ", "ar": "بدء سريع", "hi": "त्वरित शुरुआत", "th": "เริ่มต้นอย่างรวดเร็ว", "vi": "BẮT ĐẦU NHANH",
+        "id": "MULAI CEPAT", "tr": "HIZLI BAŞLANGIÇ", "nl": "SNEL STARTEN", "pl": "SZYBKI START", "uk": "ШВИДКИЙ СТАРТ",
+    },
+    "Pipeline overview": {
+        "en": "Pipeline overview", "zh-CN": "流程概览", "zh-TW": "流程概覽", "ja": "パイプライン概要", "ko": "파이프라인 개요",
+        "fr": "Aperçu du pipeline", "de": "Pipeline-Überblick", "es": "Resumen del pipeline", "pt": "Visão geral do pipeline", "it": "Panoramica della pipeline",
+        "ru": "Обзор конвейера", "ar": "نظرة عامة على خط المعالجة", "hi": "पाइपलाइन अवलोकन", "th": "ภาพรวมไปป์ไลน์", "vi": "Tổng quan pipeline",
+        "id": "Ikhtisar pipeline", "tr": "Boru hattı genel bakışı", "nl": "Pipeline-overzicht", "pl": "Przegląd potoku", "uk": "Огляд конвеєра",
+    },
+    "Collect": {"en":"Collect","zh-CN":"采集","zh-TW":"收集","ja":"収集","ko":"수집","fr":"Collecter","de":"Sammeln","es":"Recopilar","pt":"Coletar","it":"Raccogli","ru":"Сбор","ar":"جمع","hi":"संग्रह","th":"รวบรวม","vi":"Thu thập","id":"Kumpulkan","tr":"Topla","nl":"Verzamelen","pl":"Zbieraj","uk":"Збір"},
+    "Extract": {"en":"Extract","zh-CN":"提取","zh-TW":"擷取","ja":"抽出","ko":"추출","fr":"Extraire","de":"Extrahieren","es":"Extraer","pt":"Extrair","it":"Estrai","ru":"Извлечение","ar":"استخراج","hi":"निकालें","th":"ดึงข้อมูล","vi":"Trích xuất","id":"Ekstrak","tr":"Çıkar","nl":"Extraheren","pl":"Wyodrębnij","uk":"Витяг"},
+    "Normalize": {"en":"Normalize","zh-CN":"规范化","zh-TW":"正規化","ja":"正規化","ko":"정규화","fr":"Normaliser","de":"Normalisieren","es":"Normalizar","pt":"Normalizar","it":"Normalizza","ru":"Нормализация","ar":"تطبيع","hi":"सामान्यीकृत करें","th":"ปรับมาตรฐาน","vi":"Chuẩn hóa","id":"Normalkan","tr":"Normalleştir","nl":"Normaliseren","pl":"Normalizuj","uk":"Нормалізація"},
+    "Load": {"en":"Load","zh-CN":"加载","zh-TW":"載入","ja":"ロード","ko":"적재","fr":"Charger","de":"Laden","es":"Cargar","pt":"Carregar","it":"Carica","ru":"Загрузка","ar":"تحميل","hi":"लोड करें","th":"โหลด","vi":"Nạp","id":"Muat","tr":"Yükle","nl":"Laden","pl":"Ładuj","uk":"Завантаження"},
+    "Monitor": {"en":"Monitor","zh-CN":"监控","zh-TW":"監控","ja":"監視","ko":"모니터링","fr":"Surveiller","de":"Überwachen","es":"Monitorear","pt":"Monitorar","it":"Monitora","ru":"Мониторинг","ar":"مراقبة","hi":"निगरानी","th":"มอนิเตอร์","vi":"Giám sát","id":"Pantau","tr":"İzle","nl":"Monitoren","pl":"Monitoruj","uk":"Моніторинг"},
+    "Event Data": {"en":"Event Data","zh-CN":"事件数据","zh-TW":"事件資料","ja":"イベントデータ","ko":"이벤트 데이터","fr":"Données d’événement","de":"Ereignisdaten","es":"Datos de eventos","pt":"Dados de eventos","it":"Dati evento","ru":"Событийные данные","ar":"بيانات الأحداث","hi":"इवेंट डेटा","th":"ข้อมูลเหตุการณ์","vi":"Dữ liệu sự kiện","id":"Data kejadian","tr":"Olay verisi","nl":"Gebeurtenisdata","pl":"Dane zdarzeń","uk":"Подієві дані"},
+    "Cloud DB": {"en":"Cloud DB","zh-CN":"云数据库","zh-TW":"雲端資料庫","ja":"クラウドDB","ko":"클라우드 DB","fr":"Base cloud","de":"Cloud-Datenbank","es":"Base de datos en la nube","pt":"Banco em nuvem","it":"DB cloud","ru":"Облачная БД","ar":"قاعدة بيانات سحابية","hi":"क्लाउड DB","th":"ฐานข้อมูลคลาวด์","vi":"CSDL đám mây","id":"DB cloud","tr":"Bulut DB","nl":"Cloud-DB","pl":"Chmurowa baza danych","uk":"Хмарна БД"},
+    "Transform": {"en":"Transform","zh-CN":"转换","zh-TW":"轉換","ja":"変換","ko":"변환","fr":"Transformer","de":"Transformieren","es":"Transformar","pt":"Transformar","it":"Trasforma","ru":"Преобразование","ar":"تحويل","hi":"परिवर्तित करें","th":"แปลงข้อมูล","vi":"Biến đổi","id":"Transformasi","tr":"Dönüştür","nl":"Transformeren","pl":"Przekształć","uk":"Трансформація"},
+    "Support Hundreds Of Data Sources,": {
+        "en":"Support Hundreds Of Data Sources,","zh-CN":"支持数百种数据源，","zh-TW":"支援數百種資料來源，","ja":"数百のデータソースをサポートし、","ko":"수백 개의 데이터 소스를 지원하고,","fr":"Prend en charge des centaines de sources de données,","de":"Unterstützt Hunderte von Datenquellen,","es":"Admite cientos de fuentes de datos,","pt":"Suporta centenas de fontes de dados,","it":"Supporta centinaia di fonti dati,","ru":"Поддержка сотен источников данных,","ar":"يدعم مئات مصادر البيانات،","hi":"सैकड़ों डेटा स्रोतों का समर्थन,","th":"รองรับแหล่งข้อมูลนับร้อย,","vi":"Hỗ trợ hàng trăm nguồn dữ liệu,","id":"Mendukung ratusan sumber data,","tr":"Yüzlerce veri kaynağını destekler,","nl":"Ondersteunt honderden databronnen,","pl":"Obsługuje setki źródeł danych,","uk":"Підтримка сотень джерел даних,"
+    },
+    "Fast Speed": {"en":"Fast Speed","zh-CN":"高速传输","zh-TW":"高速傳輸","ja":"高速","ko":"빠른 속도","fr":"Grande vitesse","de":"Hohe Geschwindigkeit","es":"Alta velocidad","pt":"Alta velocidade","it":"Alta velocità","ru":"Высокая скорость","ar":"سرعة عالية","hi":"तेज़ गति","th":"ความเร็วสูง","vi":"Tốc độ cao","id":"Kecepatan tinggi","tr":"Yüksek hız","nl":"Hoge snelheid","pl":"Wysoka prędkość","uk":"Висока швидкість"},
+    "High Accuracy": {"en":"High Accuracy","zh-CN":"高精度","zh-TW":"高精準度","ja":"高精度","ko":"높은 정확도","fr":"Haute précision","de":"Hohe Genauigkeit","es":"Alta precisión","pt":"Alta precisão","it":"Alta precisione","ru":"Высокая точность","ar":"دقة عالية","hi":"उच्च सटीकता","th":"ความแม่นยำสูง","vi":"Độ chính xác cao","id":"Akurasi tinggi","tr":"Yüksek doğruluk","nl":"Hoge nauwkeurigheid","pl":"Wysoka dokładność","uk":"Висока точність"},
+    "Integrate massive data between Transaction DB, Cloud DB, SaaS, Binlog with SQL-like code or Drag": {
+        "en":"Integrate massive data between Transaction DB, Cloud DB, SaaS, Binlog with SQL-like code or Drag",
+        "zh-CN":"通过类 SQL 代码或拖拽方式，在事务数据库、云数据库、SaaS、Binlog 之间集成海量数据",
+        "zh-TW":"透過類 SQL 語法或拖放方式，在交易型資料庫、雲端資料庫、SaaS、Binlog 之間整合海量資料",
+        "ja":"SQL ライクなコードやドラッグ操作で、トランザクション DB、クラウド DB、SaaS、Binlog 間の大量データを統合",
+        "ko":"SQL 유사 코드나 드래그 앤 드롭으로 트랜잭션 DB, 클라우드 DB, SaaS, Binlog 간의 대규모 데이터를 통합",
+        "fr":"Intégrez d’importants volumes de données entre bases transactionnelles, bases cloud, SaaS et Binlog avec un code de type SQL ou par glisser",
+        "de":"Integriere große Datenmengen zwischen Transaktionsdatenbanken, Cloud-Datenbanken, SaaS und Binlog per SQL-ähnlichem Code oder Drag",
+        "es":"Integra grandes volúmenes de datos entre bases transaccionales, bases en la nube, SaaS y Binlog con código tipo SQL o mediante arrastrar",
+        "pt":"Integre grandes volumes de dados entre bancos transacionais, bancos em nuvem, SaaS e Binlog com código semelhante a SQL ou arrastar",
+        "it":"Integra grandi volumi di dati tra database transazionali, database cloud, SaaS e Binlog con codice simile a SQL o tramite trascina",
+        "ru":"Интегрируйте большие объемы данных между транзакционными БД, облачными БД, SaaS и Binlog с помощью SQL-подобного кода или drag",
+        "ar":"دمج كميات ضخمة من البيانات بين قواعد البيانات transactional وقواعد البيانات السحابية وSaaS وBinlog باستخدام أوامر شبيهة بـ SQL أو السحب",
+        "hi":"SQL-जैसे कोड या ड्रैग के माध्यम से ट्रांजैक्शन DB, क्लाउड DB, SaaS और Binlog के बीच विशाल डेटा एकीकृत करें",
+        "th":"ผสานข้อมูลจำนวนมหาศาลระหว่างฐานข้อมูลธุรกรรม ฐานข้อมูลคลาวด์ SaaS และ Binlog ด้วยโค้ดแบบ SQL หรือการลาก",
+        "vi":"Tích hợp dữ liệu khối lượng lớn giữa Transaction DB, Cloud DB, SaaS và Binlog bằng mã kiểu SQL hoặc kéo",
+        "id":"Integrasikan data masif antara Transaction DB, Cloud DB, SaaS, dan Binlog dengan kode mirip SQL atau drag",
+        "tr":"SQL benzeri kod veya sürükle bırak ile Transaction DB, Cloud DB, SaaS ve Binlog arasında büyük veriyi entegre edin",
+        "nl":"Integreer grote hoeveelheden data tussen Transaction DB, Cloud DB, SaaS en Binlog met SQL-achtige code of via slepen",
+        "pl":"Integruj ogromne ilości danych między Transaction DB, Cloud DB, SaaS i Binlog za pomocą kodu podobnego do SQL lub przeciągnij",
+        "uk":"Інтегруйте великі обсяги даних між Transaction DB, Cloud DB, SaaS і Binlog за допомогою SQL-подібного коду або drag",
+    },
+    "Drop.": {
+        "en":"Drop.", "zh-CN":"。", "zh-TW":"。", "ja":"。", "ko":"합니다.", "fr":".", "de":"& Drop.", "es":"y soltar.", "pt":"e soltar.", "it":"e rilascia.",
+        "ru":"& drop.", "ar":"والإفلات.", "hi":"एंड ड्रॉप के साथ।", "th":"แล้ววาง", "vi":"thả.", "id":"& drop.", "tr":".", "nl":"en neerzetten.", "pl":"i upuść.", "uk":"& drop."
+    },
+    "Reduce Complexity": {"en":"Reduce Complexity","zh-CN":"降低复杂度","zh-TW":"降低複雜度","ja":"複雑さを軽減","ko":"복잡도 감소","fr":"Réduire la complexité","de":"Komplexität reduzieren","es":"Reducir la complejidad","pt":"Reduzir a complexidade","it":"Riduci la complessità","ru":"Снижение сложности","ar":"تقليل التعقيد","hi":"जटिलता घटाएँ","th":"ลดความซับซ้อน","vi":"Giảm độ phức tạp","id":"Kurangi kompleksitas","tr":"Karmaşıklığı azaltın","nl":"Verminder complexiteit","pl":"Zmniejsz złożoność","uk":"Зменшення складності"},
+    "The connector developed based on API can be compatible with offline synchronization, real-time synchronization, full synchronization, incremental synchronization and other scenarios.": {
+        "en":"The connector developed based on API can be compatible with offline synchronization, real-time synchronization, full synchronization, incremental synchronization and other scenarios.",
+        "zh-CN":"基于 API 开发的连接器可兼容离线同步、实时同步、全量同步、增量同步等多种场景。",
+        "zh-TW":"基於 API 開發的連接器可相容離線同步、即時同步、全量同步、增量同步等情境。",
+        "ja":"API ベースで開発されたコネクタは、オフライン同期、リアルタイム同期、フル同期、増分同期などのシナリオに対応できます。",
+        "ko":"API 기반으로 개발된 커넥터는 오프라인 동기화, 실시간 동기화, 전체 동기화, 증분 동기화 등 다양한 시나리오와 호환됩니다。",
+        "fr":"Le connecteur développé sur API est compatible avec la synchronisation hors ligne, en temps réel, complète, incrémentale et d’autres scénarios。",
+        "de":"Der auf APIs basierende Konnektor ist mit Offline-Synchronisierung, Echtzeit-Synchronisierung, Vollsynchronisierung, inkrementeller Synchronisierung und weiteren Szenarien kompatibel。",
+        "es":"El conector desarrollado sobre API puede ser compatible con sincronización offline, en tiempo real, completa, incremental y otros escenarios。",
+        "pt":"O conector desenvolvido com base em API é compatível com sincronização offline, em tempo real, completa, incremental e outros cenários。",
+        "it":"Il connettore sviluppato su API è compatibile con sincronizzazione offline, in tempo reale, completa, incrementale e altri scenari。",
+        "ru":"Коннектор, разработанный на основе API, совместим с офлайн-синхронизацией, синхронизацией в реальном времени, полной, инкрементальной синхронизацией и другими сценариями。",
+        "ar":"يمكن للموصل المطور بالاعتماد على API أن يكون متوافقًا مع المزامنة دون اتصال، والمزامنة الآنية، والمزامنة الكاملة، والمزامنة التزايدية وغيرها من السيناريوهات。",
+        "hi":"API आधारित विकसित कनेक्टर ऑफ़लाइन सिंक्रोनाइज़ेशन, रीयल-टाइम सिंक्रोनाइज़ेशन, पूर्ण सिंक्रोनाइज़ेशन, इन्क्रीमेंटल सिंक्रोनाइज़ेशन और अन्य परिदृश्यों के साथ संगत हो सकता है।",
+        "th":"คอนเนกเตอร์ที่พัฒนาบนพื้นฐาน API สามารถใช้งานร่วมกับการซิงก์แบบออฟไลน์ แบบเรียลไทม์ แบบเต็ม และแบบเพิ่มทีละส่วน รวมถึงสถานการณ์อื่น ๆ ได้",
+        "vi":"Bộ kết nối được phát triển dựa trên API có thể tương thích với đồng bộ ngoại tuyến, đồng bộ thời gian thực, đồng bộ toàn phần, đồng bộ gia tăng và các kịch bản khác。",
+        "id":"Konektor yang dikembangkan berbasis API dapat kompatibel dengan sinkronisasi offline, sinkronisasi real-time, sinkronisasi penuh, sinkronisasi inkremental, dan skenario lainnya。",
+        "tr":"API tabanlı geliştirilen bağlayıcı; çevrimdışı senkronizasyon, gerçek zamanlı senkronizasyon, tam senkronizasyon, artımlı senkronizasyon ve diğer senaryolarla uyumlu olabilir。",
+        "nl":"De op API gebaseerde connector is compatibel met offline synchronisatie, realtime synchronisatie, volledige synchronisatie, incrementele synchronisatie en andere scenario’s。",
+        "pl":"Konektor oparty na API może być zgodny z synchronizacją offline, synchronizacją w czasie rzeczywistym, pełną, przyrostową i innymi scenariuszami。",
+        "uk":"Конектор, розроблений на основі API, сумісний з офлайн-синхронізацією, синхронізацією в реальному часі, повною, інкрементною синхронізацією та іншими сценаріями。",
+    },
+    "Save More Time": {"en":"Save More Time","zh-CN":"节省更多时间","zh-TW":"節省更多時間","ja":"時間をさらに節約","ko":"더 많은 시간 절약","fr":"Gagner plus de temps","de":"Mehr Zeit sparen","es":"Ahorrar más tiempo","pt":"Economize mais tempo","it":"Risparmia più tempo","ru":"Экономия времени","ar":"توفير المزيد من الوقت","hi":"और अधिक समय बचाएँ","th":"ประหยัดเวลาได้มากขึ้น","vi":"Tiết kiệm thêm thời gian","id":"Hemat lebih banyak waktu","tr":"Daha fazla zaman kazanın","nl":"Bespaar meer tijd","pl":"Oszczędzaj więcej czasu","uk":"Економія часу"},
+    "Provides visual job management, scheduling, running, and monitoring capabilities. Accelerates the integration of low-code and no-code tools.": {
+        "en":"Provides visual job management, scheduling, running, and monitoring capabilities. Accelerates the integration of low-code and no-code tools.",
+        "zh-CN":"提供可视化任务管理、调度、运行和监控能力，加速低代码与无代码工具集成。",
+        "zh-TW":"提供視覺化工作管理、排程、執行與監控能力，加速低程式碼與無程式碼工具整合。",
+        "ja":"ビジュアルなジョブ管理、スケジューリング、実行、監視機能を提供し、ローコード／ノーコードツールの統合を加速します。",
+        "ko":"시각적 작업 관리, 스케줄링, 실행, 모니터링 기능을 제공하며 로우코드 및 노코드 도구 통합을 가속합니다。",
+        "fr":"Fournit des capacités visuelles de gestion, planification, exécution et supervision des tâches. Accélère l’intégration des outils low-code et no-code。",
+        "de":"Bietet visuelles Job-Management, Planung, Ausführung und Monitoring. Beschleunigt die Integration von Low-Code- und No-Code-Tools。",
+        "es":"Ofrece capacidades visuales de gestión, programación, ejecución y monitoreo de trabajos. Acelera la integración de herramientas low-code y no-code。",
+        "pt":"Fornece recursos visuais de gerenciamento, agendamento, execução e monitoramento de jobs. Acelera a integração de ferramentas low-code e no-code。",
+        "it":"Fornisce gestione visuale dei job, pianificazione, esecuzione e monitoraggio. Accelera l’integrazione di strumenti low-code e no-code。",
+        "ru":"Предоставляет визуальное управление задачами, планирование, запуск и мониторинг. Ускоряет интеграцию low-code и no-code инструментов。",
+        "ar":"يوفر إدارة مرئية للمهام والجدولة والتشغيل والمراقبة، ويُسرّع تكامل أدوات low-code وno-code。",
+        "hi":"यह विज़ुअल जॉब मैनेजमेंट, शेड्यूलिंग, रनिंग और मॉनिटरिंग क्षमताएँ देता है। यह low-code और no-code टूल्स के एकीकरण को तेज करता है।",
+        "th":"มีความสามารถด้านการจัดการงาน การตั้งเวลา การรัน และการมอนิเตอร์แบบภาพ ช่วยเร่งการรวมเครื่องมือ low-code และ no-code",
+        "vi":"Cung cấp khả năng quản lý job trực quan, lập lịch, chạy và giám sát. Tăng tốc tích hợp các công cụ low-code và no-code。",
+        "id":"Menyediakan kemampuan pengelolaan job visual, penjadwalan, eksekusi, dan pemantauan. Mempercepat integrasi alat low-code dan no-code。",
+        "tr":"Görsel iş yönetimi, zamanlama, çalıştırma ve izleme yetenekleri sunar. Low-code ve no-code araçlarının entegrasyonunu hızlandırır。",
+        "nl":"Biedt visueel jobbeheer, planning, uitvoering en monitoring. Versnelt de integratie van low-code- en no-code-tools。",
+        "pl":"Zapewnia wizualne zarządzanie zadaniami, harmonogramowanie, uruchamianie i monitorowanie. Przyspiesza integrację narzędzi low-code i no-code。",
+        "uk":"Надає візуальне керування задачами, планування, запуск і моніторинг. Прискорює інтеграцію low-code і no-code інструментів。",
+    },
+    "Simple And Easy To Maintain": {"en":"Simple And Easy To Maintain","zh-CN":"简单且易于维护","zh-TW":"簡單且易於維護","ja":"シンプルで保守しやすい","ko":"간단하고 유지보수 용이","fr":"Simple et facile à maintenir","de":"Einfach und leicht zu warten","es":"Simple y fácil de mantener","pt":"Simples e fácil de manter","it":"Semplice e facile da mantenere","ru":"Просто и легко сопровождать","ar":"بسيط وسهل الصيانة","hi":"सरल और बनाए रखने में आसान","th":"เรียบง่ายและดูแลง่าย","vi":"Đơn giản và dễ bảo trì","id":"Sederhana dan mudah dirawat","tr":"Basit ve bakımı kolay","nl":"Eenvoudig en makkelijk te onderhouden","pl":"Proste i łatwe w utrzymaniu","uk":"Простий і легкий у супроводі"},
+    "Support stand-alone, cluster deployment, choose Zeta engine deployment, no need to rely on Spark, Flink and other big data components.": {
+        "en":"Support stand-alone, cluster deployment, choose Zeta engine deployment, no need to rely on Spark, Flink and other big data components.",
+        "zh-CN":"支持单机和集群部署，可选择 Zeta 引擎，无需依赖 Spark、Flink 等大数据组件。",
+        "zh-TW":"支援單機與叢集部署，可選擇 Zeta 引擎，無需依賴 Spark、Flink 等大數據元件。",
+        "ja":"スタンドアロンとクラスタの両方をサポートし、Zeta エンジンを選択可能。Spark や Flink などの大規模コンポーネントに依存する必要がありません。",
+        "ko":"단독 실행과 클러스터 배포를 지원하며 Zeta 엔진을 선택할 수 있어 Spark, Flink 등 빅데이터 구성 요소에 의존할 필요가 없습니다。",
+        "fr":"Prend en charge le mode autonome et le déploiement en cluster, avec l’option du moteur Zeta, sans dépendre de Spark, Flink ou d’autres composants big data。",
+        "de":"Unterstützt Standalone- und Cluster-Betrieb, Zeta-Engine-Deployment und benötigt keine Abhängigkeit von Spark, Flink oder anderen Big-Data-Komponenten。",
+        "es":"Admite despliegue independiente y en clúster, con opción de motor Zeta, sin depender de Spark, Flink ni otros componentes de big data。",
+        "pt":"Suporta implantação standalone e em cluster, com opção do motor Zeta, sem depender de Spark, Flink e outros componentes de big data。",
+        "it":"Supporta distribuzioni standalone e cluster, con possibilità di usare il motore Zeta senza dipendere da Spark, Flink e altri componenti big data。",
+        "ru":"Поддерживаются автономное и кластерное развертывание, выбор движка Zeta, без зависимости от Spark, Flink и других big data компонентов。",
+        "ar":"يدعم التشغيل المنفرد ونشر العناقيد، مع إمكانية اختيار محرك Zeta، دون الحاجة للاعتماد على Spark أو Flink أو غيرها من مكونات البيانات الضخمة。",
+        "hi":"यह स्टैंडअलोन और क्लस्टर डिप्लॉयमेंट का समर्थन करता है, Zeta इंजन डिप्लॉयमेंट चुनें, और Spark, Flink जैसे बड़े डेटा कंपोनेंट्स पर निर्भर रहने की आवश्यकता नहीं है।",
+        "th":"รองรับทั้งการใช้งานแบบเดี่ยวและแบบคลัสเตอร์ เลือกใช้ Zeta engine ได้ โดยไม่ต้องพึ่งพา Spark, Flink หรือองค์ประกอบ big data อื่น ๆ",
+        "vi":"Hỗ trợ triển khai độc lập và theo cụm, có thể chọn Zeta engine, không cần phụ thuộc vào Spark, Flink hay các thành phần dữ liệu lớn khác。",
+        "id":"Mendukung deployment stand-alone dan cluster, dapat memilih engine Zeta, tanpa perlu bergantung pada Spark, Flink, atau komponen big data lainnya。",
+        "tr":"Tek başına ve küme dağıtımını destekler, Zeta motoru seçilebilir; Spark, Flink ve diğer büyük veri bileşenlerine bağımlı değildir。",
+        "nl":"Ondersteunt standalone- en clusterimplementaties, met keuze voor de Zeta-engine, zonder afhankelijkheid van Spark, Flink of andere big-data-componenten。",
+        "pl":"Obsługuje wdrożenia samodzielne i klastrowe, z możliwością wyboru silnika Zeta, bez konieczności polegania na Spark, Flink i innych komponentach big data。",
+        "uk":"Підтримує автономне та кластерне розгортання, вибір рушія Zeta, без залежності від Spark, Flink та інших big data компонентів。",
+    },
+    "Mature": {"en":"Mature","zh-CN":"成熟","zh-TW":"成熟","ja":"成熟","ko":"성숙","fr":"Mature","de":"Ausgereift","es":"Maduro","pt":"Maduro","it":"Maturo","ru":"Зрелый","ar":"ناضج","hi":"परिपक्व","th":"สมบูรณ์พร้อม","vi":"Trưởng thành","id":"Matang","tr":"Olgun","nl":"Volwassen","pl":"Dojrzałe","uk":"Зрілий"},
+    "Stable": {"en":"Stable","zh-CN":"稳定","zh-TW":"穩定","ja":"安定","ko":"안정적","fr":"Stable","de":"Stabil","es":"Estable","pt":"Estável","it":"Stabile","ru":"Стабильный","ar":"مستقر","hi":"स्थिर","th":"เสถียร","vi":"Ổn định","id":"Stabil","tr":"Kararlı","nl":"Stabiel","pl":"Stabilne","uk":"Стабільний"},
+    "Experience the baptism of large-scale production environment use and massive data. Stable enough for real production workloads.": {
+        "en":"Experience the baptism of large-scale production environment use and massive data. Stable enough for real production workloads.",
+        "zh-CN":"经受过大规模生产环境与海量数据场景的考验，足以支撑真实业务。",
+        "zh-TW":"歷經大規模生產環境與海量資料場景考驗，足以支撐真實工作負載。",
+        "ja":"大規模本番環境と大量データの洗礼を受けており、実運用ワークロードでも十分に安定しています。",
+        "ko":"대규모 프로덕션 환경과 방대한 데이터 처리 경험을 바탕으로 실제 워크로드에서도 충분히 안정적입니다。",
+        "fr":"Éprouvé dans des environnements de production à grande échelle et sur des volumes massifs de données. Suffisamment stable pour des charges réelles。",
+        "de":"Erprobt in groß angelegten Produktionsumgebungen und mit massiven Datenmengen. Stabil genug für reale Workloads。",
+        "es":"Probado en entornos de producción a gran escala y con datos masivos. Lo bastante estable para cargas reales。",
+        "pt":"Comprovado em ambientes de produção de grande escala e dados massivos. Estável o suficiente para cargas reais。",
+        "it":"Collaudato in ambienti di produzione su larga scala e con dati massivi. Abbastanza stabile per carichi reali。",
+        "ru":"Испытан крупными производственными средами и большими объемами данных. Достаточно стабилен для реальных нагрузок。",
+        "ar":"تم اختباره في بيئات إنتاج واسعة النطاق ومع بيانات هائلة، وهو مستقر بما يكفي للأحمال الحقيقية。",
+        "hi":"बड़े पैमाने के प्रोडक्शन वातावरण और विशाल डेटा उपयोग में परखा गया है। वास्तविक वर्कलोड के लिए पर्याप्त स्थिर।",
+        "th":"ผ่านการใช้งานจริงในสภาพแวดล้อมการผลิตขนาดใหญ่และข้อมูลจำนวนมาก มีความเสถียรเพียงพอสำหรับงานจริง",
+        "vi":"Đã được kiểm chứng trong môi trường sản xuất quy mô lớn và dữ liệu khổng lồ. Đủ ổn định cho khối lượng công việc thực tế。",
+        "id":"Teruji dalam lingkungan produksi skala besar dan data masif. Cukup stabil untuk beban kerja nyata。",
+        "tr":"Büyük ölçekli üretim ortamlarında ve dev veri setlerinde kendini kanıtlamıştır. Gerçek iş yükleri için yeterince kararlıdır。",
+        "nl":"Beproefd in grootschalige productieomgevingen en met enorme datasets. Stabiel genoeg voor echte workloads。",
+        "pl":"Sprawdzone w środowiskach produkcyjnych na dużą skalę i przy ogromnych ilościach danych. Wystarczająco stabilne dla realnych obciążeń。",
+        "uk":"Перевірений у масштабних виробничих середовищах і на великих обсягах даних. Достатньо стабільний для реальних навантажень。",
+    },
+    "Rich Connectors, Batch": {
+        "en":"Rich Connectors, Batch","zh-CN":"丰富连接器、批处理","zh-TW":"豐富連接器、批次","ja":"豊富なコネクタとバッチ","ko":"풍부한 커넥터와 배치","fr":"Connecteurs riches, traitement par lots","de":"Viele Konnektoren, Batch-","es":"Conectores ricos, procesamiento por lotes","pt":"Conectores ricos, processamento em lote","it":"Connettori ricchi, elaborazione batch","ru":"Богатые коннекторы, пакетная","ar":"موصلات غنية، معالجة دفعية","hi":"समृद्ध कनेक्टर, बैच","th":"คอนเนกเตอร์หลากหลาย งานแบตช์","vi":"Bộ kết nối phong phú, xử lý batch","id":"Konektor kaya, pemrosesan batch","tr":"Zengin bağlayıcılar, toplu","nl":"Rijke connectoren, batch","pl":"Bogate konektory, przetwarzanie batch","uk":"Багаті конектори, пакетна"
+    },
+    "Realtime Integration,": {
+        "en":"Realtime Integration,","zh-CN":"实时集成，","zh-TW":"即時整合，","ja":"リアルタイム統合、","ko":"실시간 통합,","fr":"intégration temps réel,","de":"Echtzeit-Integration,","es":"integración en tiempo real,","pt":"integração em tempo real,","it":"integrazione realtime,","ru":"интеграция в реальном времени,","ar":"وتكامل لحظي،","hi":"रीयलटाइम एकीकरण,","th":"การเชื่อมต่อแบบเรียลไทม์,","vi":"tích hợp thời gian thực,","id":"integrasi real-time,","tr":"gerçek zamanlı entegrasyon,","nl":"realtime-integratie,","pl":"integracja czasu rzeczywistego,","uk":"інтеграція в реальному часі,"
+    },
+    "Transforming Massive Data": {
+        "en":"Transforming Massive Data","zh-CN":"海量数据转换","zh-TW":"海量資料轉換","ja":"大規模データ変換","ko":"대규모 데이터 변환","fr":"transformation de données massives","de":"Transformation großer Datenmengen","es":"transformación de datos masivos","pt":"transformação de dados massivos","it":"trasformazione di grandi dati","ru":"преобразование больших данных","ar":"وتحويل للبيانات الضخمة","hi":"विशाल डेटा रूपांतरण","th":"การแปลงข้อมูลขนาดมหาศาล","vi":"chuyển đổi dữ liệu khổng lồ","id":"transformasi data masif","tr":"büyük veri dönüşümü","nl":"transformatie van grote datasets","pl":"transformacja dużych danych","uk":"трансформація великих даних"
+    },
+    "SeaTunnel Zeta, Spark, Flink supported. Easy management and maintenance with fully-fledged monitoring.": {
+        "en":"SeaTunnel Zeta, Spark, Flink supported. Easy management and maintenance with fully-fledged monitoring.",
+        "zh-CN":"支持 SeaTunnel Zeta、Spark 和 Flink，具备完善监控能力，易于管理和维护。",
+        "zh-TW":"支援 SeaTunnel Zeta、Spark 與 Flink，具備完善監控，易於管理與維護。",
+        "ja":"SeaTunnel Zeta、Spark、Flink をサポートし、充実した監視機能で管理と保守が容易です。",
+        "ko":"SeaTunnel Zeta, Spark, Flink를 지원하며 완전한 모니터링으로 관리와 유지보수가 쉽습니다。",
+        "fr":"SeaTunnel Zeta, Spark et Flink sont pris en charge. Gestion et maintenance faciles avec une supervision complète。",
+        "de":"SeaTunnel Zeta, Spark und Flink werden unterstützt. Einfache Verwaltung und Wartung mit umfassendem Monitoring。",
+        "es":"Compatible con SeaTunnel Zeta, Spark y Flink. Gestión y mantenimiento sencillos con monitoreo completo。",
+        "pt":"Suporta SeaTunnel Zeta, Spark e Flink. Gestão e manutenção fáceis com monitoramento completo。",
+        "it":"Supporta SeaTunnel Zeta, Spark e Flink. Gestione e manutenzione semplici grazie a un monitoraggio completo。",
+        "ru":"Поддерживаются SeaTunnel Zeta, Spark и Flink. Простое управление и сопровождение благодаря полноценному мониторингу。",
+        "ar":"يدعم SeaTunnel Zeta وSpark وFlink، مع سهولة الإدارة والصيانة بفضل المراقبة المتكاملة。",
+        "hi":"SeaTunnel Zeta, Spark और Flink समर्थित हैं। पूर्ण निगरानी के साथ प्रबंधन और रखरखाव आसान है।",
+        "th":"รองรับ SeaTunnel Zeta, Spark และ Flink พร้อมการจัดการและการดูแลรักษาที่ง่ายด้วยระบบมอนิเตอร์ครบถ้วน",
+        "vi":"Hỗ trợ SeaTunnel Zeta, Spark, Flink. Quản lý và bảo trì dễ dàng với giám sát đầy đủ。",
+        "id":"Mendukung SeaTunnel Zeta, Spark, dan Flink. Mudah dikelola dan dipelihara dengan pemantauan yang lengkap。",
+        "tr":"SeaTunnel Zeta, Spark ve Flink desteklenir. Tam kapsamlı izleme ile yönetim ve bakım kolaydır。",
+        "nl":"SeaTunnel Zeta, Spark en Flink worden ondersteund. Eenvoudig beheer en onderhoud met volledige monitoring。",
+        "pl":"Obsługiwane są SeaTunnel Zeta, Spark i Flink. Łatwe zarządzanie i utrzymanie dzięki pełnemu monitoringowi。",
+        "uk":"Підтримуються SeaTunnel Zeta, Spark і Flink. Легке керування та супровід завдяки повноцінному моніторингу。",
+    },
+    "Connector matrix": {
+        "en":"Connector matrix","zh-CN":"连接器矩阵","zh-TW":"連接器矩陣","ja":"コネクタ一覧","ko":"커넥터 매트릭스","fr":"Matrice des connecteurs","de":"Konnektor-Matrix","es":"Matriz de conectores","pt":"Matriz de conectores","it":"Matrice dei connettori","ru":"Матрица коннекторов","ar":"مصفوفة الموصلات","hi":"कनेक्टर मैट्रिक्स","th":"เมทริกซ์คอนเนกเตอร์","vi":"Ma trận connector","id":"Matriks konektor","tr":"Bağlayıcı matrisi","nl":"Connectormatrix","pl":"Macierz konektorów","uk":"Матриця конекторів",
+    },
+    "Rich Connectors": {
+        "en":"Rich Connectors","zh-CN":"丰富连接器","zh-TW":"豐富連接器","ja":"豊富なコネクタ","ko":"풍부한 커넥터","fr":"Connecteurs riches","de":"Viele Konnektoren","es":"Conectores ricos","pt":"Conectores ricos","it":"Connettori ricchi","ru":"Богатые коннекторы","ar":"موصلات غنية","hi":"समृद्ध कनेक्टर","th":"คอนเนกเตอร์หลากหลาย","vi":"Bộ kết nối phong phú","id":"Konektor kaya","tr":"Zengin bağlayıcılar","nl":"Rijke connectoren","pl":"Bogate konektory","uk":"Багаті конектори",
+    },
+    "There are hundreds of connectors that can run on many different engines based on APIs.": {
+        "en":"There are hundreds of connectors that can run on many different engines based on APIs.","zh-CN":"已有数百个基于 API 的连接器，可在多种不同引擎上运行。","zh-TW":"有數百個基於 API 的連接器，可在多種不同引擎上執行。","ja":"API ベースの数百のコネクタがあり、さまざまなエンジン上で実行できます。","ko":"API 기반으로 다양한 엔진에서 실행할 수 있는 수백 개의 커넥터가 있습니다。","fr":"Il existe des centaines de connecteurs pouvant fonctionner sur de nombreux moteurs différents grâce aux API。","de":"Es gibt Hunderte von Konnektoren, die auf verschiedenen Engines auf API-Basis laufen können。","es":"Hay cientos de conectores que pueden ejecutarse en muchos motores diferentes basados en API。","pt":"Há centenas de conectores que podem ser executados em diversos mecanismos baseados em APIs。","it":"Esistono centinaia di connettori che possono essere eseguiti su molti motori diversi basati su API。","ru":"Существуют сотни коннекторов, которые могут работать на разных движках на основе API。","ar":"هناك مئات الموصلات التي يمكنها العمل على العديد من المحركات المختلفة بالاعتماد على واجهات API。","hi":"सैकड़ों कनेक्टर मौजूद हैं जो API आधारित कई अलग-अलग इंजनों पर चल सकते हैं।","th":"มีคอนเนกเตอร์หลายร้อยตัวที่ทำงานได้บนเอนจินหลากหลายโดยอิงจาก API","vi":"Có hàng trăm connector có thể chạy trên nhiều engine khác nhau dựa trên API。","id":"Ada ratusan konektor yang dapat berjalan pada banyak engine berbeda berbasis API。","tr":"API tabanlı çok farklı motorlarda çalışabilen yüzlerce bağlayıcı vardır。","nl":"Er zijn honderden connectoren die op veel verschillende engines kunnen draaien op basis van API’s。","pl":"Istnieją setki konektorów, które mogą działać na wielu różnych silnikach opartych na API。","uk":"Є сотні конекторів, які можуть працювати на багатьох різних рушіях на основі API。",
+    },
+    "Batch": {"en":"Batch","zh-CN":"批处理","zh-TW":"批次","ja":"バッチ","ko":"배치","fr":"Par lots","de":"Batch","es":"Lotes","pt":"Lote","it":"Batch","ru":"Пакетный режим","ar":"دفعي","hi":"बैच","th":"แบตช์","vi":"Batch","id":"Batch","tr":"Toplu işleme","nl":"Batch","pl":"Batch","uk":"Пакетний режим"},
+    "Realtime Integration": {"en":"Realtime Integration","zh-CN":"实时集成","zh-TW":"即時整合","ja":"リアルタイム統合","ko":"실시간 통합","fr":"Intégration temps réel","de":"Echtzeit-Integration","es":"Integración en tiempo real","pt":"Integração em tempo real","it":"Integrazione realtime","ru":"Интеграция в реальном времени","ar":"تكامل لحظي","hi":"रीयलटाइम एकीकरण","th":"การเชื่อมต่อแบบเรียลไทม์","vi":"Tích hợp thời gian thực","id":"Integrasi real-time","tr":"Gerçek zamanlı entegrasyon","nl":"Realtime-integratie","pl":"Integracja czasu rzeczywistego","uk":"Інтеграція в реальному часі"},
+    "Perfect compatibility with offline synchronization, real-time synchronization, and full/incremental synchronization scenarios. Supports visual development and code development.": {
+        "en":"Perfect compatibility with offline synchronization, real-time synchronization, and full/incremental synchronization scenarios. Supports visual development and code development.",
+        "zh-CN":"全面兼容离线同步、实时同步以及全量/增量同步场景，同时支持可视化开发与代码开发。",
+        "zh-TW":"完整相容離線同步、即時同步與全量/增量同步場景，並支援視覺化開發與程式開發。",
+        "ja":"オフライン同期、リアルタイム同期、全量／増分同期のシナリオに完全対応し、ビジュアル開発とコード開発の両方をサポートします。",
+        "ko":"오프라인 동기화, 실시간 동기화, 전체/증분 동기화 시나리오와 완벽하게 호환되며 시각적 개발과 코드 개발을 모두 지원합니다。",
+        "fr":"Compatibilité parfaite avec les synchronisations hors ligne, en temps réel et complètes/incrémentales. Prend en charge le développement visuel et le développement par code。",
+        "de":"Volle Kompatibilität mit Offline-, Echtzeit- sowie Voll-/Inkrement-Synchronisierung. Unterstützt visuelle Entwicklung und Code-Entwicklung。",
+        "es":"Compatibilidad total con sincronización offline, en tiempo real y escenarios completos/incrementales. Compatible con desarrollo visual y con código。",
+        "pt":"Compatibilidade total com sincronização offline, em tempo real e cenários completos/incrementais. Suporta desenvolvimento visual e por código。",
+        "it":"Compatibilità completa con sincronizzazione offline, realtime e scenari completi/incrementali. Supporta sviluppo visuale e sviluppo tramite codice。",
+        "ru":"Полная совместимость с офлайн-, реального времени и полными/инкрементальными сценариями синхронизации. Поддерживаются визуальная и кодовая разработка。",
+        "ar":"توافق كامل مع المزامنة دون اتصال والمزامنة الآنية وسيناريوهات المزامنة الكاملة/التزايدية. يدعم التطوير المرئي وتطوير الكود。",
+        "hi":"ऑफ़लाइन सिंक्रोनाइज़ेशन, रीयल-टाइम सिंक्रोनाइज़ेशन और पूर्ण/इन्क्रीमेंटल सिंक्रोनाइज़ेशन परिदृश्यों के साथ पूर्ण संगतता। विज़ुअल डेवलपमेंट और कोड डेवलपमेंट दोनों का समर्थन करता है।",
+        "th":"รองรับการซิงก์แบบออฟไลน์ แบบเรียลไทม์ และแบบเต็ม/เพิ่มทีละส่วนอย่างสมบูรณ์ พร้อมรองรับทั้งการพัฒนาแบบภาพและแบบเขียนโค้ด",
+        "vi":"Tương thích hoàn toàn với đồng bộ ngoại tuyến, thời gian thực và các kịch bản đồng bộ toàn phần/gia tăng. Hỗ trợ phát triển trực quan và phát triển bằng mã。",
+        "id":"Kompatibel sempurna dengan sinkronisasi offline, real-time, dan skenario sinkronisasi penuh/inkremental. Mendukung pengembangan visual dan pengembangan berbasis kode。",
+        "tr":"Çevrimdışı senkronizasyon, gerçek zamanlı senkronizasyon ve tam/artımlı senkronizasyon senaryolarıyla tam uyumludur. Görsel geliştirme ve kod geliştirmeyi destekler。",
+        "nl":"Volledig compatibel met offline synchronisatie, realtime synchronisatie en volledige/incrementele synchronisatiescenario’s. Ondersteunt visuele ontwikkeling en codeontwikkeling。",
+        "pl":"Pełna zgodność z synchronizacją offline, w czasie rzeczywistym oraz scenariuszami pełnej/przyrostowej synchronizacji. Obsługuje rozwój wizualny i kodowy。",
+        "uk":"Повна сумісність з офлайн-, реального часу та повною/інкрементною синхронізацією. Підтримує візуальну й кодову розробку。",
+    },
+    "Use ultra-high performance distributed data synchronization, which will synchronize massive data in real time to ingest or obtain changed data.": {
+        "en":"Use ultra-high performance distributed data synchronization, which will synchronize massive data in real time to ingest or obtain changed data.",
+        "zh-CN":"采用超高性能的分布式数据同步能力，实时同步海量数据以接入或获取变更数据。",
+        "zh-TW":"使用超高效能的分散式資料同步能力，能即時同步海量資料以匯入或取得變更資料。",
+        "ja":"超高性能な分散データ同期を利用し、大量データをリアルタイムで同期して取り込みや変更データ取得を実現します。",
+        "ko":"초고성능 분산 데이터 동기화를 사용해 대규모 데이터를 실시간으로 동기화하여 변경 데이터를 수집하거나 획득합니다。",
+        "fr":"Utilisez une synchronisation de données distribuée ultra performante pour synchroniser en temps réel de grandes masses de données et capturer les changements。",
+        "de":"Nutze hochperformante verteilte Datensynchronisierung, um große Datenmengen in Echtzeit zu synchronisieren und Änderungen zu erfassen。",
+        "es":"Usa sincronización distribuida de datos de ultra alto rendimiento para sincronizar datos masivos en tiempo real e ingerir u obtener cambios。",
+        "pt":"Use sincronização distribuída de dados de altíssimo desempenho para sincronizar grandes volumes em tempo real e ingerir ou obter dados alterados。",
+        "it":"Utilizza sincronizzazione distribuita ad alte prestazioni per sincronizzare grandi quantità di dati in tempo reale e acquisire i cambiamenti。",
+        "ru":"Используйте сверхпроизводительную распределенную синхронизацию данных, чтобы в реальном времени синхронизировать большие массивы данных и получать изменения。",
+        "ar":"استخدم مزامنة بيانات موزعة فائقة الأداء لمزامنة البيانات الضخمة في الوقت الحقيقي واستيعاب البيانات المتغيرة أو الحصول عليها。",
+        "hi":"अत्यधिक उच्च प्रदर्शन वाली वितरित डेटा सिंक्रोनाइज़ेशन का उपयोग करें, जो विशाल डेटा को रीयलटाइम में सिंक्रोनाइज़ कर बदले हुए डेटा को प्राप्त या इनजेस्ट करेगी।",
+        "th":"ใช้การซิงก์ข้อมูลแบบกระจายที่มีประสิทธิภาพสูงมาก เพื่อซิงก์ข้อมูลจำนวนมหาศาลแบบเรียลไทม์สำหรับนำเข้าหรือรับข้อมูลที่เปลี่ยนแปลง",
+        "vi":"Sử dụng đồng bộ dữ liệu phân tán hiệu năng cực cao để đồng bộ dữ liệu khổng lồ theo thời gian thực nhằm nạp hoặc lấy dữ liệu thay đổi。",
+        "id":"Gunakan sinkronisasi data terdistribusi berperforma sangat tinggi untuk menyinkronkan data masif secara real-time guna menyerap atau memperoleh data yang berubah。",
+        "tr":"Ultra yüksek performanslı dağıtık veri senkronizasyonu kullanarak büyük veriyi gerçek zamanlı eşitleyin ve değişen veriyi alın。",
+        "nl":"Gebruik ultra-presterende gedistribueerde datasynchronisatie om enorme datasets realtime te synchroniseren en gewijzigde data te verkrijgen。",
+        "pl":"Korzystaj z ultra wydajnej rozproszonej synchronizacji danych, aby synchronizować ogromne wolumeny danych w czasie rzeczywistym i pobierać zmienione dane。",
+        "uk":"Використовуйте надвисокопродуктивну розподілену синхронізацію даних, щоб синхронізувати великі обсяги даних у реальному часі та отримувати змінені дані。",
+    },
+    "SeaTunnel Zeta, Spark, Flink Supported": {
+        "en":"SeaTunnel Zeta, Spark, Flink Supported","zh-CN":"支持 SeaTunnel Zeta、Spark、Flink","zh-TW":"支援 SeaTunnel Zeta、Spark、Flink","ja":"SeaTunnel Zeta、Spark、Flink をサポート","ko":"SeaTunnel Zeta, Spark, Flink 지원","fr":"SeaTunnel Zeta, Spark, Flink pris en charge","de":"SeaTunnel Zeta, Spark, Flink unterstützt","es":"Compatible con SeaTunnel Zeta, Spark y Flink","pt":"SeaTunnel Zeta, Spark e Flink suportados","it":"SeaTunnel Zeta, Spark, Flink supportati","ru":"Поддерживаются SeaTunnel Zeta, Spark и Flink","ar":"يدعم SeaTunnel Zeta وSpark وFlink","hi":"SeaTunnel Zeta, Spark, Flink समर्थित","th":"รองรับ SeaTunnel Zeta, Spark, Flink","vi":"Hỗ trợ SeaTunnel Zeta, Spark, Flink","id":"SeaTunnel Zeta, Spark, Flink didukung","tr":"SeaTunnel Zeta, Spark, Flink destekli","nl":"SeaTunnel Zeta, Spark, Flink ondersteund","pl":"Obsługa SeaTunnel Zeta, Spark, Flink","uk":"Підтримуються SeaTunnel Zeta, Spark, Flink"
+    },
+    "The zeta engine is used by default, and multiple versions of Spark and Flink are also supported.": {
+        "en":"The zeta engine is used by default, and multiple versions of Spark and Flink are also supported.",
+        "zh-CN":"默认使用 Zeta 引擎，也支持多个版本的 Spark 和 Flink。",
+        "zh-TW":"預設使用 Zeta 引擎，也支援多個版本的 Spark 與 Flink。",
+        "ja":"デフォルトでは Zeta エンジンを使用し、複数バージョンの Spark と Flink にも対応します。",
+        "ko":"기본적으로 Zeta 엔진을 사용하며 여러 버전의 Spark와 Flink도 지원합니다。",
+        "fr":"Le moteur Zeta est utilisé par défaut, et plusieurs versions de Spark et Flink sont également prises en charge。",
+        "de":"Standardmäßig wird die Zeta-Engine verwendet, unterstützt werden außerdem mehrere Versionen von Spark und Flink。",
+        "es":"El motor Zeta se usa por defecto y también se admiten múltiples versiones de Spark y Flink。",
+        "pt":"O mecanismo Zeta é usado por padrão, e múltiplas versões de Spark e Flink também são suportadas。",
+        "it":"Il motore Zeta è usato per impostazione predefinita e sono supportate anche più versioni di Spark e Flink。",
+        "ru":"По умолчанию используется движок Zeta, также поддерживаются несколько версий Spark и Flink。",
+        "ar":"يُستخدم محرك Zeta افتراضيًا، كما يتم دعم إصدارات متعددة من Spark وFlink。",
+        "hi":"डिफ़ॉल्ट रूप से Zeta इंजन उपयोग होता है, और Spark तथा Flink के कई संस्करण भी समर्थित हैं।",
+        "th":"ใช้ Zeta engine เป็นค่าเริ่มต้น และยังรองรับ Spark และ Flink หลายเวอร์ชันด้วย",
+        "vi":"Zeta engine được dùng mặc định và cũng hỗ trợ nhiều phiên bản Spark và Flink。",
+        "id":"Engine Zeta digunakan secara default, dan beberapa versi Spark serta Flink juga didukung。",
+        "tr":"Varsayılan olarak Zeta motoru kullanılır ve Spark ile Flink’in birden fazla sürümü desteklenir。",
+        "nl":"De Zeta-engine wordt standaard gebruikt en meerdere versies van Spark en Flink worden ook ondersteund。",
+        "pl":"Domyślnie używany jest silnik Zeta, a także obsługiwane są liczne wersje Spark i Flink。",
+        "uk":"За замовчуванням використовується рушій Zeta, також підтримуються кілька версій Spark і Flink。",
+    },
+    "Easy Management And Maintenance": {"en":"Easy Management And Maintenance","zh-CN":"便捷管理与维护","zh-TW":"輕鬆管理與維護","ja":"管理と保守が容易","ko":"쉬운 관리 및 유지보수","fr":"Gestion et maintenance simplifiées","de":"Einfache Verwaltung und Wartung","es":"Gestión y mantenimiento sencillos","pt":"Gestão e manutenção facilitadas","it":"Gestione e manutenzione semplificate","ru":"Простое управление и сопровождение","ar":"إدارة وصيانة سهلة","hi":"आसान प्रबंधन और रखरखाव","th":"บริหารจัดการและดูแลรักษาง่าย","vi":"Quản lý và bảo trì dễ dàng","id":"Manajemen dan pemeliharaan mudah","tr":"Kolay yönetim ve bakım","nl":"Eenvoudig beheer en onderhoud","pl":"Łatwe zarządzanie i utrzymanie","uk":"Легке керування та супровід"},
+    "Provide a unified development and management platform.": {
+        "en":"Provide a unified development and management platform.","zh-CN":"提供统一的开发与管理平台。","zh-TW":"提供統一的開發與管理平台。","ja":"統合された開発・管理プラットフォームを提供します。","ko":"통합된 개발 및 관리 플랫폼을 제공합니다。","fr":"Fournit une plateforme unifiée de développement et de gestion。","de":"Bietet eine einheitliche Entwicklungs- und Verwaltungsplattform。","es":"Ofrece una plataforma unificada de desarrollo y gestión。","pt":"Fornece uma plataforma unificada de desenvolvimento e gestão。","it":"Fornisce una piattaforma unificata di sviluppo e gestione。","ru":"Предоставляет единую платформу разработки и управления。","ar":"يوفر منصة موحدة للتطوير والإدارة。","hi":"एकीकृत विकास और प्रबंधन प्लेटफ़ॉर्म प्रदान करें।","th":"มอบแพลตฟอร์มการพัฒนาและการจัดการแบบรวมศูนย์","vi":"Cung cấp nền tảng phát triển và quản lý thống nhất。","id":"Menyediakan platform pengembangan dan manajemen terpadu。","tr":"Birleşik bir geliştirme ve yönetim platformu sunar。","nl":"Biedt een uniform ontwikkel- en beheerplatform。","pl":"Zapewnia zunifikowaną platformę rozwoju i zarządzania。","uk":"Надає єдину платформу для розробки та керування。"
+    },
+    "Fully-fledged Monitoring": {"en":"Fully-fledged Monitoring","zh-CN":"完善监控能力","zh-TW":"完整監控能力","ja":"充実した監視機能","ko":"완전한 모니터링","fr":"Supervision complète","de":"Umfassendes Monitoring","es":"Monitoreo completo","pt":"Monitoramento completo","it":"Monitoraggio completo","ru":"Полноценный мониторинг","ar":"مراقبة متكاملة","hi":"पूर्ण निगरानी","th":"ระบบมอนิเตอร์ครบถ้วน","vi":"Giám sát đầy đủ","id":"Pemantauan lengkap","tr":"Tam kapsamlı izleme","nl":"Volledige monitoring","pl":"Pełny monitoring","uk":"Повноцінний моніторинг"},
+    "Provides detailed monitoring during data synchronization to understand the actual data situation.": {
+        "en":"Provides detailed monitoring during data synchronization to understand the actual data situation.","zh-CN":"在数据同步过程中提供详细监控，帮助掌握真实数据情况。","zh-TW":"在資料同步過程中提供詳細監控，協助了解實際資料狀況。","ja":"データ同期中の詳細な監視を提供し、実際のデータ状況を把握できます。","ko":"데이터 동기화 중 상세한 모니터링을 제공해 실제 데이터 상태를 파악할 수 있습니다。","fr":"Fournit une supervision détaillée pendant la synchronisation afin de comprendre la situation réelle des données。","de":"Bietet detailliertes Monitoring während der Datensynchronisierung, um die reale Datensituation zu verstehen。","es":"Proporciona monitoreo detallado durante la sincronización para comprender la situación real de los datos。","pt":"Fornece monitoramento detalhado durante a sincronização para entender a situação real dos dados。","it":"Fornisce un monitoraggio dettagliato durante la sincronizzazione dei dati per comprendere la situazione reale。","ru":"Предоставляет детальный мониторинг во время синхронизации данных для понимания реальной ситуации。","ar":"يوفر مراقبة تفصيلية أثناء مزامنة البيانات لفهم الحالة الفعلية للبيانات。","hi":"डेटा सिंक्रोनाइज़ेशन के दौरान विस्तृत मॉनिटरिंग प्रदान करता है ताकि वास्तविक डेटा स्थिति को समझा जा सके।","th":"มีการมอนิเตอร์อย่างละเอียดระหว่างการซิงก์ข้อมูลเพื่อให้เข้าใจสภาพข้อมูลจริง","vi":"Cung cấp giám sát chi tiết trong quá trình đồng bộ dữ liệu để hiểu tình trạng dữ liệu thực tế。","id":"Menyediakan pemantauan rinci selama sinkronisasi data untuk memahami kondisi data yang sebenarnya。","tr":"Veri senkronizasyonu sırasında gerçek veri durumunu anlamak için ayrıntılı izleme sağlar。","nl":"Biedt gedetailleerde monitoring tijdens datasynchronisatie om de werkelijke datasituatie te begrijpen。","pl":"Zapewnia szczegółowy monitoring podczas synchronizacji danych, aby zrozumieć rzeczywisty stan danych。","uk":"Надає детальний моніторинг під час синхронізації даних, щоб розуміти реальний стан даних。"
+    },
+    "FAQ": {"en":"FAQ","zh-CN":"常见问题","zh-TW":"常見問題","ja":"FAQ","ko":"FAQ","fr":"FAQ","de":"FAQ","es":"Preguntas frecuentes","pt":"FAQ","it":"FAQ","ru":"FAQ","ar":"الأسئلة الشائعة","hi":"अक्सर पूछे जाने वाले प्रश्न","th":"คำถามที่พบบ่อย","vi":"Câu hỏi thường gặp","id":"FAQ","tr":"SSS","nl":"FAQ","pl":"FAQ","uk":"FAQ"},
+    "Releases": {"en":"Releases","zh-CN":"发布版本","zh-TW":"版本發佈","ja":"リリース","ko":"릴리스","fr":"Versions","de":"Releases","es":"Versiones","pt":"Versões","it":"Release","ru":"Релизы","ar":"الإصدارات","hi":"रिलीज़","th":"รีลีส","vi":"Bản phát hành","id":"Rilis","tr":"Sürümler","nl":"Releases","pl":"Wydania","uk":"Релізи"},
+    "Issue Tracker": {"en":"Issue Tracker","zh-CN":"问题追踪","zh-TW":"議題追蹤","ja":"課題トラッカー","ko":"이슈 추적기","fr":"Suivi des incidents","de":"Issue-Tracker","es":"Seguimiento de incidencias","pt":"Rastreador de issues","it":"Issue Tracker","ru":"Трекер задач","ar":"متعقب المشكلات","hi":"इश्यू ट्रैकर","th":"ตัวติดตามปัญหา","vi":"Trình theo dõi vấn đề","id":"Pelacak isu","tr":"Sorun takipçisi","nl":"Issue-tracker","pl":"Śledzenie zgłoszeń","uk":"Трекер задач"},
+    "Pull Requests": {"en":"Pull Requests","zh-CN":"拉取请求","zh-TW":"拉取請求","ja":"プルリクエスト","ko":"풀 리퀘스트","fr":"Pull requests","de":"Pull Requests","es":"Pull Requests","pt":"Pull Requests","it":"Pull Request","ru":"Pull Requests","ar":"طلبات السحب","hi":"पुल रिक्वेस्ट्स","th":"คำขอดึงโค้ด","vi":"Pull Request","id":"Pull Request","tr":"Pull Request’ler","nl":"Pull requests","pl":"Pull requesty","uk":"Pull Requests"},
+    "Subscribe Mailing List": {"en":"Subscribe Mailing List","zh-CN":"订阅邮件列表","zh-TW":"訂閱郵件列表","ja":"メーリングリストを購読","ko":"메일링 리스트 구독","fr":"S’abonner à la liste de diffusion","de":"Mailingliste abonnieren","es":"Suscribirse a la lista de correo","pt":"Assinar lista de e-mails","it":"Iscriviti alla mailing list","ru":"Подписаться на рассылку","ar":"الاشتراك في القائمة البريدية","hi":"मेलिंग सूची की सदस्यता लें","th":"สมัครรับรายชื่ออีเมล","vi":"Đăng ký danh sách thư","id":"Berlangganan milis","tr":"E-posta listesine abone ol","nl":"Abonneer op mailinglijst","pl":"Subskrybuj listę mailingową","uk":"Підписка на розсилку"},
+    "How to Subscribe": {"en":"How to Subscribe","zh-CN":"如何订阅","zh-TW":"如何訂閱","ja":"購読方法","ko":"구독 방법","fr":"Comment s’abonner","de":"So abonnierst du","es":"Cómo suscribirse","pt":"Como assinar","it":"Come iscriversi","ru":"Как подписаться","ar":"كيفية الاشتراك","hi":"सदस्यता कैसे लें","th":"วิธีสมัครรับ","vi":"Cách đăng ký","id":"Cara berlangganan","tr":"Nasıl abone olunur","nl":"Hoe te abonneren","pl":"Jak subskrybować","uk":"Як підписатися"},
+    "Subscribe Mail": {"en":"Subscribe Mail","zh-CN":"订阅邮箱","zh-TW":"訂閱郵件","ja":"購読メール","ko":"구독 메일","fr":"Mail d’abonnement","de":"Abo-Mail","es":"Correo de suscripción","pt":"E-mail de assinatura","it":"Mail di iscrizione","ru":"Письмо для подписки","ar":"بريد الاشتراك","hi":"सदस्यता मेल","th":"อีเมลสมัครรับ","vi":"Thư đăng ký","id":"Email berlangganan","tr":"Abonelik e-postası","nl":"Abonnementsmail","pl":"Mail subskrypcyjny","uk":"Лист для підписки"},
+    "Mail Archive": {"en":"Mail Archive","zh-CN":"邮件归档","zh-TW":"郵件封存","ja":"メールアーカイブ","ko":"메일 아카이브","fr":"Archive des mails","de":"Mail-Archiv","es":"Archivo de correos","pt":"Arquivo de e-mails","it":"Archivio mail","ru":"Архив почты","ar":"أرشيف البريد","hi":"मेल अभिलेख","th":"คลังเก็บอีเมล","vi":"Lưu trữ thư","id":"Arsip email","tr":"Mail arşivi","nl":"Mailarchief","pl":"Archiwum maili","uk":"Архів пошти"},
+    "Apache SeaTunnel, SeaTunnel, and the feather logo are trademarks of The Apache Software Foundation.": {
+        "en":"Apache SeaTunnel, SeaTunnel, and the feather logo are trademarks of The Apache Software Foundation.","zh-CN":"Apache SeaTunnel、SeaTunnel 及其羽毛标志均为 Apache 软件基金会的商标。","zh-TW":"Apache SeaTunnel、SeaTunnel 與羽毛標誌皆為 Apache 軟體基金會的商標。","ja":"Apache SeaTunnel、SeaTunnel、および羽ロゴは Apache Software Foundation の商標です。","ko":"Apache SeaTunnel, SeaTunnel 및 깃털 로고는 Apache Software Foundation의 상표입니다。","fr":"Apache SeaTunnel, SeaTunnel et le logo plume sont des marques de The Apache Software Foundation。","de":"Apache SeaTunnel, SeaTunnel und das Federlogo sind Marken der Apache Software Foundation。","es":"Apache SeaTunnel, SeaTunnel y el logotipo de pluma son marcas registradas de The Apache Software Foundation。","pt":"Apache SeaTunnel, SeaTunnel e o logotipo de pena são marcas registradas da The Apache Software Foundation。","it":"Apache SeaTunnel, SeaTunnel e il logo della piuma sono marchi di The Apache Software Foundation。","ru":"Apache SeaTunnel, SeaTunnel и логотип с пером являются товарными знаками The Apache Software Foundation。","ar":"Apache SeaTunnel وSeaTunnel وشعار الريشة هي علامات تجارية لمؤسسة Apache Software Foundation。","hi":"Apache SeaTunnel, SeaTunnel और पंख लोगो The Apache Software Foundation के ट्रेडमार्क हैं।","th":"Apache SeaTunnel, SeaTunnel และโลโก้ขนนกเป็นเครื่องหมายการค้าของ The Apache Software Foundation","vi":"Apache SeaTunnel, SeaTunnel và logo chiếc lông là nhãn hiệu của The Apache Software Foundation。","id":"Apache SeaTunnel, SeaTunnel, dan logo bulu adalah merek dagang The Apache Software Foundation。","tr":"Apache SeaTunnel, SeaTunnel ve tüy logosu, The Apache Software Foundation’ın ticari markalarıdır。","nl":"Apache SeaTunnel, SeaTunnel en het veerlogo zijn handelsmerken van The Apache Software Foundation。","pl":"Apache SeaTunnel, SeaTunnel i logo pióra są znakami towarowymi The Apache Software Foundation。","uk":"Apache SeaTunnel, SeaTunnel і логотип пера є торговими марками The Apache Software Foundation。"
+    },
+    "Copyright © 2021-2026 The Apache Software Foundation.": {
+        "en":"Copyright © 2021-2026 The Apache Software Foundation.","zh-CN":"版权所有 © 2021-2026 Apache 软件基金会。","zh-TW":"版權所有 © 2021-2026 Apache 軟體基金會。","ja":"Copyright © 2021-2026 The Apache Software Foundation.","ko":"Copyright © 2021-2026 The Apache Software Foundation.","fr":"Copyright © 2021-2026 The Apache Software Foundation.","de":"Copyright © 2021-2026 The Apache Software Foundation.","es":"Copyright © 2021-2026 The Apache Software Foundation.","pt":"Copyright © 2021-2026 The Apache Software Foundation.","it":"Copyright © 2021-2026 The Apache Software Foundation.","ru":"Copyright © 2021-2026 The Apache Software Foundation.","ar":"حقوق النشر © 2021-2026 The Apache Software Foundation.","hi":"कॉपीराइट © 2021-2026 The Apache Software Foundation.","th":"ลิขสิทธิ์ © 2021-2026 The Apache Software Foundation","vi":"Bản quyền © 2021-2026 The Apache Software Foundation.","id":"Hak cipta © 2021-2026 The Apache Software Foundation.","tr":"Telif hakkı © 2021-2026 The Apache Software Foundation.","nl":"Copyright © 2021-2026 The Apache Software Foundation.","pl":"Prawa autorskie © 2021-2026 The Apache Software Foundation.","uk":"Авторське право © 2021-2026 The Apache Software Foundation."
+    },
+    "Ask AI": {"en":"Ask AI","zh-CN":"询问 AI","zh-TW":"詢問 AI","ja":"AI に質問","ko":"AI에게 묻기","fr":"Demander à l’IA","de":"KI fragen","es":"Preguntar a la IA","pt":"Perguntar à IA","it":"Chiedi all’IA","ru":"Спросить ИИ","ar":"اسأل الذكاء الاصطناعي","hi":"AI से पूछें","th":"ถาม AI","vi":"Hỏi AI","id":"Tanya AI","tr":"Yapay zekâya sor","nl":"Vraag AI","pl":"Zapytaj AI","uk":"Запитати ШІ"},
+}
+
+LANGS = [
+    "en", "zh-CN", "zh-TW", "ja", "ko", "fr", "de", "es", "pt", "it",
+    "ru", "ar", "hi", "th", "vi", "id", "tr", "nl", "pl", "uk",
+]
+
+RTL_LANGS = {"ar"}
+
+
+def main() -> None:
+    repo = Path(__file__).resolve().parents[1]
+    manifest = json.loads((Path("/tmp/index.strings.json")).read_text(encoding="utf-8"))
+    source = repo / "index.html"
+    script = Path("/root/.codex/skills/html-multilang-converter/scripts/translate_html.py")
+
+    for lang in LANGS:
+        payload = json.loads(json.dumps(manifest, ensure_ascii=False))
+        for entry in payload["entries"]:
+            source_text = entry["source_text"]
+            entry["translation"] = TRANSLATIONS.get(source_text, {}).get(lang, source_text)
+        json_path = Path(f"/tmp/index.{lang}.json")
+        out_path = repo / f"index_{lang}.html"
+        json_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        subprocess.run(
+            [
+                "python3",
+                str(script),
+                "apply",
+                str(source),
+                str(json_path),
+                "--lang",
+                lang,
+                "--output",
+                str(out_path),
+            ],
+            check=True,
+        )
+        if lang in RTL_LANGS:
+            html = out_path.read_text(encoding="utf-8")
+            html = html.replace(f'<html lang="{lang}">', f'<html lang="{lang}" dir="rtl">', 1)
+            out_path.write_text(html, encoding="utf-8")
+        print(out_path.name)
+
+
+if __name__ == "__main__":
+    main()

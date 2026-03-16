@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apache SeaTunnel | Bản sao màu cam</title>
+  <style>
+    :root {
+      --bg: #fffaf4;
+      --bg-soft: #fff4e8;
+      --card: #ffffff;
+      --card-warm: #fff7ef;
+      --text: #2f241d;
+      --muted: #7e6b5c;
+      --line: rgba(240, 111, 14, 0.14);
+      --line-strong: rgba(240, 111, 14, 0.26);
+      --orange: #ff7a00;
+      --orange-deep: #f15a00;
+      --orange-soft: #fff0de;
+      --blue: #5e90d9;
+      --purple: #cf47ff;
+      --navy: #3b4e65;
+      --shadow: 0 28px 68px rgba(222, 101, 18, 0.13);
+      --radius-xl: 32px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --font: "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font);
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(255, 188, 124, 0.45), transparent 21%),
+        radial-gradient(circle at top right, rgba(255, 136, 32, 0.15), transparent 18%),
+        linear-gradient(180deg, #fffaf4 0%, #fff6ee 16%, #fffdf9 100%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image: radial-gradient(rgba(255, 122, 0, 0.055) 1px, transparent 1px);
+      background-size: 28px 28px;
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.42), transparent 86%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: -999px;
+      top: 0;
+    }
+
+    .skip-link:focus {
+      left: 12px;
+      top: 12px;
+      z-index: 20;
+      padding: 10px 14px;
+      border-radius: 12px;
+      color: #fff;
+      background: var(--orange-deep);
+    }
+
+    .announcement {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      padding: 5px 12px;
+      font-size: 11px;
+      color: #fff7ee;
+      background: linear-gradient(90deg, #6283ad, #6b8db7);
+    }
+
+    .shell {
+      width: min(1160px, calc(100% - 24px));
+      margin: 0 auto;
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 14px 2px 8px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      color: var(--navy);
+      white-space: nowrap;
+    }
+
+    .brand-mark {
+      width: 30px;
+      height: 30px;
+      border-radius: 11px;
+      background:
+        radial-gradient(circle at 34% 34%, #ffd8af, transparent 28%),
+        radial-gradient(circle at 60% 36%, #ff9b4c, transparent 22%),
+        radial-gradient(circle at 44% 72%, #ff6700, transparent 22%),
+        linear-gradient(145deg, #6ea3dd, #39526c);
+      box-shadow: 0 10px 18px rgba(57, 82, 108, 0.18);
+    }
+
+    .brand span {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+      font-size: 12px;
+      color: #50433a;
+    }
+
+    .nav .caret::after {
+      content: "▼";
+      margin-left: 4px;
+      font-size: 9px;
+      vertical-align: middle;
+    }
+
+    .tools {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .search {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      min-width: 112px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(94, 144, 217, 0.08);
+    }
+
+    .hero {
+      position: relative;
+      padding: 36px 0 20px;
+      text-align: center;
+    }
+
+    .watermarks {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.12;
+      color: #c5b9af;
+      overflow: hidden;
+    }
+
+    .watermarks span {
+      position: absolute;
+      font-size: 22px;
+      transform: rotate(-18deg);
+      white-space: nowrap;
+    }
+
+    .wm1 { top: 14px; left: 24px; }
+    .wm2 { top: 44px; right: 52px; }
+    .wm3 { top: 122px; left: 188px; }
+    .wm4 { top: 166px; right: 82px; }
+    .wm5 { top: 352px; left: 42px; }
+
+    .hero h1 {
+      position: relative;
+      margin: 28px 0 10px;
+      font-size: clamp(48px, 7vw, 72px);
+      line-height: 1;
+      letter-spacing: -0.05em;
+      font-weight: 300;
+      color: #3c4e64;
+    }
+
+    .hero h1 .accent {
+      background: linear-gradient(90deg, #ff8a00 4%, #ff5f00 56%, #d43dff 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: 500;
+    }
+
+    .hero-copy {
+      position: relative;
+      margin: 0 auto;
+      max-width: 620px;
+      font-size: clamp(18px, 2.4vw, 29px);
+      line-height: 1.16;
+      color: #323131;
+    }
+
+    .cta-row {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin-top: 30px;
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-width: 116px;
+      padding: 12px 22px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 600;
+      box-shadow: 0 10px 22px rgba(91, 128, 183, 0.14);
+    }
+
+    .cta.primary {
+      color: #fff;
+      background: linear-gradient(135deg, #ff942f, #ff6300);
+    }
+
+    .cta.secondary {
+      color: #5079d8;
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid rgba(94, 144, 217, 0.34);
+    }
+
+    .cta-icon {
+      width: 18px;
+      height: 18px;
+      display: inline-grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #fff;
+      color: #252525;
+      border: 1px solid rgba(37, 37, 37, 0.14);
+      font-size: 10px;
+    }
+
+    .pipeline {
+      margin-top: 42px;
+    }
+
+    .pipeline-head {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr 1fr 0.9fr;
+      gap: 16px;
+      margin-bottom: 12px;
+      text-align: center;
+      font-size: clamp(11px, 1.6vw, 17px);
+      font-weight: 800;
+      text-transform: uppercase;
+      color: #4c4037;
+    }
+
+    .pipeline-card {
+      position: relative;
+      min-height: 316px;
+      border-radius: var(--radius-xl);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(255, 244, 233, 0.98));
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .source-stack {
+      position: absolute;
+      left: 0;
+      top: 66px;
+      width: 252px;
+    }
+
+    .source-row {
+      width: 216px;
+      height: 28px;
+      clip-path: polygon(0 0, 82% 0, 100% 50%, 82% 100%, 0 100%);
+      color: #fff;
+      line-height: 28px;
+      font-size: 13px;
+      text-align: center;
+      margin-bottom: 6px;
+      box-shadow: 0 8px 16px rgba(93, 144, 217, 0.14);
+    }
+
+    .row-1 { background: linear-gradient(90deg, #7ec7ff, #5fa3ea); }
+    .row-2 { background: linear-gradient(90deg, #85a9ff, #7280f2); }
+    .row-3 { background: linear-gradient(90deg, #ff82db, #ce59ff); }
+
+    .source-badge {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      display: grid;
+      place-items: center;
+      border-radius: 4px;
+      background: #fff;
+      border: 1px solid rgba(95, 138, 214, 0.26);
+      color: #5f8ad6;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .sb1 { left: 116px; top: 12px; }
+    .sb2 { left: 130px; top: 44px; }
+    .sb3 { left: 178px; top: 44px; }
+
+    .glass-box {
+      position: absolute;
+      border-radius: 16px;
+      border: 1px solid rgba(125, 185, 255, 0.28);
+      background: linear-gradient(135deg, rgba(236, 249, 255, 0.82), rgba(255, 255, 255, 0.44));
+      backdrop-filter: blur(10px);
+    }
+
+    .normalize-box {
+      left: 258px;
+      top: 34px;
+      width: 404px;
+      height: 132px;
+    }
+
+    .transform-pill {
+      position: absolute;
+      left: 432px;
+      top: 126px;
+      padding: 14px 22px;
+      border-radius: 999px;
+      color: #fff;
+      font-size: 16px;
+      background: linear-gradient(135deg, #ff952f, #ff5c00);
+      box-shadow: 0 16px 24px rgba(255, 106, 0, 0.18);
+    }
+
+    .load-box {
+      left: 364px;
+      top: 182px;
+      width: 230px;
+      height: 62px;
+    }
+
+    .api-box {
+      right: 22px;
+      top: 138px;
+      width: 136px;
+      height: 84px;
+    }
+
+    .orb {
+      position: absolute;
+      width: 62px;
+      height: 62px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 34% 34%, #ffd8ac, #ff8e1d 58%, #ff5a00 100%);
+      box-shadow: 0 16px 24px rgba(255, 112, 15, 0.16);
+    }
+
+    .o1 { left: 324px; top: 176px; }
+    .o2 { right: 122px; top: 176px; }
+
+    .label {
+      position: absolute;
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: #425871;
+      letter-spacing: 0.02em;
+    }
+
+    .l1 { left: 422px; top: 74px; }
+    .l2 { left: 432px; top: 203px; }
+    .l3 { right: 58px; top: 168px; }
+
+    .monitor-box {
+      position: absolute;
+      right: 208px;
+      top: 112px;
+      width: 84px;
+      height: 84px;
+      border-radius: 12px;
+      border: 1px solid rgba(125, 185, 255, 0.26);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(236, 249, 255, 0.72)),
+        repeating-linear-gradient(90deg, rgba(94, 144, 217, 0.12) 0 10px, transparent 10px 16px);
+    }
+
+    .features {
+      padding: 42px 0 0;
+    }
+
+    .features h2,
+    .capabilities h2 {
+      margin: 0;
+      text-align: center;
+      font-size: clamp(24px, 3vw, 38px);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+    }
+
+    .features .sub,
+    .capabilities .sub {
+      max-width: 700px;
+      margin: 12px auto 0;
+      text-align: center;
+      font-size: 12px;
+      line-height: 1.65;
+      color: var(--muted);
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 34px;
+    }
+
+    .feature-card {
+      padding: 24px 16px 18px;
+      text-align: center;
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.84);
+      border: 1px solid var(--line);
+      box-shadow: 0 18px 30px rgba(229, 129, 48, 0.08);
+    }
+
+    .feature-icon {
+      width: 50px;
+      height: 50px;
+      margin: 0 auto 14px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-size: 20px;
+      background: linear-gradient(135deg, #ff9630, #ff6500);
+      box-shadow: 0 14px 22px rgba(255, 106, 0, 0.18);
+    }
+
+    .feature-card h3 {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.35;
+    }
+
+    .feature-card p {
+      margin: 10px 0 0;
+      font-size: 11px;
+      line-height: 1.65;
+      color: var(--muted);
+    }
+
+    .capabilities {
+      padding: 54px 0 0;
+    }
+
+    .cap-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 28px;
+      margin-top: 34px;
+      align-items: start;
+    }
+
+    .logo-cloud {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 14px;
+      padding: 22px;
+      border-radius: var(--radius-xl);
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid var(--line);
+      box-shadow: 0 18px 30px rgba(228, 129, 48, 0.08);
+    }
+
+    .logo-chip {
+      height: 34px;
+      border-radius: 12px;
+      background:
+        linear-gradient(135deg, rgba(255, 149, 52, 0.18), rgba(94, 144, 217, 0.08)),
+        linear-gradient(90deg, transparent 20%, rgba(255, 255, 255, 0.8) 20% 40%, transparent 40% 60%, rgba(255, 255, 255, 0.8) 60% 80%, transparent 80%);
+      border: 1px solid rgba(255, 122, 0, 0.1);
+    }
+
+    .cap-list {
+      display: grid;
+      gap: 16px;
+    }
+
+    .cap-card {
+      display: grid;
+      grid-template-columns: 116px 1fr;
+      gap: 16px;
+      padding: 18px;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, rgba(255, 247, 239, 0.98), rgba(255, 255, 255, 0.94));
+      border: 1px solid var(--line);
+      box-shadow: 0 18px 30px rgba(228, 129, 48, 0.08);
+    }
+
+    .cap-thumb {
+      position: relative;
+      height: 82px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.8), rgba(255, 240, 222, 0.88)),
+        linear-gradient(135deg, rgba(94, 144, 217, 0.26), rgba(255, 138, 0, 0.16));
+      overflow: hidden;
+    }
+
+    .cap-thumb::before {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      border-radius: 10px;
+      background:
+        repeating-linear-gradient(90deg, rgba(255, 122, 0, 0.24) 0 12px, transparent 12px 18px),
+        repeating-linear-gradient(180deg, rgba(94, 144, 217, 0.16) 0 8px, transparent 8px 12px);
+    }
+
+    .cap-card h3 {
+      margin: 0;
+      font-size: 14px;
+      color: #4a77d8;
+    }
+
+    .cap-card p {
+      margin: 8px 0 0;
+      font-size: 11px;
+      line-height: 1.65;
+      color: var(--muted);
+    }
+
+    .footer {
+      margin-top: 44px;
+      padding: 28px 0 34px;
+      background: linear-gradient(180deg, rgba(244, 247, 251, 0.72), rgba(250, 248, 246, 0.94));
+      border-top: 1px solid rgba(60, 83, 109, 0.08);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .footer h4 {
+      margin: 0 0 12px;
+      font-size: 12px;
+    }
+
+    .footer a,
+    .footer p {
+      display: block;
+      margin: 6px 0;
+      font-size: 11px;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+
+    .footer-bottom {
+      margin-top: 20px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(60, 83, 109, 0.08);
+      text-align: center;
+      font-size: 10px;
+      color: #9d9087;
+    }
+
+    .ask-ai {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      color: #fff;
+      font-size: 10px;
+      text-align: center;
+      background: linear-gradient(180deg, #6c7aff, #5a42d9);
+      box-shadow: 0 16px 28px rgba(82, 62, 202, 0.28);
+    }
+
+    @media (max-width: 1024px) {
+      .navbar {
+        flex-wrap: wrap;
+      }
+
+      .nav {
+        order: 3;
+        width: 100%;
+        justify-content: flex-start;
+      }
+
+      .feature-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .cap-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      .shell {
+        width: min(100% - 18px, 1160px);
+      }
+
+      .cta {
+        width: calc(50% - 9px);
+        min-width: 0;
+      }
+
+      .pipeline-head {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .pipeline-card {
+        min-height: 400px;
+      }
+
+      .source-stack {
+        left: 16px;
+        top: 28px;
+      }
+
+      .source-row {
+        width: 166px;
+      }
+
+      .normalize-box {
+        left: 18px;
+        top: 142px;
+        width: calc(100% - 36px);
+        height: 96px;
+      }
+
+      .transform-pill {
+        left: 50%;
+        top: 218px;
+        transform: translateX(-50%);
+      }
+
+      .load-box {
+        left: 24px;
+        top: 306px;
+        width: 38%;
+      }
+
+      .api-box {
+        right: 24px;
+        top: 306px;
+        width: 34%;
+      }
+
+      .o1,
+      .o2 {
+        top: 298px;
+      }
+
+      .o1 { left: 42%; }
+      .o2 { right: 38%; }
+
+      .monitor-box {
+        display: none;
+      }
+
+      .l1 {
+        left: 50%;
+        top: 176px;
+        transform: translateX(-50%);
+      }
+
+      .l2 { left: 34px; top: 326px; }
+      .l3 { right: 42px; top: 326px; }
+
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .logo-cloud {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .cap-card {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Chuyển đến nội dung chính</a>
+
+  <div class="announcement">
+    <span>⭐️</span>
+    <a href="https://github.com/apache/seatunnel">Nếu bạn thích Apache SeaTunnel, hãy tặng một ngôi sao trên GitHub</a>
+    <span>⭐️</span>
+  </div>
+
+  <div class="shell">
+    <header class="navbar">
+      <a class="brand" href="https://seatunnel.apache.org/">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>Apache SeaTunnel</span>
+      </a>
+
+      <nav class="nav" aria-label="Chính">
+        <a href="#home">Trang chủ</a>
+        <a class="caret" href="#docs">Tài liệu</a>
+        <a href="#download">Tải xuống</a>
+        <a href="#community">Cộng đồng</a>
+        <a href="#blog">Blog</a>
+        <a href="#team">Nhóm</a>
+        <a href="#users">Người dùng</a>
+        <a class="caret" href="#asf">ASF</a>
+        <a href="https://github.com/apache/seatunnel">GitHub</a>
+        <a href="#security">Bảo mật</a>
+        <a class="caret" href="#language">Tiếng Anh</a>
+      </nav>
+
+      <div class="tools">
+        <span aria-hidden="true">☼</span>
+        <div class="search">⌕ <span>Tìm kiếm</span></div>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <section class="hero" id="home">
+        <div class="watermarks" aria-hidden="true">
+          <span class="wm1">Khách truy cập 95042</span>
+          <span class="wm2">Khách truy cập 95042</span>
+          <span class="wm3">Khách truy cập 95042</span>
+          <span class="wm4">Khách truy cập 95042</span>
+          <span class="wm5">Khách truy cập 95042</span>
+        </div>
+
+        <h1>Apache <span class="accent">SeaTunnel</span></h1>
+        <p class="hero-copy">Đa phương thức, hiệu năng cao,<br>công cụ tích hợp dữ liệu khối lượng lớn phân tán.</p>
+
+        <div class="cta-row">
+          <a class="cta primary" href="#download">BẮT ĐẦU NHANH</a>
+          <a class="cta secondary" href="https://github.com/apache/seatunnel"><span class="cta-icon">◔</span>GITHUB</a>
+          <a class="cta secondary" href="https://s.apache.org/seatunnel-slack"><span class="cta-icon">✦</span>SLACK</a>
+        </div>
+
+        <section class="pipeline" aria-label="Tổng quan pipeline">
+          <div class="pipeline-head">
+            <div>Thu thập &amp; Trích xuất</div>
+            <div>Chuẩn hóa</div>
+            <div>Nạp &amp; API</div>
+            <div>Giám sát</div>
+          </div>
+
+          <div class="pipeline-card">
+            <div class="source-stack">
+              <div class="source-row row-1">Dữ liệu sự kiện</div>
+              <div class="source-row row-2">CSDL đám mây</div>
+              <div class="source-row row-3">Binlog</div>
+              <div class="source-badge sb1">+</div>
+              <div class="source-badge sb2">×</div>
+              <div class="source-badge sb3">+</div>
+            </div>
+
+            <div class="glass-box normalize-box"></div>
+            <div class="label l1">Chuẩn hóa</div>
+
+            <div class="transform-pill">Biến đổi</div>
+
+            <div class="orb o1"></div>
+            <div class="glass-box load-box"></div>
+            <div class="label l2">Nạp</div>
+
+            <div class="orb o2"></div>
+            <div class="glass-box api-box"></div>
+            <div class="label l3">API</div>
+
+            <div class="monitor-box" aria-hidden="true"></div>
+          </div>
+        </section>
+      </section>
+
+      <section class="features" id="download">
+        <h2>Hỗ trợ hàng trăm nguồn dữ liệu,<br>Tốc độ cao &amp; Độ chính xác cao</h2>
+        <p class="sub">
+          Tích hợp dữ liệu khối lượng lớn giữa Transaction DB, Cloud DB, SaaS và Binlog bằng mã kiểu SQL hoặc kéo &amp; thả.
+        </p>
+
+        <div class="feature-grid">
+          <article class="feature-card">
+            <div class="feature-icon">⎋</div>
+            <h3>Giảm độ phức tạp</h3>
+            <p>Bộ kết nối được phát triển dựa trên API có thể tương thích với đồng bộ ngoại tuyến, đồng bộ thời gian thực, đồng bộ toàn phần, đồng bộ gia tăng và các kịch bản khác。</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">⏱</div>
+            <h3>Tiết kiệm thêm thời gian</h3>
+            <p>Cung cấp khả năng quản lý job trực quan, lập lịch, chạy và giám sát. Tăng tốc tích hợp các công cụ low-code và no-code。</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">⚙</div>
+            <h3>Đơn giản và dễ bảo trì</h3>
+            <p>Hỗ trợ triển khai độc lập và theo cụm, có thể chọn Zeta engine, không cần phụ thuộc vào Spark, Flink hay các thành phần dữ liệu lớn khác。</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">✓</div>
+            <h3>Trưởng thành &amp; Ổn định</h3>
+            <p>Đã được kiểm chứng trong môi trường sản xuất quy mô lớn và dữ liệu khổng lồ. Đủ ổn định cho khối lượng công việc thực tế。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="capabilities" id="community">
+        <h2>Bộ kết nối phong phú, xử lý batch &amp; tích hợp thời gian thực,<br>chuyển đổi dữ liệu khổng lồ</h2>
+        <p class="sub">
+          Hỗ trợ SeaTunnel Zeta, Spark, Flink. Quản lý và bảo trì dễ dàng với giám sát đầy đủ。
+        </p>
+
+        <div class="cap-grid">
+          <div class="logo-cloud" aria-label="Ma trận connector">
+            <div class="logo-chip"></div>
+            <div class="logo-chip"></div>
+            <div class="logo-chip"></div>
+            <div class="logo-chip"></div>
+            <div class="logo-chip"></div>
+            <div class="logo-chip"></div>
+            <div class="logo-chip"></div>
+            <div class="logo-chip"></div>
+            <div class="logo-chip"></div>
+            <div class="logo-chip"></div>
+            <div class="logo-chip"></div>
+            <div class="logo-chip"></div>
+            <div class="logo-chip"></div>
+            <div class="logo-chip"></div>
+            <div class="logo-chip"></div>
+            <div class="logo-chip"></div>
+            <div class="logo-chip"></div>
+            <div class="logo-chip"></div>
+            <div class="logo-chip"></div>
+            <div class="logo-chip"></div>
+          </div>
+
+          <div class="cap-list">
+            <article class="cap-card">
+              <div class="cap-thumb"></div>
+              <div>
+                <h3>Bộ kết nối phong phú</h3>
+                <p>Có hàng trăm connector có thể chạy trên nhiều engine khác nhau dựa trên API。</p>
+              </div>
+            </article>
+            <article class="cap-card">
+              <div class="cap-thumb"></div>
+              <div>
+                <h3>Batch &amp; Tích hợp thời gian thực</h3>
+                <p>Tương thích hoàn toàn với đồng bộ ngoại tuyến, thời gian thực và các kịch bản đồng bộ toàn phần/gia tăng. Hỗ trợ phát triển trực quan và phát triển bằng mã。</p>
+              </div>
+            </article>
+            <article class="cap-card">
+              <div class="cap-thumb"></div>
+              <div>
+                <h3>chuyển đổi dữ liệu khổng lồ</h3>
+                <p>Sử dụng đồng bộ dữ liệu phân tán hiệu năng cực cao để đồng bộ dữ liệu khổng lồ theo thời gian thực nhằm nạp hoặc lấy dữ liệu thay đổi。</p>
+              </div>
+            </article>
+            <article class="cap-card">
+              <div class="cap-thumb"></div>
+              <div>
+                <h3>Hỗ trợ SeaTunnel Zeta, Spark, Flink</h3>
+                <p>Zeta engine được dùng mặc định và cũng hỗ trợ nhiều phiên bản Spark và Flink。</p>
+              </div>
+            </article>
+            <article class="cap-card">
+              <div class="cap-thumb"></div>
+              <div>
+                <h3>Quản lý và bảo trì dễ dàng</h3>
+                <p>Cung cấp nền tảng phát triển và quản lý thống nhất。</p>
+              </div>
+            </article>
+            <article class="cap-card">
+              <div class="cap-thumb"></div>
+              <div>
+                <h3>Giám sát đầy đủ</h3>
+                <p>Cung cấp giám sát chi tiết trong quá trình đồng bộ dữ liệu để hiểu tình trạng dữ liệu thực tế。</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <div class="shell">
+      <div class="footer-grid">
+        <div>
+          <h4>SeaTunnel</h4>
+          <a href="#faq">Câu hỏi thường gặp</a>
+          <a href="#releases">Bản phát hành</a>
+        </div>
+        <div>
+          <h4>Cộng đồng</h4>
+          <a href="https://github.com/apache/seatunnel">GitHub</a>
+          <a href="https://github.com/apache/seatunnel/issues">Trình theo dõi vấn đề</a>
+          <a href="https://github.com/apache/seatunnel/pulls">Pull Request</a>
+        </div>
+        <div>
+          <h4>Đăng ký danh sách thư</h4>
+          <a href="#how-to-subscribe">Cách đăng ký</a>
+          <a href="mailto:dev-subscribe@seatunnel.apache.org">Thư đăng ký</a>
+          <a href="https://lists.apache.org/list.html?dev@seatunnel.apache.org">Lưu trữ thư</a>
+        </div>
+        <div>
+          <h4>Apache</h4>
+          <p>Apache SeaTunnel, SeaTunnel và logo chiếc lông là nhãn hiệu của The Apache Software Foundation。</p>
+        </div>
+      </div>
+      <div class="footer-bottom">Bản quyền © 2021-2026 The Apache Software Foundation.</div>
+    </div>
+  </footer>
+
+  <a class="ask-ai" href="#ask-ai">Hỏi AI</a>
+</body>
+</html>
