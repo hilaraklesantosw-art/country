@@ -3,45 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SeaTunnel Orange</title>
+  <title>Apache SeaTunnel | Orange Replica</title>
   <style>
     :root {
       --bg: #fffaf4;
-      --surface: #ffffff;
-      --surface-soft: #fff5ea;
-      --surface-warm: #fff0df;
+      --bg-soft: #fff4e8;
+      --card: #ffffff;
+      --card-warm: #fff7ef;
       --text: #2f241d;
-      --muted: #7c6a5d;
-      --line: rgba(237, 110, 20, 0.14);
-      --line-strong: rgba(237, 110, 20, 0.28);
+      --muted: #7e6b5c;
+      --line: rgba(240, 111, 14, 0.14);
+      --line-strong: rgba(240, 111, 14, 0.26);
       --orange: #ff7a00;
-      --orange-deep: #f55a00;
-      --orange-soft: #fff1e2;
-      --blue: #5d8fd8;
-      --purple: #cb4cff;
-      --shadow: 0 30px 70px rgba(219, 99, 17, 0.14);
+      --orange-deep: #f15a00;
+      --orange-soft: #fff0de;
+      --blue: #5e90d9;
+      --purple: #cf47ff;
+      --navy: #3b4e65;
+      --shadow: 0 28px 68px rgba(222, 101, 18, 0.13);
       --radius-xl: 32px;
-      --radius-lg: 24px;
-      --radius-md: 18px;
-      --font-ui: "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --font: "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
     }
 
     * {
       box-sizing: border-box;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
     body {
       margin: 0;
-      font-family: var(--font-ui);
+      font-family: var(--font);
       color: var(--text);
       background:
-        radial-gradient(circle at top left, rgba(255, 193, 125, 0.42), transparent 22%),
-        radial-gradient(circle at top right, rgba(255, 141, 44, 0.16), transparent 20%),
-        linear-gradient(180deg, #fffaf4 0%, #fff6ee 18%, #fffdf9 100%);
+        radial-gradient(circle at top left, rgba(255, 188, 124, 0.45), transparent 21%),
+        radial-gradient(circle at top right, rgba(255, 136, 32, 0.15), transparent 18%),
+        linear-gradient(180deg, #fffaf4 0%, #fff6ee 16%, #fffdf9 100%);
       overflow-x: hidden;
     }
 
@@ -50,9 +47,9 @@
       position: fixed;
       inset: 0;
       pointer-events: none;
-      background-image: radial-gradient(rgba(255, 122, 0, 0.06) 1px, transparent 1px);
-      background-size: 26px 26px;
-      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.46), transparent 86%);
+      background-image: radial-gradient(rgba(255, 122, 0, 0.055) 1px, transparent 1px);
+      background-size: 28px 28px;
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.42), transparent 86%);
     }
 
     a {
@@ -60,29 +57,43 @@
       text-decoration: none;
     }
 
-    .tipbar {
+    .skip-link {
+      position: absolute;
+      left: -999px;
+      top: 0;
+    }
+
+    .skip-link:focus {
+      left: 12px;
+      top: 12px;
+      z-index: 20;
+      padding: 10px 14px;
+      border-radius: 12px;
+      color: #fff;
+      background: var(--orange-deep);
+    }
+
+    .announcement {
       display: flex;
-      align-items: center;
       justify-content: center;
       gap: 8px;
-      min-height: 18px;
       padding: 5px 12px;
       font-size: 11px;
-      color: #fff8ef;
-      background: linear-gradient(90deg, #5f7fa8, #6687b1);
+      color: #fff7ee;
+      background: linear-gradient(90deg, #6283ad, #6b8db7);
     }
 
     .shell {
-      width: min(1200px, calc(100% - 24px));
+      width: min(1160px, calc(100% - 24px));
       margin: 0 auto;
     }
 
-    .header {
+    .navbar {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 18px;
-      padding: 14px 4px 6px;
+      padding: 14px 2px 8px;
     }
 
     .brand {
@@ -90,32 +101,25 @@
       align-items: center;
       gap: 10px;
       min-width: 0;
-      color: #3b4b60;
+      color: var(--navy);
       white-space: nowrap;
     }
 
     .brand-mark {
-      width: 34px;
-      height: 34px;
-      border-radius: 12px;
+      width: 30px;
+      height: 30px;
+      border-radius: 11px;
       background:
-        radial-gradient(circle at 34% 34%, #ffd9b0, transparent 28%),
-        radial-gradient(circle at 60% 36%, #ff9d4d, transparent 22%),
-        radial-gradient(circle at 44% 70%, #ff6a00, transparent 22%),
+        radial-gradient(circle at 34% 34%, #ffd8af, transparent 28%),
+        radial-gradient(circle at 60% 36%, #ff9b4c, transparent 22%),
+        radial-gradient(circle at 44% 72%, #ff6700, transparent 22%),
         linear-gradient(145deg, #6ea3dd, #39526c);
       box-shadow: 0 10px 18px rgba(57, 82, 108, 0.18);
     }
 
-    .brand-title {
+    .brand span {
       font-size: 14px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .brand-title strong {
-      font-size: 15px;
       font-weight: 600;
-      margin-right: 4px;
     }
 
     .nav {
@@ -123,69 +127,76 @@
       align-items: center;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 16px;
+      gap: 14px;
       font-size: 12px;
-      color: #4b3e35;
+      color: #50433a;
+    }
+
+    .nav .caret::after {
+      content: "▼";
+      margin-left: 4px;
+      font-size: 9px;
+      vertical-align: middle;
     }
 
     .tools {
       display: flex;
       align-items: center;
       gap: 12px;
+      font-size: 12px;
       color: var(--muted);
-      font-size: 13px;
     }
 
     .search {
       display: flex;
       align-items: center;
-      gap: 7px;
+      gap: 6px;
       min-width: 112px;
       padding: 8px 12px;
       border-radius: 999px;
-      background: rgba(83, 123, 171, 0.08);
+      background: rgba(94, 144, 217, 0.08);
     }
 
     .hero {
       position: relative;
+      padding: 36px 0 20px;
       text-align: center;
-      padding: 40px 0 10px;
     }
 
-    .marks {
+    .watermarks {
       position: absolute;
       inset: 0;
       pointer-events: none;
       opacity: 0.12;
-      font-size: 22px;
-      color: #c0b6ae;
+      color: #c5b9af;
       overflow: hidden;
     }
 
-    .marks span {
+    .watermarks span {
       position: absolute;
+      font-size: 22px;
       transform: rotate(-18deg);
       white-space: nowrap;
     }
 
-    .m1 { top: 18px; left: 20px; }
-    .m2 { top: 46px; right: 58px; }
-    .m3 { top: 116px; left: 184px; }
-    .m4 { top: 156px; right: 98px; }
-    .m5 { top: 334px; left: 26px; }
+    .wm1 { top: 14px; left: 24px; }
+    .wm2 { top: 44px; right: 52px; }
+    .wm3 { top: 122px; left: 188px; }
+    .wm4 { top: 166px; right: 82px; }
+    .wm5 { top: 352px; left: 42px; }
 
     .hero h1 {
       position: relative;
-      margin: 26px 0 12px;
-      font-size: clamp(46px, 7vw, 72px);
-      line-height: 1.02;
-      font-weight: 300;
+      margin: 28px 0 10px;
+      font-size: clamp(48px, 7vw, 72px);
+      line-height: 1;
       letter-spacing: -0.05em;
-      color: #394c61;
+      font-weight: 300;
+      color: #3c4e64;
     }
 
-    .hero h1 span {
-      background: linear-gradient(90deg, #ff8a00 4%, #ff5f00 54%, #d93cff 100%);
+    .hero h1 .accent {
+      background: linear-gradient(90deg, #ff8a00 4%, #ff5f00 56%, #d43dff 100%);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
@@ -195,10 +206,10 @@
     .hero-copy {
       position: relative;
       margin: 0 auto;
-      max-width: 640px;
-      font-size: clamp(18px, 2.5vw, 28px);
-      line-height: 1.18;
-      color: #343232;
+      max-width: 620px;
+      font-size: clamp(18px, 2.4vw, 29px);
+      line-height: 1.16;
+      color: #323131;
     }
 
     .cta-row {
@@ -206,7 +217,7 @@
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 20px;
+      gap: 18px;
       margin-top: 30px;
     }
 
@@ -215,96 +226,87 @@
       align-items: center;
       justify-content: center;
       gap: 10px;
-      min-width: 144px;
-      padding: 14px 24px;
+      min-width: 116px;
+      padding: 12px 22px;
       border-radius: 999px;
       font-size: 14px;
       font-weight: 600;
-      box-shadow: 0 12px 24px rgba(76, 113, 165, 0.14);
-      transition: transform 180ms ease;
+      box-shadow: 0 10px 22px rgba(91, 128, 183, 0.14);
     }
 
-    .cta:hover {
-      transform: translateY(-2px);
-    }
-
-    .cta-primary {
+    .cta.primary {
       color: #fff;
-      background: linear-gradient(135deg, #ff9128, #ff6400);
+      background: linear-gradient(135deg, #ff942f, #ff6300);
     }
 
-    .cta-secondary {
-      color: #4a77d8;
-      background: rgba(255, 255, 255, 0.94);
-      border: 1px solid rgba(92, 130, 221, 0.36);
+    .cta.secondary {
+      color: #5079d8;
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid rgba(94, 144, 217, 0.34);
     }
 
-    .cta-badge {
+    .cta-icon {
       width: 18px;
       height: 18px;
       display: inline-grid;
       place-items: center;
       border-radius: 50%;
       background: #fff;
-      color: #1f1f1f;
-      border: 1px solid rgba(31, 31, 31, 0.12);
+      color: #252525;
+      border: 1px solid rgba(37, 37, 37, 0.14);
       font-size: 10px;
     }
 
     .pipeline {
-      margin-top: 44px;
-      padding-bottom: 32px;
+      margin-top: 42px;
     }
 
     .pipeline-head {
       display: grid;
       grid-template-columns: 1.15fr 1fr 1fr 0.9fr;
-      gap: 18px;
+      gap: 16px;
       margin-bottom: 12px;
       text-align: center;
-      font-size: clamp(12px, 1.7vw, 18px);
+      font-size: clamp(11px, 1.6vw, 17px);
       font-weight: 800;
       text-transform: uppercase;
-      color: #4b3f38;
+      color: #4c4037;
     }
 
     .pipeline-card {
       position: relative;
-      height: 310px;
+      min-height: 316px;
       border-radius: var(--radius-xl);
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(255, 244, 232, 0.98));
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(255, 244, 233, 0.98));
       border: 1px solid var(--line);
       box-shadow: var(--shadow);
       overflow: hidden;
     }
 
-    .arrow-stack {
+    .source-stack {
       position: absolute;
       left: 0;
-      top: 58px;
-      width: 255px;
-      height: 98px;
+      top: 66px;
+      width: 252px;
     }
 
-    .strip {
-      position: absolute;
-      left: 0;
-      width: 214px;
-      height: 26px;
+    .source-row {
+      width: 216px;
+      height: 28px;
       clip-path: polygon(0 0, 82% 0, 100% 50%, 82% 100%, 0 100%);
       color: #fff;
-      font-size: 14px;
-      line-height: 26px;
+      line-height: 28px;
+      font-size: 13px;
       text-align: center;
-      letter-spacing: 0.01em;
-      box-shadow: 0 8px 14px rgba(67, 126, 201, 0.14);
+      margin-bottom: 6px;
+      box-shadow: 0 8px 16px rgba(93, 144, 217, 0.14);
     }
 
-    .s1 { top: 0; background: linear-gradient(90deg, #7bc4ff, #5da2ea); }
-    .s2 { top: 30px; background: linear-gradient(90deg, #7fa4ff, #6a79f0); }
-    .s3 { top: 60px; background: linear-gradient(90deg, #ff7bd8, #c655ff); }
+    .row-1 { background: linear-gradient(90deg, #7ec7ff, #5fa3ea); }
+    .row-2 { background: linear-gradient(90deg, #85a9ff, #7280f2); }
+    .row-3 { background: linear-gradient(90deg, #ff82db, #ce59ff); }
 
-    .plus {
+    .source-badge {
       position: absolute;
       width: 16px;
       height: 16px;
@@ -312,152 +314,170 @@
       place-items: center;
       border-radius: 4px;
       background: #fff;
-      border: 1px solid rgba(94, 143, 216, 0.28);
+      border: 1px solid rgba(95, 138, 214, 0.26);
       color: #5f8ad6;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 700;
     }
 
-    .p1 { left: 116px; top: 12px; }
-    .p2 { left: 130px; top: 42px; }
-    .p3 { left: 178px; top: 42px; }
+    .sb1 { left: 116px; top: 12px; }
+    .sb2 { left: 130px; top: 44px; }
+    .sb3 { left: 178px; top: 44px; }
 
-    .glass {
+    .glass-box {
       position: absolute;
       border-radius: 16px;
-      border: 1px solid rgba(121, 183, 255, 0.26);
-      background: linear-gradient(135deg, rgba(237, 249, 255, 0.86), rgba(255, 255, 255, 0.42));
+      border: 1px solid rgba(125, 185, 255, 0.28);
+      background: linear-gradient(135deg, rgba(236, 249, 255, 0.82), rgba(255, 255, 255, 0.44));
       backdrop-filter: blur(10px);
     }
 
     .normalize-box {
-      top: 26px;
-      left: 246px;
-      width: 344px;
+      left: 258px;
+      top: 34px;
+      width: 404px;
       height: 132px;
-    }
-
-    .load-box {
-      left: 332px;
-      top: 162px;
-      width: 204px;
-      height: 58px;
-    }
-
-    .api-box {
-      right: 22px;
-      top: 114px;
-      width: 118px;
-      height: 78px;
     }
 
     .transform-pill {
       position: absolute;
-      left: 414px;
-      top: 118px;
-      padding: 14px 20px;
+      left: 432px;
+      top: 126px;
+      padding: 14px 22px;
       border-radius: 999px;
       color: #fff;
       font-size: 16px;
-      background: linear-gradient(135deg, #ff932e, #ff5a00);
-      box-shadow: 0 16px 22px rgba(255, 106, 0, 0.18);
+      background: linear-gradient(135deg, #ff952f, #ff5c00);
+      box-shadow: 0 16px 24px rgba(255, 106, 0, 0.18);
+    }
+
+    .load-box {
+      left: 364px;
+      top: 182px;
+      width: 230px;
+      height: 62px;
+    }
+
+    .api-box {
+      right: 22px;
+      top: 138px;
+      width: 136px;
+      height: 84px;
     }
 
     .orb {
       position: absolute;
-      width: 58px;
-      height: 58px;
+      width: 62px;
+      height: 62px;
       border-radius: 50%;
-      background: radial-gradient(circle at 34% 34%, #ffd4a6, #ff8c1a 58%, #ff5a00 100%);
-      box-shadow: 0 18px 24px rgba(255, 111, 14, 0.16);
+      background: radial-gradient(circle at 34% 34%, #ffd8ac, #ff8e1d 58%, #ff5a00 100%);
+      box-shadow: 0 16px 24px rgba(255, 112, 15, 0.16);
     }
 
-    .o1 { left: 310px; top: 150px; }
-    .o2 { right: 116px; top: 148px; }
+    .o1 { left: 324px; top: 176px; }
+    .o2 { right: 122px; top: 176px; }
 
-    .pipeline-label {
+    .label {
       position: absolute;
       font-size: 13px;
       font-weight: 800;
-      color: #425770;
       text-transform: uppercase;
+      color: #425871;
       letter-spacing: 0.02em;
     }
 
-    .l1 { left: 378px; top: 66px; }
-    .l2 { left: 380px; top: 180px; }
-    .l3 { right: 52px; top: 142px; }
+    .l1 { left: 422px; top: 74px; }
+    .l2 { left: 432px; top: 203px; }
+    .l3 { right: 58px; top: 168px; }
 
-    .section {
-      padding: 34px 0 14px;
+    .monitor-box {
+      position: absolute;
+      right: 208px;
+      top: 112px;
+      width: 84px;
+      height: 84px;
+      border-radius: 12px;
+      border: 1px solid rgba(125, 185, 255, 0.26);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(236, 249, 255, 0.72)),
+        repeating-linear-gradient(90deg, rgba(94, 144, 217, 0.12) 0 10px, transparent 10px 16px);
     }
 
-    .section-title {
+    .features {
+      padding: 42px 0 0;
+    }
+
+    .features h2,
+    .capabilities h2 {
       margin: 0;
       text-align: center;
-      font-size: clamp(20px, 3vw, 28px);
-      line-height: 1.12;
-      font-weight: 800;
-      letter-spacing: -0.02em;
+      font-size: clamp(24px, 3vw, 38px);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
     }
 
-    .section-subtitle {
+    .features .sub,
+    .capabilities .sub {
       max-width: 700px;
-      margin: 14px auto 0;
+      margin: 12px auto 0;
       text-align: center;
       font-size: 12px;
-      line-height: 1.6;
+      line-height: 1.65;
       color: var(--muted);
     }
 
-    .features-grid {
+    .feature-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 20px;
+      gap: 18px;
       margin-top: 34px;
     }
 
-    .feature {
-      padding: 22px 16px 18px;
+    .feature-card {
+      padding: 24px 16px 18px;
       text-align: center;
-      border-radius: 22px;
-      background: rgba(255, 255, 255, 0.82);
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.84);
       border: 1px solid var(--line);
-      box-shadow: 0 18px 30px rgba(230, 130, 51, 0.08);
+      box-shadow: 0 18px 30px rgba(229, 129, 48, 0.08);
     }
 
     .feature-icon {
-      width: 48px;
-      height: 48px;
-      margin: 0 auto 12px;
+      width: 50px;
+      height: 50px;
+      margin: 0 auto 14px;
       border-radius: 14px;
       display: grid;
       place-items: center;
       color: #fff;
       font-size: 20px;
-      background: linear-gradient(135deg, #ff952f, #ff6400);
-      box-shadow: 0 14px 20px rgba(255, 106, 0, 0.18);
+      background: linear-gradient(135deg, #ff9630, #ff6500);
+      box-shadow: 0 14px 22px rgba(255, 106, 0, 0.18);
     }
 
-    .feature h3 {
+    .feature-card h3 {
       margin: 0;
       font-size: 14px;
       line-height: 1.35;
     }
 
-    .feature p {
+    .feature-card p {
       margin: 10px 0 0;
       font-size: 11px;
       line-height: 1.65;
       color: var(--muted);
     }
 
-    .connectors {
+    .capabilities {
+      padding: 54px 0 0;
+    }
+
+    .cap-grid {
       display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
+      grid-template-columns: 0.95fr 1.05fr;
       gap: 28px;
+      margin-top: 34px;
       align-items: start;
-      margin-top: 36px;
     }
 
     .logo-cloud {
@@ -465,63 +485,65 @@
       grid-template-columns: repeat(5, minmax(0, 1fr));
       gap: 14px;
       padding: 22px;
-      border-radius: var(--radius-lg);
-      background: rgba(255, 255, 255, 0.78);
+      border-radius: var(--radius-xl);
+      background: rgba(255, 255, 255, 0.82);
       border: 1px solid var(--line);
-      box-shadow: 0 18px 30px rgba(227, 127, 49, 0.08);
+      box-shadow: 0 18px 30px rgba(228, 129, 48, 0.08);
     }
 
-    .logo-pill {
-      height: 32px;
+    .logo-chip {
+      height: 34px;
       border-radius: 12px;
-      background: linear-gradient(135deg, rgba(255, 150, 58, 0.16), rgba(93, 143, 216, 0.08));
-      border: 1px solid rgba(255, 122, 0, 0.12);
+      background:
+        linear-gradient(135deg, rgba(255, 149, 52, 0.18), rgba(94, 144, 217, 0.08)),
+        linear-gradient(90deg, transparent 20%, rgba(255, 255, 255, 0.8) 20% 40%, transparent 40% 60%, rgba(255, 255, 255, 0.8) 60% 80%, transparent 80%);
+      border: 1px solid rgba(255, 122, 0, 0.1);
     }
 
-    .info-cards {
+    .cap-list {
       display: grid;
       gap: 16px;
     }
 
-    .info-card {
+    .cap-card {
       display: grid;
-      grid-template-columns: 110px 1fr;
+      grid-template-columns: 116px 1fr;
       gap: 16px;
       padding: 18px;
-      border-radius: 22px;
-      background: linear-gradient(135deg, rgba(255, 245, 234, 0.92), rgba(255, 255, 255, 0.94));
+      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, rgba(255, 247, 239, 0.98), rgba(255, 255, 255, 0.94));
       border: 1px solid var(--line);
-      box-shadow: 0 18px 30px rgba(227, 127, 49, 0.08);
+      box-shadow: 0 18px 30px rgba(228, 129, 48, 0.08);
     }
 
-    .thumb {
+    .cap-thumb {
+      position: relative;
       height: 82px;
       border-radius: 16px;
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.76), rgba(255, 240, 220, 0.84)),
-        linear-gradient(135deg, rgba(97, 163, 243, 0.3), rgba(255, 138, 0, 0.18));
       border: 1px solid var(--line);
-      position: relative;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.8), rgba(255, 240, 222, 0.88)),
+        linear-gradient(135deg, rgba(94, 144, 217, 0.26), rgba(255, 138, 0, 0.16));
       overflow: hidden;
     }
 
-    .thumb::before {
+    .cap-thumb::before {
       content: "";
       position: absolute;
       inset: 12px;
       border-radius: 10px;
       background:
         repeating-linear-gradient(90deg, rgba(255, 122, 0, 0.24) 0 12px, transparent 12px 18px),
-        repeating-linear-gradient(180deg, rgba(93, 143, 216, 0.16) 0 10px, transparent 10px 14px);
+        repeating-linear-gradient(180deg, rgba(94, 144, 217, 0.16) 0 8px, transparent 8px 12px);
     }
 
-    .info-card h3 {
+    .cap-card h3 {
       margin: 0;
       font-size: 14px;
-      color: #4674cf;
+      color: #4a77d8;
     }
 
-    .info-card p {
+    .cap-card p {
       margin: 8px 0 0;
       font-size: 11px;
       line-height: 1.65;
@@ -529,16 +551,16 @@
     }
 
     .footer {
-      margin-top: 40px;
-      padding: 26px 0 34px;
+      margin-top: 44px;
+      padding: 28px 0 34px;
+      background: linear-gradient(180deg, rgba(244, 247, 251, 0.72), rgba(250, 248, 246, 0.94));
       border-top: 1px solid rgba(60, 83, 109, 0.08);
-      background: linear-gradient(180deg, rgba(244, 247, 251, 0.72), rgba(250, 248, 246, 0.9));
     }
 
     .footer-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 22px;
+      gap: 24px;
     }
 
     .footer h4 {
@@ -551,17 +573,17 @@
       display: block;
       margin: 6px 0;
       font-size: 11px;
-      line-height: 1.5;
+      line-height: 1.55;
       color: var(--muted);
     }
 
     .footer-bottom {
-      margin-top: 18px;
+      margin-top: 20px;
       padding-top: 14px;
       border-top: 1px solid rgba(60, 83, 109, 0.08);
       text-align: center;
       font-size: 10px;
-      color: #9a8d84;
+      color: #9d9087;
     }
 
     .ask-ai {
@@ -576,12 +598,12 @@
       color: #fff;
       font-size: 10px;
       text-align: center;
-      background: linear-gradient(180deg, #6a78ff, #5a42d9);
-      box-shadow: 0 16px 28px rgba(79, 59, 199, 0.28);
+      background: linear-gradient(180deg, #6c7aff, #5a42d9);
+      box-shadow: 0 16px 28px rgba(82, 62, 202, 0.28);
     }
 
-    @media (max-width: 1000px) {
-      .header {
+    @media (max-width: 1024px) {
+      .navbar {
         flex-wrap: wrap;
       }
 
@@ -591,11 +613,11 @@
         justify-content: flex-start;
       }
 
-      .features-grid {
+      .feature-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      .connectors {
+      .cap-grid {
         grid-template-columns: 1fr;
       }
 
@@ -606,21 +628,12 @@
 
     @media (max-width: 760px) {
       .shell {
-        width: min(100% - 18px, 1200px);
-      }
-
-      .hero h1 {
-        margin-top: 16px;
-      }
-
-      .cta-row {
-        gap: 12px;
+        width: min(100% - 18px, 1160px);
       }
 
       .cta {
-        width: calc(50% - 6px);
+        width: calc(50% - 9px);
         min-width: 0;
-        padding: 12px 16px;
       }
 
       .pipeline-head {
@@ -629,62 +642,65 @@
       }
 
       .pipeline-card {
-        height: 360px;
+        min-height: 400px;
       }
 
-      .arrow-stack {
-        left: 14px;
-        top: 26px;
-        width: calc(100% - 28px);
+      .source-stack {
+        left: 16px;
+        top: 28px;
       }
 
-      .strip {
-        width: 160px;
+      .source-row {
+        width: 166px;
       }
 
       .normalize-box {
         left: 18px;
-        top: 128px;
+        top: 142px;
         width: calc(100% - 36px);
-        height: 92px;
+        height: 96px;
       }
 
       .transform-pill {
         left: 50%;
-        top: 212px;
+        top: 218px;
         transform: translateX(-50%);
       }
 
       .load-box {
         left: 24px;
-        top: 274px;
+        top: 306px;
         width: 38%;
       }
 
       .api-box {
         right: 24px;
-        top: 274px;
+        top: 306px;
         width: 34%;
       }
 
       .o1,
       .o2 {
-        top: 262px;
+        top: 298px;
       }
 
       .o1 { left: 42%; }
       .o2 { right: 38%; }
 
+      .monitor-box {
+        display: none;
+      }
+
       .l1 {
         left: 50%;
-        top: 162px;
+        top: 176px;
         transform: translateX(-50%);
       }
 
-      .l2 { left: 34px; top: 292px; }
-      .l3 { right: 40px; top: 292px; }
+      .l2 { left: 34px; top: 326px; }
+      .l3 { right: 42px; top: 326px; }
 
-      .features-grid {
+      .feature-grid {
         grid-template-columns: 1fr;
       }
 
@@ -692,7 +708,7 @@
         grid-template-columns: repeat(4, minmax(0, 1fr));
       }
 
-      .info-card {
+      .cap-card {
         grid-template-columns: 1fr;
       }
 
@@ -703,31 +719,33 @@
   </style>
 </head>
 <body>
-  <div class="tipbar">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <div class="announcement">
     <span>⭐️</span>
-    <span>If you like Apache SeaTunnel, give it a star on GitHub</span>
+    <a href="https://github.com/apache/seatunnel">If you like Apache SeaTunnel, give it a star on GitHub</a>
     <span>⭐️</span>
   </div>
 
   <div class="shell">
-    <header class="header">
-      <div class="brand">
-        <div class="brand-mark" aria-hidden="true"></div>
-        <div class="brand-title"><strong>Apache</strong> SeaTunnel</div>
-      </div>
+    <header class="navbar">
+      <a class="brand" href="https://seatunnel.apache.org/">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>Apache SeaTunnel</span>
+      </a>
 
       <nav class="nav" aria-label="Main">
         <a href="#home">Home</a>
-        <a href="#docs">Document</a>
+        <a class="caret" href="#docs">Document</a>
         <a href="#download">Download</a>
         <a href="#community">Community</a>
         <a href="#blog">Blog</a>
         <a href="#team">Team</a>
         <a href="#users">Users</a>
-        <a href="#asf">ASF</a>
-        <a href="#github">GitHub</a>
+        <a class="caret" href="#asf">ASF</a>
+        <a href="https://github.com/apache/seatunnel">GitHub</a>
         <a href="#security">Security</a>
-        <a href="#lang">English</a>
+        <a class="caret" href="#language">English</a>
       </nav>
 
       <div class="tools">
@@ -736,167 +754,168 @@
       </div>
     </header>
 
-    <main class="hero" id="home">
-      <div class="marks" aria-hidden="true">
-        <span class="m1">访客 95042</span>
-        <span class="m2">访客 95042</span>
-        <span class="m3">访客 95042</span>
-        <span class="m4">访客 95042</span>
-        <span class="m5">访客 95042</span>
-      </div>
-
-      <h1>Apache <span>SeaTunnel</span></h1>
-      <p class="hero-copy">Multimodal, high-performance,<br>distributed, massive data integration tool.</p>
-
-      <div class="cta-row">
-        <a class="cta cta-primary" href="#quick-start">QUICK START</a>
-        <a class="cta cta-secondary" href="#github"><span class="cta-badge">◔</span> GITHUB</a>
-        <a class="cta cta-secondary" href="#slack"><span class="cta-badge">✦</span> SLACK</a>
-      </div>
-
-      <section class="pipeline" aria-label="Pipeline">
-        <div class="pipeline-head">
-          <div>Collect &amp; Extract</div>
-          <div>Normalize</div>
-          <div>Load &amp; API</div>
-          <div>Monitor</div>
+    <main id="main-content">
+      <section class="hero" id="home">
+        <div class="watermarks" aria-hidden="true">
+          <span class="wm1">访客 95042</span>
+          <span class="wm2">访客 95042</span>
+          <span class="wm3">访客 95042</span>
+          <span class="wm4">访客 95042</span>
+          <span class="wm5">访客 95042</span>
         </div>
 
-        <div class="pipeline-card">
-          <div class="arrow-stack">
-            <div class="strip s1">Event Data</div>
-            <div class="strip s2">Cloud DB</div>
-            <div class="strip s3">Binlog</div>
-            <div class="plus p1">+</div>
-            <div class="plus p2">×</div>
-            <div class="plus p3">+</div>
+        <h1>Apache <span class="accent">SeaTunnel</span></h1>
+        <p class="hero-copy">Multimodal, high-performance,<br>distributed, massive data integration tool.</p>
+
+        <div class="cta-row">
+          <a class="cta primary" href="#download">QUICK START</a>
+          <a class="cta secondary" href="https://github.com/apache/seatunnel"><span class="cta-icon">◔</span>GITHUB</a>
+          <a class="cta secondary" href="https://s.apache.org/seatunnel-slack"><span class="cta-icon">✦</span>SLACK</a>
+        </div>
+
+        <section class="pipeline" aria-label="Pipeline overview">
+          <div class="pipeline-head">
+            <div>Collect &amp; Extract</div>
+            <div>Normalize</div>
+            <div>Load &amp; API</div>
+            <div>Monitor</div>
           </div>
 
-          <div class="glass normalize-box"></div>
-          <div class="pipeline-label l1">Normalize</div>
+          <div class="pipeline-card">
+            <div class="source-stack">
+              <div class="source-row row-1">Event Data</div>
+              <div class="source-row row-2">Cloud DB</div>
+              <div class="source-row row-3">Binlog</div>
+              <div class="source-badge sb1">+</div>
+              <div class="source-badge sb2">×</div>
+              <div class="source-badge sb3">+</div>
+            </div>
 
-          <div class="transform-pill">Transform</div>
+            <div class="glass-box normalize-box"></div>
+            <div class="label l1">Normalize</div>
 
-          <div class="orb o1"></div>
-          <div class="glass load-box"></div>
-          <div class="pipeline-label l2">Load</div>
+            <div class="transform-pill">Transform</div>
 
-          <div class="orb o2"></div>
-          <div class="glass api-box"></div>
-          <div class="pipeline-label l3">API</div>
+            <div class="orb o1"></div>
+            <div class="glass-box load-box"></div>
+            <div class="label l2">Load</div>
+
+            <div class="orb o2"></div>
+            <div class="glass-box api-box"></div>
+            <div class="label l3">API</div>
+
+            <div class="monitor-box" aria-hidden="true"></div>
+          </div>
+        </section>
+      </section>
+
+      <section class="features" id="download">
+        <h2>Support Hundreds Of Data Sources,<br>Fast Speed &amp; High Accuracy</h2>
+        <p class="sub">
+          Integrate massive data between Transaction DB, Cloud DB, SaaS, Binlog with SQL-like code or Drag &amp; Drop.
+        </p>
+
+        <div class="feature-grid">
+          <article class="feature-card">
+            <div class="feature-icon">⎋</div>
+            <h3>Reduce Complexity</h3>
+            <p>The connector developed based on API can be compatible with offline synchronization, real-time synchronization, full synchronization, incremental synchronization and other scenarios.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">⏱</div>
+            <h3>Save More Time</h3>
+            <p>Provides visual job management, scheduling, running, and monitoring capabilities. Accelerates the integration of low-code and no-code tools.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">⚙</div>
+            <h3>Simple And Easy To Maintain</h3>
+            <p>Support stand-alone, cluster deployment, choose Zeta engine deployment, no need to rely on Spark, Flink and other big data components.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">✓</div>
+            <h3>Mature &amp; Stable</h3>
+            <p>Experience the baptism of large-scale production environment use and massive data. Stable enough for real production workloads.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="capabilities" id="community">
+        <h2>Rich Connectors, Batch &amp; Realtime Integration,<br>Transforming Massive Data</h2>
+        <p class="sub">
+          SeaTunnel Zeta, Spark, Flink supported. Easy management and maintenance with fully-fledged monitoring.
+        </p>
+
+        <div class="cap-grid">
+          <div class="logo-cloud" aria-label="Connector matrix">
+            <div class="logo-chip"></div>
+            <div class="logo-chip"></div>
+            <div class="logo-chip"></div>
+            <div class="logo-chip"></div>
+            <div class="logo-chip"></div>
+            <div class="logo-chip"></div>
+            <div class="logo-chip"></div>
+            <div class="logo-chip"></div>
+            <div class="logo-chip"></div>
+            <div class="logo-chip"></div>
+            <div class="logo-chip"></div>
+            <div class="logo-chip"></div>
+            <div class="logo-chip"></div>
+            <div class="logo-chip"></div>
+            <div class="logo-chip"></div>
+            <div class="logo-chip"></div>
+            <div class="logo-chip"></div>
+            <div class="logo-chip"></div>
+            <div class="logo-chip"></div>
+            <div class="logo-chip"></div>
+          </div>
+
+          <div class="cap-list">
+            <article class="cap-card">
+              <div class="cap-thumb"></div>
+              <div>
+                <h3>Rich Connectors</h3>
+                <p>There are hundreds of connectors that can run on many different engines based on APIs.</p>
+              </div>
+            </article>
+            <article class="cap-card">
+              <div class="cap-thumb"></div>
+              <div>
+                <h3>Batch &amp; Realtime Integration</h3>
+                <p>Perfect compatibility with offline synchronization, real-time synchronization, and full/incremental synchronization scenarios. Supports visual development and code development.</p>
+              </div>
+            </article>
+            <article class="cap-card">
+              <div class="cap-thumb"></div>
+              <div>
+                <h3>Transforming Massive Data</h3>
+                <p>Use ultra-high performance distributed data synchronization, which will synchronize massive data in real time to ingest or obtain changed data.</p>
+              </div>
+            </article>
+            <article class="cap-card">
+              <div class="cap-thumb"></div>
+              <div>
+                <h3>SeaTunnel Zeta, Spark, Flink Supported</h3>
+                <p>The zeta engine is used by default, and multiple versions of Spark and Flink are also supported.</p>
+              </div>
+            </article>
+            <article class="cap-card">
+              <div class="cap-thumb"></div>
+              <div>
+                <h3>Easy Management And Maintenance</h3>
+                <p>Provide a unified development and management platform.</p>
+              </div>
+            </article>
+            <article class="cap-card">
+              <div class="cap-thumb"></div>
+              <div>
+                <h3>Fully-fledged Monitoring</h3>
+                <p>Provides detailed monitoring during data synchronization to understand the actual data situation.</p>
+              </div>
+            </article>
+          </div>
         </div>
       </section>
     </main>
-
-    <section class="section" id="quick-start">
-      <h2 class="section-title">Support Hundreds Of Data Sources,<br>Fast Speed &amp; High Accuracy</h2>
-      <p class="section-subtitle">
-        Integrate massive data between Transaction DB, Cloud DB, SaaS, Binlog with SQL-like code or Drag &amp; Drop.
-      </p>
-
-      <div class="features-grid">
-        <article class="feature">
-          <div class="feature-icon">⎋</div>
-          <h3>Reduce Complexity</h3>
-          <p>
-            The connector developed based on API can be compatible with offline synchronization, real-time synchronization,
-            full synchronization and other scenarios.
-          </p>
-        </article>
-        <article class="feature">
-          <div class="feature-icon">⏱</div>
-          <h3>Save More Time</h3>
-          <p>
-            Provides visual job management, scheduling, running and monitoring capabilities. Accelerates low-code
-            and no-code workflows.
-          </p>
-        </article>
-        <article class="feature">
-          <div class="feature-icon">⚙</div>
-          <h3>Simple And Easy To Maintain</h3>
-          <p>
-            Support stand-alone and cluster deployment, choose Zeta engine deployment, no need to rely on Spark or Flink.
-          </p>
-        </article>
-        <article class="feature">
-          <div class="feature-icon">✓</div>
-          <h3>Mature &amp; Stable</h3>
-          <p>
-            Experience the baptism of large-scale production environment use and massive data processing scenarios.
-          </p>
-        </article>
-      </div>
-
-      <div class="connectors">
-        <div class="logo-cloud" aria-label="Connector logos">
-          <div class="logo-pill"></div>
-          <div class="logo-pill"></div>
-          <div class="logo-pill"></div>
-          <div class="logo-pill"></div>
-          <div class="logo-pill"></div>
-          <div class="logo-pill"></div>
-          <div class="logo-pill"></div>
-          <div class="logo-pill"></div>
-          <div class="logo-pill"></div>
-          <div class="logo-pill"></div>
-          <div class="logo-pill"></div>
-          <div class="logo-pill"></div>
-          <div class="logo-pill"></div>
-          <div class="logo-pill"></div>
-          <div class="logo-pill"></div>
-          <div class="logo-pill"></div>
-          <div class="logo-pill"></div>
-          <div class="logo-pill"></div>
-          <div class="logo-pill"></div>
-          <div class="logo-pill"></div>
-        </div>
-
-        <div class="info-cards">
-          <article class="info-card">
-            <div class="thumb"></div>
-            <div>
-              <h3>Rich Connectors</h3>
-              <p>There are hundreds of connectors that can run on many different engines based on APIs.</p>
-            </div>
-          </article>
-          <article class="info-card">
-            <div class="thumb"></div>
-            <div>
-              <h3>Batch &amp; Realtime Integration</h3>
-              <p>Perfect compatibility with offline synchronization, real-time synchronization, full/incremental synchronization and code development.</p>
-            </div>
-          </article>
-          <article class="info-card">
-            <div class="thumb"></div>
-            <div>
-              <h3>Transforming Massive Data</h3>
-              <p>Use ultra-high performance distributed data synchronization, which will synchronize massive data in real time.</p>
-            </div>
-          </article>
-          <article class="info-card">
-            <div class="thumb"></div>
-            <div>
-              <h3>SeaTunnel Zeta, Spark, Flink Supported</h3>
-              <p>The zeta engine is used by default, and multiple versions of spark and flink are also supported.</p>
-            </div>
-          </article>
-          <article class="info-card">
-            <div class="thumb"></div>
-            <div>
-              <h3>Easy Management And Maintenance</h3>
-              <p>Provide a unified development and management platform.</p>
-            </div>
-          </article>
-          <article class="info-card">
-            <div class="thumb"></div>
-            <div>
-              <h3>Fully-fledged Monitoring</h3>
-              <p>Provides detailed monitoring during data synchronization to understand the actual data situation.</p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
   </div>
 
   <footer class="footer">
@@ -909,24 +928,22 @@
         </div>
         <div>
           <h4>Community</h4>
-          <a href="#github">GitHub</a>
-          <a href="#issue">Issue Tracker</a>
-          <a href="#pr">Pull Requests</a>
+          <a href="https://github.com/apache/seatunnel">GitHub</a>
+          <a href="https://github.com/apache/seatunnel/issues">Issue Tracker</a>
+          <a href="https://github.com/apache/seatunnel/pulls">Pull Requests</a>
         </div>
         <div>
-          <h4>Subscribe</h4>
-          <a href="#mailing">Mailing List</a>
-          <a href="#how">How to Subscribe</a>
-          <a href="#archive">Mail Archive</a>
+          <h4>Subscribe Mailing List</h4>
+          <a href="#how-to-subscribe">How to Subscribe</a>
+          <a href="mailto:dev-subscribe@seatunnel.apache.org">Subscribe Mail</a>
+          <a href="https://lists.apache.org/list.html?dev@seatunnel.apache.org">Mail Archive</a>
         </div>
         <div>
           <h4>Apache</h4>
           <p>Apache SeaTunnel, SeaTunnel, and the feather logo are trademarks of The Apache Software Foundation.</p>
         </div>
       </div>
-      <div class="footer-bottom">
-        Copyright © 2021-2026 The Apache Software Foundation.
-      </div>
+      <div class="footer-bottom">Copyright © 2021-2026 The Apache Software Foundation.</div>
     </div>
   </footer>
 
