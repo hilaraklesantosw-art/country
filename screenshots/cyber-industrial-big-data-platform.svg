@@ -1,0 +1,152 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="180" y1="70" x2="1420" y2="830" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#07111F"/>
+      <stop offset="0.55" stop-color="#0A1730"/>
+      <stop offset="1" stop-color="#050913"/>
+    </linearGradient>
+    <radialGradient id="glowLeft" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(420 240) rotate(47) scale(520 320)">
+      <stop stop-color="#19E2FF" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#19E2FF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowRight" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1190 300) rotate(145) scale(500 300)">
+      <stop stop-color="#7A5CFF" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#7A5CFF" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="panel" x1="307" y1="168" x2="1296" y2="735" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#101E35" stop-opacity="0.92"/>
+      <stop offset="1" stop-color="#09111E" stop-opacity="0.92"/>
+    </linearGradient>
+    <linearGradient id="edge" x1="248" y1="163" x2="1331" y2="749" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1BE2FF"/>
+      <stop offset="0.52" stop-color="#5D7CFF"/>
+      <stop offset="1" stop-color="#8A59FF"/>
+    </linearGradient>
+    <filter id="softGlow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="18" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <pattern id="grid" width="36" height="36" patternUnits="userSpaceOnUse">
+      <path d="M36 0H0V36" stroke="#183050" stroke-opacity="0.6"/>
+    </pattern>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#grid)" opacity="0.55"/>
+  <rect width="1600" height="900" fill="url(#glowLeft)"/>
+  <rect width="1600" height="900" fill="url(#glowRight)"/>
+
+  <g opacity="0.35">
+    <path d="M120 744C286 635 428 608 605 646C767 681 881 668 1008 593C1138 517 1251 473 1480 517" stroke="#19E2FF" stroke-width="2"/>
+    <path d="M154 784C314 694 465 675 639 705C786 730 920 723 1035 662C1163 594 1313 557 1458 580" stroke="#8A59FF" stroke-width="2"/>
+  </g>
+
+  <g filter="url(#softGlow)">
+    <rect x="250" y="154" width="1080" height="592" rx="28" fill="url(#panel)" stroke="url(#edge)" stroke-width="2"/>
+  </g>
+
+  <g opacity="0.9">
+    <rect x="294" y="196" width="1010" height="88" rx="18" fill="#0D1730" stroke="#1BE2FF" stroke-opacity="0.35"/>
+    <circle cx="334" cy="240" r="7" fill="#19E2FF"/>
+    <circle cx="360" cy="240" r="7" fill="#5D7CFF"/>
+    <circle cx="386" cy="240" r="7" fill="#8A59FF"/>
+    <text x="430" y="248" fill="#DDF5FF" font-size="26" font-family="Arial, Helvetica, sans-serif" letter-spacing="1.2">CYBER INDUSTRIAL BIG DATA PLATFORM</text>
+    <text x="430" y="274" fill="#6DB7D3" font-size="14" font-family="Arial, Helvetica, sans-serif" letter-spacing="2.6">EDGE DEVICES · MES · SCADA · DATA LAKE · AI MONITORING</text>
+  </g>
+
+  <g>
+    <rect x="294" y="316" width="316" height="186" rx="20" fill="#0A152A" stroke="#19E2FF" stroke-opacity="0.42"/>
+    <text x="326" y="356" fill="#BDEBFF" font-size="18" font-family="Arial, Helvetica, sans-serif" letter-spacing="1.6">FACTORY SIGNALS</text>
+    <text x="326" y="381" fill="#578DB1" font-size="12" font-family="Arial, Helvetica, sans-serif" letter-spacing="2">DEVICE STREAMING / OPC UA / PLC</text>
+    <rect x="328" y="410" width="248" height="8" rx="4" fill="#10233F"/>
+    <rect x="328" y="410" width="198" height="8" rx="4" fill="#19E2FF"/>
+    <rect x="328" y="434" width="248" height="8" rx="4" fill="#10233F"/>
+    <rect x="328" y="434" width="168" height="8" rx="4" fill="#5D7CFF"/>
+    <rect x="328" y="458" width="248" height="8" rx="4" fill="#10233F"/>
+    <rect x="328" y="458" width="224" height="8" rx="4" fill="#8A59FF"/>
+    <path d="M335 485L372 462L409 470L445 426L482 439L519 392L556 406" stroke="#1BE2FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <g>
+    <rect x="642" y="316" width="338" height="186" rx="20" fill="#0A152A" stroke="#5D7CFF" stroke-opacity="0.42"/>
+    <text x="676" y="356" fill="#D7E6FF" font-size="18" font-family="Arial, Helvetica, sans-serif" letter-spacing="1.6">DATA FABRIC</text>
+    <text x="676" y="381" fill="#748AC4" font-size="12" font-family="Arial, Helvetica, sans-serif" letter-spacing="2">LAKEHOUSE / WAREHOUSE / STREAM BUS</text>
+    <rect x="684" y="406" width="74" height="74" rx="16" fill="#101E39" stroke="#19E2FF" stroke-opacity="0.5"/>
+    <rect x="774" y="406" width="74" height="74" rx="16" fill="#101E39" stroke="#5D7CFF" stroke-opacity="0.5"/>
+    <rect x="864" y="406" width="74" height="74" rx="16" fill="#101E39" stroke="#8A59FF" stroke-opacity="0.5"/>
+    <path d="M721 406V386" stroke="#19E2FF" stroke-width="2"/>
+    <path d="M811 406V386" stroke="#5D7CFF" stroke-width="2"/>
+    <path d="M901 406V386" stroke="#8A59FF" stroke-width="2"/>
+    <path d="M758 443H774" stroke="#52D6FF" stroke-width="2"/>
+    <path d="M848 443H864" stroke="#7E8CFF" stroke-width="2"/>
+    <path d="M721 480V496H901V480" stroke="#324C73" stroke-width="2"/>
+    <text x="704" y="451" fill="#B9F4FF" font-size="11" font-family="Arial, Helvetica, sans-serif" letter-spacing="1.2">RAW</text>
+    <text x="791" y="451" fill="#C8D6FF" font-size="11" font-family="Arial, Helvetica, sans-serif" letter-spacing="1.2">MODEL</text>
+    <text x="882" y="451" fill="#E0D5FF" font-size="11" font-family="Arial, Helvetica, sans-serif" letter-spacing="1.2">SERVE</text>
+  </g>
+
+  <g>
+    <rect x="1012" y="316" width="292" height="186" rx="20" fill="#0A152A" stroke="#8A59FF" stroke-opacity="0.42"/>
+    <text x="1046" y="356" fill="#F2DFFF" font-size="18" font-family="Arial, Helvetica, sans-serif" letter-spacing="1.6">AI OPS CENTER</text>
+    <text x="1046" y="381" fill="#A68AD2" font-size="12" font-family="Arial, Helvetica, sans-serif" letter-spacing="2">ANOMALY DETECTION / DIGITAL TWIN</text>
+    <circle cx="1140" cy="445" r="50" stroke="#8A59FF" stroke-width="10" stroke-opacity="0.18"/>
+    <path d="M1140 395A50 50 0 0 1 1188 431" stroke="#19E2FF" stroke-width="10" stroke-linecap="round"/>
+    <path d="M1188 431A50 50 0 0 1 1173 482" stroke="#8A59FF" stroke-width="10" stroke-linecap="round"/>
+    <path d="M1173 482A50 50 0 0 1 1113 491" stroke="#5D7CFF" stroke-width="10" stroke-linecap="round"/>
+    <text x="1113" y="451" fill="#F6FAFF" font-size="22" font-family="Arial, Helvetica, sans-serif">97%</text>
+    <text x="1087" y="472" fill="#86A6CF" font-size="12" font-family="Arial, Helvetica, sans-serif" letter-spacing="1.2">SYSTEM HEALTH</text>
+  </g>
+
+  <g>
+    <rect x="294" y="530" width="494" height="176" rx="20" fill="#0A152A" stroke="#1BE2FF" stroke-opacity="0.38"/>
+    <text x="328" y="569" fill="#CFF6FF" font-size="18" font-family="Arial, Helvetica, sans-serif" letter-spacing="1.6">REAL-TIME OPERATIONS DASHBOARD</text>
+    <text x="328" y="594" fill="#5E96B8" font-size="12" font-family="Arial, Helvetica, sans-serif" letter-spacing="2">THROUGHPUT / ENERGY / QUALITY / ASSET STATUS</text>
+    <path d="M332 662L380 639L428 650L476 603L524 617L572 574L620 583L668 548L716 556L764 518" stroke="#19E2FF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M332 680H764" stroke="#203555" stroke-width="2"/>
+    <path d="M368 626V690" stroke="#203555" stroke-width="2"/>
+    <path d="M460 626V690" stroke="#203555" stroke-width="2"/>
+    <path d="M552 626V690" stroke="#203555" stroke-width="2"/>
+    <path d="M644 626V690" stroke="#203555" stroke-width="2"/>
+    <path d="M736 626V690" stroke="#203555" stroke-width="2"/>
+  </g>
+
+  <g>
+    <rect x="820" y="530" width="484" height="176" rx="20" fill="#0A152A" stroke="#5D7CFF" stroke-opacity="0.38"/>
+    <text x="854" y="569" fill="#DAE5FF" font-size="18" font-family="Arial, Helvetica, sans-serif" letter-spacing="1.6">INDUSTRIAL NETWORK TOPOLOGY</text>
+    <text x="854" y="594" fill="#7E93C9" font-size="12" font-family="Arial, Helvetica, sans-serif" letter-spacing="2">EDGE GATEWAYS / SENSOR MESH / ANALYTICS PIPELINES</text>
+    <circle cx="900" cy="645" r="18" fill="#0F2241" stroke="#19E2FF" stroke-width="2"/>
+    <circle cx="1000" cy="628" r="18" fill="#101E39" stroke="#5D7CFF" stroke-width="2"/>
+    <circle cx="1092" cy="662" r="18" fill="#111B36" stroke="#8A59FF" stroke-width="2"/>
+    <circle cx="1188" cy="624" r="18" fill="#101E39" stroke="#19E2FF" stroke-width="2"/>
+    <circle cx="1260" cy="670" r="18" fill="#111B36" stroke="#5D7CFF" stroke-width="2"/>
+    <path d="M918 645H982" stroke="#2ADFFF" stroke-width="3"/>
+    <path d="M1016 633L1076 657" stroke="#6B87FF" stroke-width="3"/>
+    <path d="M1108 653L1171 633" stroke="#A16AFF" stroke-width="3"/>
+    <path d="M1202 637L1246 658" stroke="#40D7FF" stroke-width="3"/>
+    <path d="M1000 610V548H1188V606" stroke="#324C73" stroke-width="2"/>
+    <text x="876" y="650" fill="#BFF6FF" font-size="11" font-family="Arial, Helvetica, sans-serif">PLC</text>
+    <text x="981" y="633" fill="#D1DCFF" font-size="11" font-family="Arial, Helvetica, sans-serif">MES</text>
+    <text x="1069" y="667" fill="#E7D6FF" font-size="11" font-family="Arial, Helvetica, sans-serif">AI</text>
+    <text x="1167" y="628" fill="#BFF6FF" font-size="11" font-family="Arial, Helvetica, sans-serif">SCADA</text>
+    <text x="1238" y="675" fill="#D1DCFF" font-size="11" font-family="Arial, Helvetica, sans-serif">ERP</text>
+  </g>
+
+  <g opacity="0.75">
+    <path d="M610 409H642" stroke="#2AE3FF" stroke-width="3"/>
+    <path d="M980 409H1012" stroke="#7E7CFF" stroke-width="3"/>
+    <path d="M788 618H820" stroke="#2AE3FF" stroke-width="3"/>
+    <circle cx="626" cy="409" r="5" fill="#19E2FF"/>
+    <circle cx="996" cy="409" r="5" fill="#8A59FF"/>
+    <circle cx="804" cy="618" r="5" fill="#5D7CFF"/>
+  </g>
+
+  <g opacity="0.22">
+    <rect x="282" y="184" width="1034" height="542" rx="30" stroke="#D8F7FF"/>
+    <rect x="272" y="174" width="1054" height="562" rx="34" stroke="#233A5B"/>
+  </g>
+
+  <text x="301" y="786" fill="#8AA8C4" font-size="15" font-family="Arial, Helvetica, sans-serif" letter-spacing="2.2">SMART MANUFACTURING · CYBER VISUALIZATION · INDUSTRIAL INTELLIGENCE</text>
+</svg>
