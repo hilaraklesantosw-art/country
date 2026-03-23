@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>producthunt.com Verification</title>
+  <style>
+    :root {
+      --text: #2f2f2f;
+      --muted: #6f6f6f;
+      --line: #e6e6e6;
+      --card: #ffffff;
+      --accent: #56c2b0;
+      --warning: #f5a623;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--text);
+      background: #fff;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .content {
+      width: min(100%, 960px);
+      margin: 92px auto 0;
+      padding: 0 24px;
+    }
+
+    .panel {
+      width: 420px;
+      max-width: 100%;
+    }
+
+    h1 {
+      margin: 0 0 6px;
+      font-size: 2.8rem;
+      line-height: 1.05;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 1.45rem;
+      line-height: 1.2;
+      font-weight: 700;
+    }
+
+    p {
+      margin: 0;
+      font-size: 0.92rem;
+      line-height: 1.45;
+      color: var(--muted);
+    }
+
+    .status-card {
+      margin-top: 22px;
+      width: 170px;
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: var(--card);
+      box-shadow: 0 1px 0 rgba(0, 0, 0, 0.02);
+    }
+
+    .status-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .spinner {
+      width: 15px;
+      height: 15px;
+      border: 2px solid #d9f1ec;
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.9s linear infinite;
+      flex: 0 0 auto;
+    }
+
+    .status-text {
+      font-size: 0.78rem;
+      color: #707070;
+      white-space: nowrap;
+    }
+
+    .badge {
+      flex: 0 0 auto;
+      font-size: 0.6rem;
+      font-weight: 700;
+      line-height: 1.1;
+      text-align: right;
+      color: #7b5d14;
+    }
+
+    .badge span {
+      display: block;
+      padding: 3px 6px;
+      border-radius: 2px;
+      background: linear-gradient(180deg, #ffd67a, #f4b039);
+      border: 1px solid #e4a332;
+    }
+
+    footer {
+      width: min(100%, 960px);
+      margin: 0 auto;
+      padding: 0 24px 18px;
+    }
+
+    .footer-line {
+      border-top: 1px solid var(--line);
+      padding-top: 14px;
+      text-align: center;
+      font-size: 0.62rem;
+      color: #888;
+    }
+
+    .footer-line a {
+      color: #5b5fd6;
+      text-decoration: none;
+      margin-left: 6px;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .content {
+        margin-top: 72px;
+      }
+
+      h1 {
+        font-size: 2.2rem;
+      }
+
+      h2 {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <main class="content">
+      <section class="panel">
+        <h1>producthunt.com</h1>
+        <h2>Performing security verification</h2>
+        <p>
+          This website uses a security service to protect against malicious bots.
+          This page is displayed while the website verifies you are not a bot.
+        </p>
+
+        <div class="status-card" aria-label="verification status">
+          <div class="status-left">
+            <div class="spinner" aria-hidden="true"></div>
+            <div class="status-text">Verifying...</div>
+          </div>
+          <div class="badge">
+            <span>CLOUDFLARE<br>TURNSTILE</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-line">
+        Ray ID: 8e4eab57f7b4a115
+        <br>
+        Performance and security by Cloudflare
+        <a href="#">Privacy</a>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
