@@ -1,0 +1,21 @@
+name,url,description
+chatgpt,https://chat.openai.com,OpenAI's conversational AI
+claude,https://claude.ai,Anthropic's AI assistant
+perplexity,https://www.perplexity.ai,AI-powered search engine
+copilot,https://copilot.microsoft.com,Microsoft's AI code assistant
+gemini,https://gemini.google.com,Google's multimodal AI
+notion,https://www.notion.so,AI-powered productivity tool
+huggingface,https://huggingface.co,AI model hub
+stabilityai,https://stability.ai,Open source generative AI
+elevenlabs,https://elevenlabs.io,AI voice generator
+runway,https://runwayml.com,AI creative tools
+copyai,https://www.copy.ai,AI copywriting tool
+jasper,https://www.jasper.ai,AI content generator
+cohere,https://cohere.com,Enterprise AI platform
+anthropic,https://www.anthropic.com,AI safety company
+inflection,https://inflection.ai,Personal AI company
+ai21,https://ai21.com,AI text generation
+midjourney,https://www.midjourney.com,AI image generator
+dalle,https://openai.com/dall-e-3,OpenAI image generator
+google-ai,https://ai.google,Google AI products
+langchain,https://www.langchain.com,LLM app framework
