@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>36氪 | 首页静态复刻</title>
+  <style>
+    :root {
+      --bg: #f5f6f8;
+      --surface: #ffffff;
+      --surface-soft: #fafbfc;
+      --line: #e7eaef;
+      --text: #1f2329;
+      --muted: #7d8593;
+      --blue: #295bff;
+      --blue-soft: #eef3ff;
+      --shadow: 0 18px 40px rgba(17, 24, 39, 0.06);
+      --radius: 18px;
+      --font: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+    }
+
+    .page {
+      width: min(1360px, calc(100% - 24px));
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 76px minmax(0, 1fr) 320px;
+      gap: 20px;
+      padding: 14px 0 36px;
+    }
+
+    .left-rail {
+      position: sticky;
+      top: 14px;
+      align-self: start;
+      padding: 12px 8px;
+      border-radius: 26px;
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(231, 234, 239, 0.9);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 16px 34px rgba(17, 24, 39, 0.05);
+    }
+
+    .rail-logo {
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      margin: 0 auto 16px;
+      border-radius: 16px;
+      color: #fff;
+      font-weight: 700;
+      background: linear-gradient(145deg, #1f2329, #4d5561);
+    }
+
+    .rail-stack {
+      display: grid;
+      gap: 10px;
+    }
+
+    .rail-item {
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      margin: 0 auto;
+      border-radius: 14px;
+      color: #667085;
+      font-size: 18px;
+      background: #fff;
+      border: 1px solid transparent;
+    }
+
+    .rail-item.active {
+      color: var(--blue);
+      background: var(--blue-soft);
+      border-color: #dbe5ff;
+    }
+
+    .rail-label {
+      margin-top: 14px;
+      display: grid;
+      gap: 8px;
+      text-align: center;
+      font-size: 10px;
+      color: #8b94a3;
+    }
+
+    .main {
+      min-width: 0;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 18px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.06em;
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      color: #5b6472;
+      font-size: 14px;
+    }
+
+    .nav a.active {
+      color: var(--blue);
+      font-weight: 600;
+    }
+
+    .search {
+      min-width: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 11px 16px;
+      border-radius: 999px;
+      color: #9198a5;
+      background: #f6f7fa;
+      border: 1px solid #edf0f4;
+      font-size: 13px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(260px, 0.8fr);
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-card {
+      position: relative;
+      min-height: 338px;
+      color: #fff;
+      display: flex;
+      align-items: flex-end;
+      background:
+        linear-gradient(180deg, rgba(12, 19, 35, 0.06), rgba(8, 15, 27, 0.82)),
+        url("https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1400&q=80") center/cover;
+    }
+
+    .hero-card::before {
+      content: "汽车";
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      font-size: 12px;
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-copy {
+      position: relative;
+      padding: 26px;
+      width: min(86%, 620px);
+    }
+
+    .hero-copy h1 {
+      margin: 0 0 10px;
+      font-size: clamp(30px, 3vw, 44px);
+      line-height: 1.14;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-copy p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.84);
+      line-height: 1.65;
+      font-size: 14px;
+    }
+
+    .hero-side {
+      display: grid;
+      gap: 18px;
+    }
+
+    .feature-panel {
+      padding: 18px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .section-head strong {
+      color: var(--text);
+      font-size: 16px;
+    }
+
+    .mini-lead {
+      display: grid;
+      grid-template-columns: 120px minmax(0, 1fr);
+      gap: 14px;
+      align-items: center;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .thumb {
+      border-radius: 14px;
+      overflow: hidden;
+      background: #e5e7eb;
+      aspect-ratio: 16 / 10;
+    }
+
+    .mini-lead h3,
+    .news-copy h3,
+    .flash-item h4,
+    .sidebar-card h3 {
+      margin: 0;
+    }
+
+    .mini-lead h3 {
+      font-size: 18px;
+      line-height: 1.45;
+    }
+
+    .mini-lead p,
+    .news-copy p,
+    .flash-item p,
+    .sidebar-card p,
+    .topic p,
+    .footer-grid a,
+    .footer-note {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 13px;
+    }
+
+    .mini-list {
+      margin: 14px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 14px;
+    }
+
+    .mini-list li {
+      padding-left: 14px;
+      position: relative;
+      color: #3b4350;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .mini-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 9px;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #b4bdca;
+    }
+
+    .content-grid {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 320px;
+      gap: 18px;
+    }
+
+    .news-feed {
+      display: grid;
+      gap: 18px;
+    }
+
+    .news-list {
+      padding: 8px 18px 18px;
+    }
+
+    .news-item {
+      display: grid;
+      grid-template-columns: 208px minmax(0, 1fr);
+      gap: 18px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .news-item:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .news-copy {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .news-copy h3 {
+      font-size: 22px;
+      line-height: 1.36;
+      letter-spacing: -0.02em;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 12px;
+      color: #98a1af;
+    }
+
+    .meta .tag {
+      color: var(--blue);
+    }
+
+    .flash-board {
+      padding: 18px;
+    }
+
+    .flash-item {
+      padding: 14px 0;
+      border-bottom: 1px dashed #e8ebef;
+    }
+
+    .flash-item:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .flash-item h4 {
+      font-size: 15px;
+      line-height: 1.55;
+      margin-bottom: 6px;
+    }
+
+    .right-column {
+      display: grid;
+      gap: 18px;
+      align-self: start;
+    }
+
+    .sidebar-card {
+      padding: 18px;
+    }
+
+    .ad-card {
+      color: #fff;
+      min-height: 250px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      background:
+        linear-gradient(180deg, rgba(21, 47, 146, 0.12), rgba(32, 72, 232, 0.92)),
+        url("https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80") center/cover;
+    }
+
+    .ad-card .sidebar-card {
+      background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.08));
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      border-radius: inherit;
+    }
+
+    .ad-card h3 {
+      font-size: 28px;
+      line-height: 1.12;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .ranking {
+      list-style: none;
+      margin: 14px 0 0;
+      padding: 0;
+      display: grid;
+      gap: 14px;
+    }
+
+    .ranking li {
+      display: grid;
+      grid-template-columns: 28px minmax(0, 1fr);
+      gap: 12px;
+      align-items: start;
+    }
+
+    .ranking b {
+      display: grid;
+      place-items: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 10px;
+      color: var(--blue);
+      font-size: 13px;
+      background: var(--blue-soft);
+    }
+
+    .topics {
+      display: grid;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .topic {
+      display: grid;
+      grid-template-columns: 92px minmax(0, 1fr);
+      gap: 12px;
+      align-items: center;
+    }
+
+    .topic h4 {
+      margin: 0 0 4px;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .quote-card {
+      background: linear-gradient(145deg, #121b2e, #233b7b);
+      color: #eef3ff;
+    }
+
+    .quote-card p {
+      color: rgba(238, 243, 255, 0.76);
+    }
+
+    .footer {
+      margin-top: 22px;
+      border-radius: 26px;
+      background: #20252e;
+      color: #d6dbe5;
+      padding: 28px 28px 34px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .footer-grid strong {
+      display: block;
+      margin-bottom: 12px;
+      color: #fff;
+      font-size: 14px;
+    }
+
+    .footer-grid a {
+      display: block;
+      margin-bottom: 8px;
+      color: #9ea7b7;
+    }
+
+    .footer-note {
+      margin-top: 26px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      color: #8d96a6;
+      font-size: 12px;
+    }
+
+    @media (max-width: 1180px) {
+      .page {
+        grid-template-columns: 1fr;
+      }
+
+      .left-rail {
+        position: static;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        overflow-x: auto;
+      }
+
+      .rail-logo,
+      .rail-item {
+        margin: 0;
+        flex: 0 0 auto;
+      }
+
+      .rail-stack,
+      .rail-label {
+        display: flex;
+        gap: 10px;
+        margin: 0;
+      }
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .content-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .brand {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .search {
+        min-width: 0;
+      }
+
+      .news-item,
+      .topic,
+      .mini-lead {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        width: min(100%, calc(100% - 16px));
+        padding-top: 10px;
+      }
+
+      .news-copy h3 {
+        font-size: 18px;
+      }
+
+      .hero-copy {
+        width: 100%;
+      }
+
+      .hero-copy h1 {
+        font-size: 28px;
+      }
+
+      .footer {
+        padding: 22px 18px 26px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <aside class="left-rail" aria-label="左侧快捷导航">
+      <div class="rail-logo">36</div>
+      <div class="rail-stack">
+        <a class="rail-item active" href="#top">⌂</a>
+        <a class="rail-item" href="#hot">★</a>
+        <a class="rail-item" href="#feed">☰</a>
+        <a class="rail-item" href="#flash">⚡</a>
+        <a class="rail-item" href="#rank">↗</a>
+        <a class="rail-item" href="#footer">☷</a>
+      </div>
+      <div class="rail-label">
+        <span>首页</span>
+        <span>快讯</span>
+        <span>财经</span>
+        <span>汽车</span>
+        <span>科技</span>
+      </div>
+    </aside>
+
+    <main class="main" id="top">
+      <header class="topbar card">
+        <div class="brand">
+          <div class="brand-mark">36氪</div>
+          <nav class="nav" aria-label="主导航">
+            <a class="active" href="#hot">推荐</a>
+            <a href="#feed">最新</a>
+            <a href="#flash">快讯</a>
+            <a href="#rank">创投</a>
+            <a href="#footer">汽车</a>
+            <a href="#footer">科技</a>
+            <a href="#footer">生活</a>
+          </nav>
+        </div>
+        <div class="search">
+          <span>搜索你关心的公司、行业或关键词</span>
+          <span>⌕</span>
+        </div>
+      </header>
+
+      <section class="hero-grid" id="hot">
+        <article class="hero-card card">
+          <div class="hero-copy">
+            <h1>小米 SU7 Ultra 把性能、价格和流量，压进了同一条赛道</h1>
+            <p>
+              复刻页面以资讯门户的密集布局为核心，保留 36Kr 风格中的大图头条、右侧精选、底部长列表与深色页脚。
+              视觉上采用轻边框、圆角卡片和蓝色信息层级，模拟原站首页的阅读节奏。
+            </p>
+          </div>
+        </article>
+
+        <div class="hero-side">
+          <section class="feature-panel card">
+            <div class="section-head">
+              <strong>今日焦点</strong>
+              <span>换一换</span>
+            </div>
+            <article class="mini-lead">
+              <div class="thumb">
+                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80" alt="AI与内容平台">
+              </div>
+              <div>
+                <h3>AI 应用进入筛选期，内容平台开始重新计算增长公式</h3>
+                <p>从模型能力比拼，转向真实留存、付费结构和场景效率的竞争。</p>
+              </div>
+            </article>
+            <ul class="mini-list">
+              <li>智驾供应链迎来新周期，车端算力被重新定价</li>
+              <li>一级市场更谨慎，硬科技项目融资转向订单验证</li>
+              <li>大模型创业公司开始扎进垂直场景，拒绝泛化叙事</li>
+            </ul>
+          </section>
+
+          <section class="flash-board card" id="flash">
+            <div class="section-head">
+              <strong>24h 快讯</strong>
+              <span>查看更多</span>
+            </div>
+            <article class="flash-item">
+              <h4>OpenAI 发布新一代企业功能，强调工具编排与长上下文稳定性</h4>
+              <p>2 分钟前 · 人工智能</p>
+            </article>
+            <article class="flash-item">
+              <h4>宁德时代加码海外储能合作，目标锁定欧洲大型园区项目</h4>
+              <p>14 分钟前 · 新能源</p>
+            </article>
+            <article class="flash-item">
+              <h4>多家 SaaS 公司缩短销售链路，重新押注产品驱动增长</h4>
+              <p>36 分钟前 · 企业服务</p>
+            </article>
+          </section>
+        </div>
+      </section>
+
+      <section class="content-grid">
+        <div class="news-feed" id="feed">
+          <section class="card news-list">
+            <div class="section-head">
+              <strong>推荐阅读</strong>
+              <span>按热度排序</span>
+            </div>
+
+            <article class="news-item">
+              <div class="thumb">
+                <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80" alt="新能源车">
+              </div>
+              <div class="news-copy">
+                <h3>价格战之后，新能源车市场正在转向“体验战”</h3>
+                <p>更长的交付链条、更卷的软件迭代，以及更具体的用户感知，正在决定下一轮品牌分层。</p>
+                <div class="meta">
+                  <span class="tag">汽车</span>
+                  <span>未来汽车日报</span>
+                  <span>阅读 2.8w</span>
+                  <span>评论 116</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="news-item">
+              <div class="thumb">
+                <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=80" alt="办公团队">
+              </div>
+              <div class="news-copy">
+                <h3>企业软件的下一张门票，不是功能，而是交付速度</h3>
+                <p>AI 编程工具让原本需要多团队协作的产品试验，被压缩进更短周期，试错成本也同步下降。</p>
+                <div class="meta">
+                  <span class="tag">企业服务</span>
+                  <span>数字时氪</span>
+                  <span>阅读 1.9w</span>
+                  <span>评论 62</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="news-item">
+              <div class="thumb">
+                <img src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=1200&q=80" alt="芯片电路">
+              </div>
+              <div class="news-copy">
+                <h3>国产芯片创业者不再迷信故事，开始卷交付、卷产能、卷验证</h3>
+                <p>产业客户给出的信号非常清楚: 先解决问题，再讲估值。</p>
+                <div class="meta">
+                  <span class="tag">硬科技</span>
+                  <span>氪星研究所</span>
+                  <span>阅读 1.4w</span>
+                  <span>评论 33</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="news-item">
+              <div class="thumb">
+                <img src="https://images.unsplash.com/photo-1495020689067-958852a7765e?auto=format&fit=crop&w=1200&q=80" alt="城市出行">
+              </div>
+              <div class="news-copy">
+                <h3>即时零售继续向前压，线下门店开始重做“最后三公里”</h3>
+                <p>配送时效与库存联动越来越精细，传统门店的角色正从货架转向节点。</p>
+                <div class="meta">
+                  <span class="tag">消费</span>
+                  <span>未来消费</span>
+                  <span>阅读 9.2k</span>
+                  <span>评论 24</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="news-item">
+              <div class="thumb">
+                <img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1200&q=80" alt="机器人">
+              </div>
+              <div class="news-copy">
+                <h3>人形机器人融资升温，但真正的订单还在工厂里</h3>
+                <p>Demo 越来越成熟，真正卡住行业落地的，仍然是单点工序的 ROI 与稳定运行时间。</p>
+                <div class="meta">
+                  <span class="tag">机器人</span>
+                  <span>前沿科技</span>
+                  <span>阅读 1.1w</span>
+                  <span>评论 51</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="news-item">
+              <div class="thumb">
+                <img src="https://images.unsplash.com/photo-1518186285589-2f7649de83e0?auto=format&fit=crop&w=1200&q=80" alt="咖啡门店">
+              </div>
+              <div class="news-copy">
+                <h3>高线城市不再是唯一战场，连锁品牌重新研究下沉市场的效率模型</h3>
+                <p>渠道、门店面积与供应链密度需要一起算，过去那套扩张方法已经不够用了。</p>
+                <div class="meta">
+                  <span class="tag">零售</span>
+                  <span>消费观察</span>
+                  <span>阅读 8.6k</span>
+                  <span>评论 19</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="news-item">
+              <div class="thumb">
+                <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1200&q=80" alt="创投会议">
+              </div>
+              <div class="news-copy">
+                <h3>一级市场重新定价，投资人把“叙事”切回“收入”</h3>
+                <p>热度仍然重要，但对很多基金来说，更有说服力的是客户名单、复购和回款质量。</p>
+                <div class="meta">
+                  <span class="tag">创投</span>
+                  <span>创投Plus</span>
+                  <span>阅读 7.3k</span>
+                  <span>评论 14</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="news-item">
+              <div class="thumb">
+                <img src="https://images.unsplash.com/photo-1516321165247-4aa89a48be28?auto=format&fit=crop&w=1200&q=80" alt="数据中心">
+              </div>
+              <div class="news-copy">
+                <h3>算力行业开始回归常识: 机柜、运维和利用率决定最终利润</h3>
+                <p>抢 GPU 的阶段逐渐过去，能否持续消化和交付，才是下一阶段的真实门槛。</p>
+                <div class="meta">
+                  <span class="tag">云计算</span>
+                  <span>新商业日报</span>
+                  <span>阅读 6.9k</span>
+                  <span>评论 11</span>
+                </div>
+              </div>
+            </article>
+          </section>
+
+          <section class="card flash-board">
+            <div class="section-head">
+              <strong>深度观察</strong>
+              <span>专题精选</span>
+            </div>
+            <article class="flash-item">
+              <h4>为什么 2026 年的内容平台，比 2023 年更难做增长</h4>
+              <p>流量入口更碎，用户耐心更短，单纯依赖推荐系统已经很难继续放大。</p>
+            </article>
+            <article class="flash-item">
+              <h4>大模型创业公司从“能力竞赛”切向“业务竞赛”</h4>
+              <p>客户要求的是稳定交付、明确边界和持续迭代，而不是一场技术演示。</p>
+            </article>
+            <article class="flash-item">
+              <h4>全球汽车产业链在重写合作方式，中国供应链正在获得更主动的位置</h4>
+              <p>品牌、电池、智驾、车载生态，开始在更多海外市场以系统能力打包输出。</p>
+            </article>
+          </section>
+
+          <footer class="footer" id="footer">
+            <div class="footer-grid">
+              <div>
+                <strong>关于 36氪</strong>
+                <a href="#">公司介绍</a>
+                <a href="#">加入我们</a>
+                <a href="#">联系我们</a>
+              </div>
+              <div>
+                <strong>内容矩阵</strong>
+                <a href="#">快讯</a>
+                <a href="#">专题</a>
+                <a href="#">视频</a>
+              </div>
+              <div>
+                <strong>服务</strong>
+                <a href="#">企业号</a>
+                <a href="#">氪空间</a>
+                <a href="#">广告合作</a>
+              </div>
+              <div>
+                <strong>关注我们</strong>
+                <a href="#">微信公众号</a>
+                <a href="#">微博</a>
+                <a href="#">小红书</a>
+              </div>
+              <div>
+                <strong>移动端</strong>
+                <a href="#">iOS</a>
+                <a href="#">Android</a>
+                <a href="#">鸿蒙版</a>
+              </div>
+            </div>
+            <p class="footer-note">
+              本页为基于截图制作的静态视觉复刻稿，仅用于前端还原练习与页面演示。
+              Copyright © 2011-2026 36氪风格静态复刻页面。
+            </p>
+          </footer>
+        </div>
+
+        <aside class="right-column" id="rank">
+          <section class="card ad-card">
+            <div class="sidebar-card">
+              <p>年度专题</p>
+              <h3>WISE 2026<br>新经济之王</h3>
+              <p>在 AI、硬科技与消费回潮之间，寻找下一个高增长叙事。</p>
+            </div>
+          </section>
+
+          <section class="card sidebar-card">
+            <div class="section-head">
+              <strong>热榜</strong>
+              <span>24h</span>
+            </div>
+            <ol class="ranking">
+              <li><b>1</b><span>小米汽车新车发布后，门店订单和讨论热度同步上行</span></li>
+              <li><b>2</b><span>字节继续加码 AI Agent，押注工具链与商业化协同</span></li>
+              <li><b>3</b><span>阿里云公布新模型价格，企业客户比拼推理成本</span></li>
+              <li><b>4</b><span>机器人赛道进入交付验证期，资本开始看工厂指标</span></li>
+              <li><b>5</b><span>跨境电商平台重新争夺欧洲仓储和履约控制权</span></li>
+            </ol>
+          </section>
+
+          <section class="card sidebar-card">
+            <div class="section-head">
+              <strong>专题栏目</strong>
+              <span>更多</span>
+            </div>
+            <div class="topics">
+              <article class="topic">
+                <div class="thumb">
+                  <img src="https://images.unsplash.com/photo-1518773553398-650c184e0bb3?auto=format&fit=crop&w=800&q=80" alt="AI 芯片">
+                </div>
+                <div>
+                  <h4>AI 原生应用</h4>
+                  <p>从模型到业务闭环，重新定义软件产品形态。</p>
+                </div>
+              </article>
+              <article class="topic">
+                <div class="thumb">
+                  <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80" alt="创业者">
+                </div>
+                <div>
+                  <h4>创业实录</h4>
+                  <p>融资降温之后，创业公司怎样活得更久。</p>
+                </div>
+              </article>
+              <article class="topic">
+                <div class="thumb">
+                  <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=800&q=80" alt="商业空间">
+                </div>
+                <div>
+                  <h4>空间与消费</h4>
+                  <p>城市商业如何从扩张转向精细运营。</p>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section class="card sidebar-card quote-card">
+            <div class="section-head">
+              <strong>一句话点评</strong>
+              <span>编辑部</span>
+            </div>
+            <h3>真正的增长从来不是把流量买回来，而是把价值做出来。</h3>
+            <p>当所有公司都能更快写代码时，差异化会回到产品判断、组织效率和用户洞察。</p>
+          </section>
+        </aside>
+      </section>
+    </main>
+
+    <div></div>
+  </div>
+</body>
+</html>
