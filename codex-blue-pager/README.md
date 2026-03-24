@@ -23,6 +23,7 @@
 ## 目录
 
 - [book-front-matter.md](./book-front-matter.md)
+- [preface.md](./preface.md)
 - [outline.md](./outline.md)
 - [chapters/01-ren-shi-codex.md](./chapters/01-ren-shi-codex.md)
 - [chapters/02-gong-zuo-ji-zhi.md](./chapters/02-gong-zuo-ji-zhi.md)
@@ -32,6 +33,13 @@
 - [chapters/06-mo-xing-mo-shi-yu-pei-zhi.md](./chapters/06-mo-xing-mo-shi-yu-pei-zhi.md)
 - [chapters/07-an-quan-bian-jie-yu-cheng-ben.md](./chapters/07-an-quan-bian-jie-yu-cheng-ben.md)
 - [chapters/08-sheng-tai-dui-bi-yu-chang-qi-yong-fa.md](./chapters/08-sheng-tai-dui-bi-yu-chang-qi-yong-fa.md)
+- [faq.md](./faq.md)
+- [glossary.md](./glossary.md)
+- [afterword.md](./afterword.md)
+- [release-package.md](./release-package.md)
+- [promo/wechat-article.md](./promo/wechat-article.md)
+- [promo/xiaohongshu-notes.md](./promo/xiaohongshu-notes.md)
+- [promo/sales-page-copy.md](./promo/sales-page-copy.md)
 
 ## 本书核心主张
 
