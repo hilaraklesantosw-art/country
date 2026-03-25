@@ -116,3 +116,53 @@
 - `Radio Regenbogen Kinderlieder`：`Children`、`Children Music`
 - `TOGGO Radio`：`Children`、`Family`、`Radio play / Audiobook`、`Children Music`
 - `RTÉ Junior`：`Children`
+
+## 英文儿童频道直链（可直接接入播放器）
+
+更新时间：2026-03-25
+
+说明：
+
+- 这一组不再局限 `radio.net`，而是优先整理“英文、适合儿童、当前可取到音频流或播放列表”的公开频道。
+- 我优先保留了更适合小孩的内容类型：儿歌、故事、低刺激陪伴、儿童古典、睡前频道。
+- 下面的流地址我在写入前做了实际连通性验证，至少能返回音频字节或 `m3u8` 播放列表。
+- 如果你要接到网页里：`mp3/aac` 可直接给 `<audio>`，`m3u8` 通常需要 `hls.js` 或原生 HLS 支持。
+
+| 排名 | 频道 | 类型 | 适合场景 | 直链流 |
+| --- | --- | --- | --- | --- |
+| 1 | ABC Kids listen | 官方 24/7 儿童电台 | 综合陪伴、故事、白天播放 | <https://streaming.abc-cdn.net.au/audio/hls/abckids.m3u8> |
+| 2 | Fun Kids | 英国儿童综合台 | 白天陪玩、资讯、轻娱乐 | <https://listen-funkids.sharp-stream.com/funkids.mp3> |
+| 3 | Fun Kids Junior | 更低龄版本 | 更适合 3-6 岁、低龄陪伴 | <http://listen-funkids.sharp-stream.com/funkidsjunior.mp3> |
+| 4 | Kids Public Radio Pipsqueaks | 低龄儿童音乐 | 幼儿园前后、轻松儿歌 | <http://kidspublicradio2.got.net:8000/pipsqueaks> |
+| 5 | Kids Public Radio Lullaby | 睡前 / 安抚 | 午睡、睡前、安静时段 | <http://kidspublicradio2.got.net:8000/lullaby> |
+| 6 | Kids Public Radio Jabberwocky | 儿童音乐 / 故事感更强 | 日常陪伴、稍大一点孩子也能听 | <http://kidspublicradio.got.net:8000/jabberwocky> |
+| 7 | Fun Radio For Kids - Bedtime Stories | 睡前故事 | 睡前、安静听故事 | <https://nl4.mystreaming.net/uber/forkidzbedtimestories/icecast.audio> |
+| 8 | KDFC Glissando | 儿童古典乐 | 画画、阅读、安静背景音 | <https://16643.live.streamtheworld.com/CC9_S01AAC_96_SC> |
+| 9 | Radio Art - Music for Kids | 儿童向轻音乐 | 日常循环、低刺激背景音 | <http://air.radioart.com/fMusic_for_kids.mp3> |
+| 10 | Positively Sleep Kids | 儿童睡眠 / 放松 | 睡前、旅行、午休 | <https://streaming.positivity.radio/pr/sleepkids/icecast.audio> |
+
+### 如果只保留最值得先试的 5 个
+
+1. `ABC Kids listen`
+2. `Fun Kids Junior`
+3. `Kids Public Radio Pipsqueaks`
+4. `Kids Public Radio Lullaby`
+5. `Fun Radio For Kids - Bedtime Stories`
+
+这 5 个整体更偏儿童内容本身，而不是“沾一点儿童标签”的普通电台。
+
+### 扩展英文儿童流
+
+| 频道 | 类型 | 内容倾向 | 直链流 |
+| --- | --- | --- | --- |
+| Radio Art - Greek Art for Kids | 儿童向轻音乐 | 更安静、偏背景陪伴 | <http://air.radioart.com/fGreek_art_for_kids.mp3> |
+| Radio Art - Inspire / Disney | 迪士尼向音乐 | 更熟悉的动画感 | <http://air.radioart.com/fDisney.mp3> |
+| Positively Calm Kids | 儿童平静 / 放松 | 比 `Sleep Kids` 更适合白天放空 | <https://streaming.positivity.radio/pr/calmkids/icecast.audio> |
+| 181.FM - Christmas Kids | 节日儿童音乐 | 明显季节性，只适合圣诞档 | <http://listen.181fm.com/181-xkids_128k.mp3> |
+| Abiding Radio - Kids | 儿童基督教内容 | 宗教属性明显，按需使用 | <https://streams.abidingradio.com:7810/1> |
+
+### 接入建议
+
+- `1`：`m3u8`，网页里优先用 `hls.js`
+- `2-10`：大多是 `mp3/aac/icecast` 直流，网页播放器、VLC、IINA、车机更容易直接接
+- `4-6`：`Kids Public Radio` 是老式流，浏览器直开不一定自动播，但播放器和脚本接入通常没问题
