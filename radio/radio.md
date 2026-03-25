@@ -72,3 +72,47 @@
   - `radio.json`
   - `radio.m3u`
   - `radio.html`
+
+## radio.net 上适合 5 岁小孩听的 10 个台
+
+更新时间：2026-03-25
+
+说明：
+
+- 下面这 10 个是我基于 `radio.net` 当前页面标签、节目定位和内容类型，按“更适合 5 岁孩子”做的主观排序。
+- 优先选择了 `Children`、`Children Music`、`Radio play / Audiobook`、`Education` 这类明显偏低龄的频道。
+- 其中不少是德语或英语台；如果孩子只听中文，建议优先选“纯儿歌 / 纯音乐 / 故事型”频道，语言门槛更低。
+
+| 排名 | 电台 | 适合 5 岁的原因 | 语言 | radio.net 链接 |
+| --- | --- | --- | --- | --- |
+| 1 | Schwany7 Märchen Kinderradio | `Children + Radio play / Audiobook`，偏童话故事和儿童音频，节奏更稳，最适合睡前、安静听故事。 | 德语 | <https://www.radio.net/s/schwany7> |
+| 2 | Radio TEDDY - Kinderlieder | 典型低龄儿歌台，内容比综合儿童台更聚焦，5 岁孩子更容易直接听进去。 | 德语 | <https://www.radio.net/s/radioteddykinderlieder> |
+| 3 | kinderlieder | radio.net 标为 `Children`，页面介绍里明确提到儿童歌曲、睡眠歌曲和适合家庭收听，低龄友好。 | 德语 | <https://www.radio.net/s/lautfm-kinderlieder> |
+| 4 | ANTENNE BAYERN - Hits für Kids | 页面直接写明是“给孩子的 web radio”，有儿歌、趣味和学习内容，适合白天播放。 | 德语 | <https://www.radio.net/s/antennebayernkids> |
+| 5 | Fun Kids Junior | 名字就明确偏更低龄的 `Junior`，相比普通 `Fun Kids` 更接近学龄前儿童场景。 | 英语 | <https://www.radio.net/s/fun-kids-junior> |
+| 6 | Rai Radio Kids | `Education + Children Music`，偏儿童教育和儿童音乐，适合想要稍微“寓教于乐”的场景。 | 意大利语 | <https://www.radio.net/s/rai-radio-kids> |
+| 7 | Klassik Radio Klassik für Kids | `Children + Classical`，更适合作为安静背景音、午休或画画时播放，刺激性低。 | 德语 | <https://www.radio.net/s/klassikradiofuerkids> |
+| 8 | Radio Regenbogen Kinderlieder | `Children + Children Music`，定位明确，就是儿童歌曲电台，适合家庭日常循环播放。 | 德语 | <https://www.radio.net/s/radioregenbogenkinder> |
+| 9 | TOGGO Radio | `Children + Family + Radio play / Audiobook + Children Music`，内容更丰富，但综合度更高，适合白天陪玩。 | 德语 | <https://www.radio.net/s/toggo> |
+| 10 | RTÉ Junior | 明确儿童定位，适合作为英语环境下的轻陪伴型儿童台，但低龄定向不如前几名强。 | 英语 | <https://www.radio.net/s/rtejunior> |
+
+### 如果只想选最稳的 3 个
+
+1. `Schwany7 Märchen Kinderradio`
+2. `Radio TEDDY - Kinderlieder`
+3. `kinderlieder`
+
+这 3 个整体更偏低龄、内容更“幼儿园化”，比综合儿童娱乐台更适合 5 岁小孩。
+
+### 我筛选时参考的 radio.net 页面信号
+
+- `Schwany7 Märchen Kinderradio`：`Children`、`Radio play / Audiobook`
+- `Radio TEDDY - Kinderlieder`：`Children`、`Hits`、`Pop`
+- `kinderlieder`：`Children`
+- `ANTENNE BAYERN - Hits für Kids`：页面介绍明确写了“for kids”以及“fun”和“things to learn”
+- `Fun Kids Junior`：`Children`
+- `Rai Radio Kids`：`Education`、`Children Music`
+- `Klassik Radio Klassik für Kids`：`Children`、`Classical`
+- `Radio Regenbogen Kinderlieder`：`Children`、`Children Music`
+- `TOGGO Radio`：`Children`、`Family`、`Radio play / Audiobook`、`Children Music`
+- `RTÉ Junior`：`Children`
